@@ -1,7 +1,6 @@
 import { Router } from "express";
 import {
   crearEvento,
-  mostrarEventos,
   mostrarDetalleEvento,
   actualizarEvento,
   eliminarEvento,
@@ -11,11 +10,10 @@ import { authRequired } from "../middleware/validaToken.js";
 
 const router = Router();
 
-router.get("/eventos", mostrarEventos);
 router.get("/evento/:id", mostrarDetalleEvento);
-router.get("/eventos/:tematica/:ciudad", filtrarEventosByTematicaOrCiudad);
+router.get("/eventos", filtrarEventosByTematicaOrCiudad);
 router.post("/evento/:id", authRequired, crearEvento);
-router.put("/evento/:id/:user", authRequired, actualizarEvento);
-router.delete("/evento/:id/:user", authRequired, eliminarEvento);
+router.put("/evento/:id", authRequired, actualizarEvento);
+router.delete("/evento/:id", authRequired, eliminarEvento);
 
 export default router;

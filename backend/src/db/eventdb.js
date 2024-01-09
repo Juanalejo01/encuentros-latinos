@@ -1,4 +1,5 @@
 import { getConnection } from "./db.js";
+import { generateError } from "../libs/helpers.js";
 
 export const eventoNuevoDB = async (
   usuario_id,
@@ -12,27 +13,12 @@ export const eventoNuevoDB = async (
   try {
     connection = await getConnection();
 
-    await connection.query(
+    const [evento] = await connection.query(
       "INSERT INTO eventos (usuario_id, titulo, descripcion, tematica, localizacion, foto) VALUES(?,?,?,?,?,?)",
       [usuario_id, titulo, descripcion, tematica, localizacion, foto]
     );
 
-    return;
-  } finally {
-    if (connection) {
-      connection.release();
-    }
-  }
-};
-
-export const eventosDB = async () => {
-  let connection;
-  try {
-    connection = await getConnection();
-
-    await connection.query("SELECT * FROM eventos");
-
-    return;
+    return evento.insertId;
   } finally {
     if (connection) {
       connection.release();
@@ -46,9 +32,13 @@ export const eventoById = async (id) => {
   try {
     connection = await getConnection();
 
-    await connection.query("SELECT * FROM eventos WHERE id = ?", [id]);
+    const [[evento]] = await connection.query("SELECT * FROM eventos WHERE id = ?", [id]);
 
-    return;
+    if (!evento) {
+      throw generateError("No existe ese evento!!", 404);
+    }
+
+    return evento;
   } finally {
     if (connection) {
       connection.release();
@@ -69,12 +59,21 @@ export const eventoActualizadoById = async (
   try {
     connection = await getConnection();
 
-    await connection.query(
-      "UPDATE eventos SET titulo = ?, descripcion = ?, tematica = ?, localizacion = ?, foto = ? WHERE id = ?",
-      [titulo, descripcion, tematica, localizacion, foto, id]
-    );
+    let updateQuery =
+      "UPDATE eventos SET titulo = ?, descripcion = ?, tematica = ?, localizacion = ?";
+    let updateParams = [titulo, descripcion, tematica, localizacion];
 
-    return;
+    if (foto) {
+      updateQuery += ", foto = ?";
+      updateParams.push(foto);
+    }
+
+    updateQuery += " WHERE id = ?";
+    updateParams.push(id);
+
+    const [evento] = await connection.query(updateQuery, updateParams);
+
+    return evento;
   } finally {
     if (connection) {
       connection.release();
@@ -104,12 +103,22 @@ export const eventosByTematicaOrCiudad = async (tematica, ciudad) => {
   try {
     connection = await getConnection();
 
-    await connection.query("SELECT * FROM eventos WHERE tematica = ? OR ciudad = ?", [
-      tematica,
-      ciudad,
-    ]);
+    let searchQuery = "SELECT * FROM eventos WHERE 1=1";
+    let searchParams = [];
 
-    return;
+    if (tematica) {
+      searchQuery += " AND tematica = ?";
+      searchParams.push(tematica);
+    }
+
+    if (ciudad) {
+      searchQuery += " AND localizacion = ?";
+      searchParams.push(ciudad);
+    }
+
+    const [filtro] = await connection.query(searchQuery, searchParams);
+
+    return filtro;
   } finally {
     if (connection) {
       connection.release();

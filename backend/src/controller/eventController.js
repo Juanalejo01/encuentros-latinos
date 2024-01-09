@@ -1,6 +1,5 @@
 import {
   eventoNuevoDB,
-  eventosDB,
   eventoById,
   eventoActualizadoById,
   eventoEliminadoById,
@@ -23,22 +22,18 @@ export const crearEvento = async (req, res, next) => {
       imagenFileName = await subirImagen(req.files.imagen);
     }
 
-    await eventoNuevoDB(usuario_id, titulo, descripcion, tematica, localizacion, imagenFileName);
+    const eventoId = await eventoNuevoDB(
+      usuario_id,
+      titulo,
+      descripcion,
+      tematica,
+      localizacion,
+      imagenFileName
+    );
 
     res.status(200).json({
       mensaje: "Evento creado exitosamente",
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const mostrarEventos = async (req, res, next) => {
-  try {
-    await eventosDB();
-
-    res.status(200).json({
-      mensaje: "Datos mostrados exitosamente",
+      evento_id: eventoId,
     });
   } catch (error) {
     next(error);
@@ -47,12 +42,31 @@ export const mostrarEventos = async (req, res, next) => {
 
 export const mostrarDetalleEvento = async (req, res, next) => {
   try {
-    const id = Number(req.params.id);
+    const evento_id = Number(req.params.id);
 
-    await eventoById(id);
+    const evento = await eventoById(evento_id);
 
     res.status(200).json({
-      mensaje: "Detalle mostrado exitosamente",
+      evento,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const filtrarEventosByTematicaOrCiudad = async (req, res, next) => {
+  try {
+    const tematica = req.query.tematica || "";
+    const ciudad = req.query.ciudad || "";
+
+    const filtro = await eventosByTematicaOrCiudad(tematica, ciudad);
+
+    if (filtro.length === 0) {
+      throw generateError("No se encontraron eventos para los criterios dados", 404);
+    }
+
+    res.status(200).json({
+      filtro,
     });
   } catch (error) {
     next(error);
@@ -62,10 +76,11 @@ export const mostrarDetalleEvento = async (req, res, next) => {
 export const actualizarEvento = async (req, res, next) => {
   try {
     const { titulo, descripcion, tematica, localizacion } = req.body;
-    const id = Number(req.params.id);
-    const usuario_id = Number(req.params.user);
+    const evento_id = Number(req.params.id);
 
-    if (req.userId !== usuario_id) {
+    const evento = await eventoById(evento_id);
+
+    if (req.userId !== evento.usuario_id) {
       throw generateError("Autorización denegada", 401);
     }
 
@@ -75,10 +90,18 @@ export const actualizarEvento = async (req, res, next) => {
       imagenFileName = await subirImagen(req.files.imagen);
     }
 
-    await eventoActualizadoById(id, titulo, descripcion, tematica, localizacion, imagenFileName);
+    await eventoActualizadoById(
+      evento_id,
+      titulo,
+      descripcion,
+      tematica,
+      localizacion,
+      imagenFileName
+    );
 
     res.status(200).json({
       mensaje: "Actualizado exitosamente",
+      evento: await eventoById(evento_id),
     });
   } catch (error) {
     next(error);
@@ -87,32 +110,18 @@ export const actualizarEvento = async (req, res, next) => {
 
 export const eliminarEvento = async (req, res, next) => {
   try {
-    const id = Number(req.params.id);
-    const usuario_id = Number(req.params.user);
+    const evento_id = Number(req.params.id);
 
-    if (req.userId !== usuario_id) {
+    const evento = await eventoById(evento_id);
+
+    if (req.userId !== evento.usuario_id) {
       throw generateError("Autorización denegada", 401);
     }
 
-    await eventoEliminadoById(id);
+    await eventoEliminadoById(evento_id);
 
     res.status(200).json({
       mensaje: "Eliminado exitosamente",
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const filtrarEventosByTematicaOrCiudad = async (req, res, next) => {
-  try {
-    const tematica = req.params.tematica;
-    const ciudad = req.params.ciudad;
-
-    await eventosByTematicaOrCiudad(tematica, ciudad);
-
-    res.status(200).json({
-      mensaje: "Eventos encontrados",
     });
   } catch (error) {
     next(error);
