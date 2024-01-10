@@ -111,7 +111,7 @@ export const actualizarEvento = async (req, res, next) => {
 export const eliminarEvento = async (req, res, next) => {
   try {
     const evento_id = Number(req.params.id);
-
+    console.log("Prueba");
     const evento = await eventoById(evento_id);
 
     if (req.userId !== evento.usuario_id) {
