@@ -86,7 +86,7 @@ export const updateProfile = async (req, res, next) => {
 
         await updateUser(id, nombre, apellidos, email, hashedPassword, biografia, imageFileName, modificaEmail)
 
-        res.status(200).json({mensaje: "Usuario registrado correctamente!"})
+        res.status(200).json({mensaje: "Usuario actualizado correctamente!"})
 
 
     } catch (error) {
