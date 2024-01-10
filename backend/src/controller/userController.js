@@ -1,105 +1,150 @@
-import { createUser, getUserById, updateUser, deleteUser, userLogindb } from '../db/userdb.js';
-import bcrypt from 'bcryptjs';
-import { createToken, validaPassword, generateError, subirImagen } from '../libs/helpers.js';
+import {
+  createUser,
+  getUserById,
+  updateUser,
+  deleteUser,
+  userLogindb,
+  actualizaEmail,
+  actualizaPassword,
+} from "../db/userdb.js";
+import bcrypt from "bcryptjs";
+import { createToken, validaPassword, subirImagen } from "../libs/helpers.js";
 
 export const registerUser = async (req, res, next) => {
-    try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        const usuario = {
-            ...req.body,
-            password: hashedPassword,
-        };
-        if (req.files?.avatar) {
-            usuario.avatar = await subirImagen(req.files.avatar);
-            
-        }
-        const userId = await createUser(usuario);
-        res.status(200).json({ userId, mensaje: 'Usuario registrado exitosamente' });
-    } catch (error) {
-        next(error);
+  try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+    const { nombre, apellidos, email, biografia } = req.body;
+
+    let imageFileName;
+
+    if (req.files?.avatar) {
+      imageFileName = await subirImagen(req.files.avatar);
     }
+
+    const userId = await createUser(
+      nombre,
+      apellidos,
+      email,
+      hashedPassword,
+      biografia,
+      imageFileName
+    );
+
+    res.status(200).json({ userId, mensaje: "Usuario registrado exitosamente" });
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const loginUser = async (req, res, next) => {
-    try {
-        const { email, password } = req.body;
-        const data = await userLogindb(email); 
-        await validaPassword(password, data.password);
+  try {
+    const { email, password } = req.body;
 
-        const token = await createToken({id: data.id}, "1d");
-        res.status(200).json({
-            mensaje: "Usuario logeado exitosamente", 
-            token,
-        });
-    } catch (error) {
-        next(error)
-    }
-}
+    const data = await userLogindb(email);
+
+    await validaPassword(password, data.password, true);
+
+    const token = await createToken({ id: data.id }, "1d");
+
+    res.status(200).json({
+      mensaje: "Usuario logeado exitosamente",
+      token,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const getUserProfile = async (req, res, next) => {
-    try {
-        const userId = req.params.id;
-        const usuario = await getUserById(userId);
-        if (!usuario) {
-            return next(generateError('Usuario no encontrado', 404));
-        }
-        res.status(200).json(usuario);
-    } catch (error) {
-        next(error);
-    }
+  try {
+    const usuario = await getUserById(req.userId);
+
+    res.status(200).json({
+      nombre: usuario.nombre,
+      apellidos: usuario.apellidos,
+      email: usuario.email,
+      biografia: usuario.biografia,
+      avatar: usuario.avatar,
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const updateProfile = async (req, res, next) => {
-    try {
-        let modificaEmail = false;
-        let hashedPassword;
-        const id = Number(req.params.id);
-        const {nombre, apellidos, email, password, nuevoPassword, biografia} = req.body; 
+  try {
+    const { nombre, apellidos, biografia } = req.body;
 
-        if (!id) {
-            throw generateError("Página no encontrada", 404);
-        }
+    let imageFileName;
 
-        if (req.userId !== id) {
-            throw generateError("Autorización denegada", 401);
-        }
-
-        const [datos] = await getUserById(id);
-
-        if (email !== datos.email || nuevoPassword) {
-            console.log(email)
-            console.log(nuevoPassword)
-            await validaPassword(password, datos.password);
-            modificaEmail = true;
-        }
-
-        if (nuevoPassword) {
-            modificaEmail = false;
-            hashedPassword = await bcrypt.hash(nuevoPassword, 10);
-            
-        }
-
-        let imageFileName;
-        if (req.files?.avatar) {
-            imageFileName = await subirImagen(req.files.avatar);
-        }
-
-        await updateUser(id, nombre, apellidos, email, hashedPassword, biografia, imageFileName, modificaEmail)
-
-        res.status(200).json({mensaje: "Usuario actualizado correctamente!"})
-
-
-    } catch (error) {
-        next(error);
+    if (req.files?.avatar) {
+      imageFileName = await subirImagen(req.files.avatar);
     }
+
+    await updateUser(req.userId, nombre, apellidos, biografia, imageFileName);
+
+    const usuario = await getUserById(req.userId);
+
+    res.status(200).json({
+      mensaje: "Usuario actualizado correctamente",
+      usuario: {
+        nombre: usuario.nombre,
+        apellidos: usuario.apellidos,
+        email: usuario.email,
+        biografia: usuario.biografia,
+        avatar: usuario.avatar,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateEmail = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    const datos = await getUserById(req.userId);
+
+    if (email === datos.email) {
+      res.status(200).json({ mensaje: "El email no ha sido modificado" });
+    }
+
+    await validaPassword(password, datos.password, false);
+
+    await actualizaEmail(email, req.userId);
+
+    res.status(200).json({ mensaje: "El email ha sido modificado exitosamente" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updatePassword = async (req, res, next) => {
+  try {
+    const { password, nuevoPassword } = req.body;
+
+    const datos = await getUserById(req.userId);
+
+    await validaPassword(password, datos.password, false);
+
+    const hashedPassword = await bcrypt.hash(nuevoPassword, 10);
+
+    await actualizaPassword(hashedPassword, req.userId);
+
+    res.status(200).json({ mensaje: "La contraseña ha sido modificada exitosamente" });
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const deleteProfile = async (req, res, next) => {
-    try {
-        const userId = req.params.id;
-        await deleteUser(userId);
-        res.status(200).json({ mensaje: 'Usuario eliminado exitosamente' });
-    } catch (error) {
-        next(error);
-    }
+  try {
+    await deleteUser(req.userId);
+
+    res.status(200).json({ mensaje: "Usuario eliminado exitosamente" });
+  } catch (error) {
+    next(error);
+  }
 };

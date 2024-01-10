@@ -2,8 +2,8 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import sharp from "sharp";
 import { nanoid } from "nanoid";
-import jwpt from "jsonwebtoken"
-import bcrypt from "bcryptjs"
+import jwpt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 
 export const generateError = (mensaje, status) => {
   const error = new Error(mensaje);
@@ -31,22 +31,23 @@ export const subirImagen = async (imagen) => {
 
 export const createToken = async (payload, expire) => {
   return new Promise((resolve, reject) => {
-    jwpt.sign(
-      payload,
-      process.env.JWT_SECRET,
-      { expiresIn: expire }, 
-      (err, token) => {
-        err ? reject(err): resolve(token);
-      }
-    );
+    jwpt.sign(payload, process.env.JWT_SECRET, { expiresIn: expire }, (err, token) => {
+      err ? reject(err) : resolve(token);
+    });
   });
 };
 
-export const validaPassword = async (password, valido) => {
+export const validaPassword = async (password, valido, login) => {
   const isMatch = await bcrypt.compare(password, valido);
 
   if (!isMatch) {
-    throw generateError( "Contraseña incorrecta, comprueba que esté escrita correctamente", 401);
+    throw generateError(
+      !login
+        ? "Contraseña incorrecta, comprueba que esté escrita correctamente"
+        : "Los datos del usuario son incorrectos, verifica tus credenciales",
+      401
+    );
   }
+
   return;
 };
