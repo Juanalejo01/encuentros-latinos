@@ -10,11 +10,6 @@ import { generateError, subirImagen } from "../libs/helpers.js";
 export const crearEvento = async (req, res, next) => {
   try {
     const { titulo, descripcion, tematica, localizacion } = req.body;
-    const usuario_id = Number(req.params.id);
-
-    if (req.userId !== usuario_id) {
-      throw generateError("Autorización denegada", 401);
-    }
 
     let imagenFileName;
 
@@ -23,7 +18,7 @@ export const crearEvento = async (req, res, next) => {
     }
 
     const eventoId = await eventoNuevoDB(
-      usuario_id,
+      req.userId,
       titulo,
       descripcion,
       tematica,
@@ -33,7 +28,7 @@ export const crearEvento = async (req, res, next) => {
 
     res.status(200).json({
       mensaje: "Evento creado exitosamente",
-      evento_id: eventoId,
+      evento: await eventoById(eventoId),
     });
   } catch (error) {
     next(error);
@@ -57,9 +52,9 @@ export const mostrarDetalleEvento = async (req, res, next) => {
 export const filtrarEventosByTematicaOrCiudad = async (req, res, next) => {
   try {
     const tematica = req.query.tematica || "";
-    const ciudad = req.query.ciudad || "";
+    const localizacion = req.query.localizacion || "";
 
-    const filtro = await eventosByTematicaOrCiudad(tematica, ciudad);
+    const filtro = await eventosByTematicaOrCiudad(tematica, localizacion);
 
     if (filtro.length === 0) {
       throw generateError("No se encontraron eventos para los criterios dados", 404);
@@ -111,7 +106,6 @@ export const actualizarEvento = async (req, res, next) => {
 export const eliminarEvento = async (req, res, next) => {
   try {
     const evento_id = Number(req.params.id);
-    console.log("Prueba");
     const evento = await eventoById(evento_id);
 
     if (req.userId !== evento.usuario_id) {
