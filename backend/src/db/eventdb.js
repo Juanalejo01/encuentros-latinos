@@ -97,7 +97,7 @@ export const eventoEliminadoById = async (id) => {
   }
 };
 
-export const eventosByTematicaOrCiudad = async (tematica, ciudad) => {
+export const eventosByTematicaOrCiudad = async (tematica, localizacion) => {
   let connection;
 
   try {
@@ -107,13 +107,13 @@ export const eventosByTematicaOrCiudad = async (tematica, ciudad) => {
     let searchParams = [];
 
     if (tematica) {
-      searchQuery += " AND tematica = ?";
+      searchQuery += ` AND tematica LIKE '%${tematica}%'`;
       searchParams.push(tematica);
     }
 
-    if (ciudad) {
-      searchQuery += " AND localizacion = ?";
-      searchParams.push(ciudad);
+    if (localizacion) {
+      searchQuery += ` AND localizacion LIKE '%${localizacion}%'`;
+      searchParams.push(localizacion);
     }
 
     const [filtro] = await connection.query(searchQuery, searchParams);

@@ -12,7 +12,7 @@ const router = Router();
 
 router.get("/evento/:id", mostrarDetalleEvento);
 router.get("/eventos", filtrarEventosByTematicaOrCiudad);
-router.post("/evento/:id", authRequired, crearEvento);
+router.post("/evento", authRequired, crearEvento);
 router.put("/evento/:id", authRequired, actualizarEvento);
 router.delete("/evento/:id", authRequired, eliminarEvento);
 
