@@ -6,7 +6,10 @@ export const eventoNuevoDB = async (
   titulo,
   descripcion,
   tematica,
+  pais,
+  ciudad,
   localizacion,
+  fechaHora,
   foto
 ) => {
   let connection;
@@ -14,8 +17,8 @@ export const eventoNuevoDB = async (
     connection = await getConnection();
 
     const [evento] = await connection.query(
-      "INSERT INTO eventos (usuario_id, titulo, descripcion, tematica, localizacion, foto) VALUES(?,?,?,?,?,?)",
-      [usuario_id, titulo, descripcion, tematica, localizacion, foto]
+      "INSERT INTO eventos (usuario_id, titulo, descripcion, tematica, pais, ciudad, localizacion, fecha_hora, foto) VALUES(?,?,?,?,?,?,?,?,?)",
+      [usuario_id, titulo, descripcion, tematica, pais, ciudad, localizacion, fechaHora, foto]
     );
 
     return evento.insertId;
