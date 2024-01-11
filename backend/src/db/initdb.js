@@ -44,7 +44,6 @@ const main = async () => {
             id INT PRIMARY KEY AUTO_INCREMENT,
             usuario_id INT NOT NULL,
             evento_id INT NOT NULL,
-            activo BOOLEAN DEFAULT true,
             fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
             FOREIGN KEY (evento_id) REFERENCES eventos(id) ON DELETE CASCADE

@@ -6,6 +6,7 @@ import {} from "dotenv/config";
 
 import eventosRoutes from "./routes/eventRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import inscriptionRoutes from "./routes/inscriptionRoutes.js";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.static("./src/upload"));
 /* RUTAS DE LOS ENPOINT */
 app.use("/", eventosRoutes);
 app.use("/", userRoutes);
+app.use("/", inscriptionRoutes);
 
 /* CAPTURA DE ERRORES PARA PAGINAS NO ENCONTRADAS */
 app.use((req, res) => {
