@@ -31,6 +31,8 @@ const main = async () => {
             titulo VARCHAR(100) NOT NULL,
             descripcion TEXT NOT NULL,
             tematica VARCHAR(255) NOT NULL,
+            pais VARCHAR(100) NOT NULL,
+            ciudad VARCHAR(100) NOT NULL,
             localizacion VARCHAR(100) NOT NULL,
             fecha_hora DATETIME,
             foto VARCHAR(255),

@@ -9,7 +9,7 @@ import { generateError, subirImagen } from "../libs/helpers.js";
 
 export const crearEvento = async (req, res, next) => {
   try {
-    const { titulo, descripcion, tematica, localizacion } = req.body;
+    const { titulo, descripcion, tematica, pais, ciudad, localizacion, fechaHora } = req.body;
 
     let imagenFileName;
 
@@ -22,7 +22,10 @@ export const crearEvento = async (req, res, next) => {
       titulo,
       descripcion,
       tematica,
+      pais,
+      ciudad,
       localizacion,
+      fechaHora,
       imagenFileName
     );
 
