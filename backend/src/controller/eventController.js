@@ -73,7 +73,7 @@ export const filtrarEventosByTematicaOrCiudad = async (req, res, next) => {
 
 export const actualizarEvento = async (req, res, next) => {
   try {
-    const { titulo, descripcion, tematica, localizacion } = req.body;
+    const { titulo, descripcion, tematica, pais, ciudad, localizacion, fechaHora } = req.body;
     const evento_id = Number(req.params.id);
 
     const evento = await eventoById(evento_id);
@@ -93,7 +93,10 @@ export const actualizarEvento = async (req, res, next) => {
       titulo,
       descripcion,
       tematica,
+      pais,
+      ciudad,
       localizacion,
+      fechaHora,
       imagenFileName
     );
 
