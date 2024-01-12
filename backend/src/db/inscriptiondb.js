@@ -1,22 +1,34 @@
 import { generateError } from "../libs/helpers.js";
 import { getConnection } from "./db.js";
 
-const isInscritoById = async (id) => {
-  let connection;
-  try {
-    connection = await getConnection();
+const expireInscripcion = async (id, connection) => {
+  // Obtener información del evento
+  const [[evento]] = await connection.query("SELECT fecha_hora FROM eventos WHERE id = ?", [id]);
 
-    const [[inscripcion]] = await connection.query(
-      "SELECT usuario_id FROM inscripciones WHERE evento_id = ?",
-      [id]
-    );
+  // Verificar si falta menos de una hora para el inicio del evento
+  const tiempoRestante = new Date(evento.fecha_hora) - new Date();
+  const horasRestantes = tiempoRestante / (1000 * 60 * 60);
 
-    return inscripcion;
-  } finally {
-    if (connection) {
-      connection.release();
+  if (horasRestantes < 1) {
+    throw generateError("No puedes inscribirte a menos de una hora para el inicio del evento", 422);
+  }
+
+  return;
+};
+
+const isInscritoById = async (id, userId, connection) => {
+  const [inscripciones] = await connection.query(
+    "SELECT * FROM inscripciones WHERE evento_id = ?",
+    [id]
+  );
+
+  for (const inscripcion of inscripciones) {
+    if (inscripcion.usuario_id === userId) {
+      throw generateError("No puedes inscribirte dos veces en el mismo evento", 422);
     }
   }
+
+  return;
 };
 
 export const inscrito = async (userId, eventId) => {
@@ -24,13 +36,9 @@ export const inscrito = async (userId, eventId) => {
   try {
     connection = await getConnection();
 
-    const usuario = await isInscritoById(eventId);
+    await expireInscripcion(eventId, connection);
 
-    if (usuario) {
-      if (userId === usuario.usuario_id) {
-        throw generateError("No puedes inscribirte dos veces en el mismo evento", 422);
-      }
-    }
+    await isInscritoById(eventId, userId, connection);
 
     await connection.query("INSERT INTO inscripciones (usuario_id, evento_id) VALUES(?,?)", [
       userId,
@@ -84,6 +92,24 @@ export const inscritosById = async (id) => {
     );
 
     return inscripciones;
+  } finally {
+    if (connection) {
+      connection.release();
+    }
+  }
+};
+
+export const totalInscritosById = async (id) => {
+  let connection;
+  try {
+    connection = await getConnection();
+
+    const [[inscripcion]] = await connection.query(
+      "SELECT COUNT(*) AS count FROM inscripciones WHERE evento_id = ?",
+      [id]
+    );
+
+    return inscripcion.count;
   } finally {
     if (connection) {
       connection.release();
