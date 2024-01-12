@@ -1,5 +1,6 @@
 import { getConnection } from "./db.js";
 import { generateError } from "../libs/helpers.js";
+import { totalInscritosById } from "./inscriptiondb.js";
 
 const compruebaFechaHoraDelEvento = async (fecha, connection, id) => {
   if (!id) {
@@ -15,7 +16,9 @@ const compruebaFechaHoraDelEvento = async (fecha, connection, id) => {
     }
   } else {
     // Modificación de evento
-    const [[eventoFecha]] = await connection.query("SELECT fecha FROM eventos WHERE id = ?", [id]);
+    const [[eventoFecha]] = await connection.query("SELECT fecha_hora FROM eventos WHERE id = ?", [
+      id,
+    ]);
 
     const tiempoRestanteInicio = Math.floor(
       (Date.parse(eventoFecha.fecha) - Date.now()) / (1000 * 60 * 60)
@@ -85,7 +88,13 @@ export const eventoById = async (id) => {
   try {
     connection = await getConnection();
 
-    const [[evento]] = await connection.query("SELECT * FROM eventos WHERE id = ?", [id]);
+    const [[evento]] = await connection.query(
+      "SELECT e.id, e.usuario_id, u.nombre, u.apellidos, u.avatar, e.titulo, e.descripcion, e.tematica, e.pais, e.ciudad, e.localizacion, e.fecha_hora, e.foto, e.fecha " +
+        "FROM usuarios u " +
+        "JOIN eventos e ON u.id = e.usuario_id " +
+        "WHERE e.id = ?",
+      [id]
+    );
 
     if (!evento) {
       throw generateError("No existe ese evento!!", 404);
@@ -155,13 +164,14 @@ export const eventoEliminadoById = async (id) => {
   }
 };
 
-export const eventosByTematicaOrCiudad = async (tematica, localizacion) => {
+export const eventosByTematicaOrCiudad = async (tematica, ciudad) => {
   let connection;
 
   try {
     connection = await getConnection();
 
-    let searchQuery = "SELECT * FROM eventos WHERE 1=1";
+    let searchQuery =
+      "SELECT id, titulo, tematica, ciudad, fecha_hora, foto FROM eventos WHERE 1=1";
     let searchParams = [];
 
     if (tematica) {
@@ -169,12 +179,22 @@ export const eventosByTematicaOrCiudad = async (tematica, localizacion) => {
       searchParams.push(tematica);
     }
 
-    if (localizacion) {
-      searchQuery += ` AND localizacion LIKE '%${localizacion}%'`;
-      searchParams.push(localizacion);
+    if (ciudad) {
+      searchQuery += ` AND ciudad LIKE '%${ciudad}%'`;
+      searchParams.push(ciudad);
     }
 
+    searchQuery += ` AND fecha_hora > NOW() ORDER BY fecha_hora`;
+
     const [filtro] = await connection.query(searchQuery, searchParams);
+
+    if (filtro.length === 0) {
+      throw generateError("No se encontraron eventos para los criterios dados", 404);
+    }
+
+    for (const evento of filtro) {
+      evento.totalInscritos = await totalInscritosById(evento.id);
+    }
 
     return filtro;
   } finally {

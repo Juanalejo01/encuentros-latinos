@@ -1,6 +1,5 @@
 import { eventoById } from "../db/eventdb.js";
 import { inscrito, desInscrito, inscritosById } from "../db/inscriptiondb.js";
-import { getUserById } from "../db/userdb.js";
 
 export const inscribirMe = async (req, res, next) => {
   try {
@@ -40,11 +39,14 @@ export const mostrarInscritos = async (req, res, next) => {
 
     const evento = await eventoById(evento_id);
 
-    const usuarios = await inscritosById(evento.id);
+    let usuarios = await inscritosById(evento.id);
 
-    res.status(200).json({
-      lista: usuarios,
-    });
+    if (usuarios.length === 0) {
+      console.log("hola");
+      usuarios = 0;
+    }
+
+    res.status(200).json(usuarios);
   } catch (error) {
     next(error);
   }
