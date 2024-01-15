@@ -54,7 +54,7 @@ export const userLogindb = async (email) => {
     await findEmail(email, connection, "login");
 
     const [[usuario]] = await connection.query(
-      "SELECT id, password FROM usuarios WHERE email = ?",
+      "SELECT id, password, avatar FROM usuarios WHERE email = ?",
       [email]
     );
 
@@ -74,6 +74,10 @@ export const getUserById = async (userId) => {
     const [[datosUsuario]] = await connection.query("SELECT * FROM usuarios WHERE id = ?", [
       userId,
     ]);
+
+    if (!datosUsuario) {
+      throw generateError("No existe ese usuario", 404);
+    }
 
     return datosUsuario;
   } finally {
@@ -144,12 +148,6 @@ export const deleteUser = async (userId) => {
   let connection;
   try {
     connection = await getConnection();
-
-    const usuario = await getUserById(userId);
-
-    if (!usuario) {
-      throw generateError("No existe ese usuario", 404);
-    }
 
     await connection.query("DELETE FROM usuarios WHERE id = ?", [userId]);
 

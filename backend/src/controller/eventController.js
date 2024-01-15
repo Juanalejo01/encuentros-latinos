@@ -16,15 +16,7 @@ export const crearEvento = async (req, res, next) => {
     if (error) {
       throw generateError(error.details[0].message, 404);
     }
-    const {
-      titulo,
-      descripcion,
-      tematica,
-      pais,
-      ciudad,
-      localizacion,
-      fechaHora,
-    } = value;
+    const { titulo, descripcion, tematica, pais, ciudad, localizacion, fechaHora } = value;
 
     let imagenFileName;
 
@@ -99,15 +91,7 @@ export const actualizarEvento = async (req, res, next) => {
     if (error) {
       throw generateError(error.details[0].message, 404);
     }
-    const {
-      titulo,
-      descripcion,
-      tematica,
-      pais,
-      ciudad,
-      localizacion,
-      fechaHora,
-    } = value;
+    const { titulo, descripcion, tematica, pais, ciudad, localizacion, fechaHora } = value;
 
     const eventoId = Number(req.params.id);
 
@@ -146,14 +130,14 @@ export const actualizarEvento = async (req, res, next) => {
 
 export const eliminarEvento = async (req, res, next) => {
   try {
-    const evento_id = Number(req.params.id);
-    const evento = await eventoById(evento_id);
+    const eventoId = Number(req.params.id);
+    const evento = await eventoById(eventoId);
 
     if (req.userId !== evento.usuario_id) {
       throw generateError("Autorización denegada", 401);
     }
 
-    await eventoEliminadoById(evento_id);
+    await eventoEliminadoById(eventoId);
 
     res.status(200).json({
       mensaje: "Eliminado exitosamente",

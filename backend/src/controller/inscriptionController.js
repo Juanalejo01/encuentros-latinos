@@ -3,9 +3,9 @@ import { inscrito, desInscrito, inscritosById } from "../db/inscriptiondb.js";
 
 export const inscribirMe = async (req, res, next) => {
   try {
-    const evento_id = Number(req.params.id);
+    const eventoId = Number(req.params.id);
 
-    const evento = await eventoById(evento_id);
+    const evento = await eventoById(eventoId);
 
     await inscrito(req.userId, evento.id);
 
@@ -19,9 +19,9 @@ export const inscribirMe = async (req, res, next) => {
 
 export const desInscribirMe = async (req, res, next) => {
   try {
-    const evento_id = Number(req.params.id);
+    const eventoId = Number(req.params.id);
 
-    const evento = await eventoById(evento_id);
+    const evento = await eventoById(eventoId);
 
     await desInscrito(req.userId, evento.id);
 
@@ -35,9 +35,9 @@ export const desInscribirMe = async (req, res, next) => {
 
 export const mostrarInscritos = async (req, res, next) => {
   try {
-    const evento_id = Number(req.params.id);
+    const eventoId = Number(req.params.id);
 
-    const evento = await eventoById(evento_id);
+    const evento = await eventoById(eventoId);
 
     let usuarios = await inscritosById(evento.id);
 

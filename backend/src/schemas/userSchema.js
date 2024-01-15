@@ -30,3 +30,7 @@ export const passwordSchema = Joi.object({
   password: Joi.string().trim().min(8).required(),
   nuevoPassword: Joi.string().trim().min(8).required(),
 });
+
+export const eliminarUserSchema = Joi.object({
+  password: Joi.string().trim().min(8).required(),
+});
