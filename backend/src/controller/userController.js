@@ -8,13 +8,29 @@ import {
   actualizaPassword,
 } from "../db/userdb.js";
 import bcrypt from "bcryptjs";
-import { createToken, validaPassword, subirImagen } from "../libs/helpers.js";
+import {
+  createToken,
+  validaPassword,
+  subirImagen,
+  generateError,
+} from "../libs/helpers.js";
+import {
+  emailSchema,
+  loginSchema,
+  registroSchema,
+  updateSchema,
+} from "../schemas/userSchema.js";
 
 export const registerUser = async (req, res, next) => {
   try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const { error, value } = registroSchema.validate(req.body);
 
-    const { nombre, apellidos, email, biografia } = req.body;
+    if (error) {
+      throw generateError(error.details[0].message, 404);
+    }
+    const { nombre, apellidos, email, password, biografia } = value;
+
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     let imageFileName;
 
@@ -31,7 +47,9 @@ export const registerUser = async (req, res, next) => {
       imageFileName
     );
 
-    res.status(200).json({ userId, mensaje: "Usuario registrado exitosamente" });
+    res
+      .status(200)
+      .json({ userId, mensaje: "Usuario registrado exitosamente" });
   } catch (error) {
     next(error);
   }
@@ -39,7 +57,12 @@ export const registerUser = async (req, res, next) => {
 
 export const loginUser = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { error, value } = loginSchema.validate(req.body);
+
+    if (error) {
+      throw generateError(error.details[0].message, 404);
+    }
+    const { email, password } = value;
 
     const data = await userLogindb(email);
 
@@ -61,6 +84,7 @@ export const getUserProfile = async (req, res, next) => {
     const usuario = await getUserById(req.userId);
 
     res.status(200).json({
+      id: usuario.id,
       nombre: usuario.nombre,
       apellidos: usuario.apellidos,
       email: usuario.email,
@@ -74,7 +98,12 @@ export const getUserProfile = async (req, res, next) => {
 
 export const updateProfile = async (req, res, next) => {
   try {
-    const { nombre, apellidos, biografia } = req.body;
+    const { error, value } = updateSchema.validate(req.body);
+
+    if (error) {
+      throw generateError(error.details[0].message, 404);
+    }
+    const { nombre, apellidos, biografia } = value;
 
     let imageFileName;
 
@@ -91,7 +120,6 @@ export const updateProfile = async (req, res, next) => {
       usuario: {
         nombre: usuario.nombre,
         apellidos: usuario.apellidos,
-        email: usuario.email,
         biografia: usuario.biografia,
         avatar: usuario.avatar,
       },
@@ -103,7 +131,12 @@ export const updateProfile = async (req, res, next) => {
 
 export const updateEmail = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { error, value } = emailSchema.validate(req.body);
+    console.log("hola mundo");
+    if (error) {
+      throw generateError(error.details[0].message, 404);
+    }
+    const { email, password } = value;
 
     const datos = await getUserById(req.userId);
 
@@ -115,7 +148,9 @@ export const updateEmail = async (req, res, next) => {
 
     await actualizaEmail(email, req.userId);
 
-    res.status(200).json({ mensaje: "El email ha sido modificado exitosamente" });
+    res
+      .status(200)
+      .json({ mensaje: "El email ha sido modificado exitosamente" });
   } catch (error) {
     next(error);
   }
@@ -133,7 +168,9 @@ export const updatePassword = async (req, res, next) => {
 
     await actualizaPassword(hashedPassword, req.userId);
 
-    res.status(200).json({ mensaje: "La contraseña ha sido modificada exitosamente" });
+    res
+      .status(200)
+      .json({ mensaje: "La contraseña ha sido modificada exitosamente" });
   } catch (error) {
     next(error);
   }

@@ -7,10 +7,24 @@ import {
 } from "../db/eventdb.js";
 import { inscritosById, totalInscritosById } from "../db/inscriptiondb.js";
 import { generateError, subirImagen } from "../libs/helpers.js";
+import { eventoSchema } from "../schemas/eventosSchema.js";
 
 export const crearEvento = async (req, res, next) => {
   try {
-    const { titulo, descripcion, tematica, pais, ciudad, localizacion, fechaHora } = req.body;
+    const { error, value } = eventoSchema.validate(req.body);
+
+    if (error) {
+      throw generateError(error.details[0].message, 404);
+    }
+    const {
+      titulo,
+      descripcion,
+      tematica,
+      pais,
+      ciudad,
+      localizacion,
+      fechaHora,
+    } = value;
 
     let imagenFileName;
 
@@ -80,12 +94,24 @@ export const filtrarEventosByTematicaOrCiudad = async (req, res, next) => {
 
 export const actualizarEvento = async (req, res, next) => {
   try {
-    const { titulo, descripcion, tematica, pais, ciudad, localizacion, fechaHora } = req.body;
+    const { error, value } = eventoSchema.validate(req.body);
+
+    if (error) {
+      throw generateError(error.details[0].message, 404);
+    }
+    const {
+      titulo,
+      descripcion,
+      tematica,
+      pais,
+      ciudad,
+      localizacion,
+      fechaHora,
+    } = value;
+
     const eventoId = Number(req.params.id);
 
     const evento = await eventoById(eventoId);
-
-    console.log(evento);
 
     if (req.userId !== evento.usuario_id) {
       throw generateError("Autorización denegada", 401);
