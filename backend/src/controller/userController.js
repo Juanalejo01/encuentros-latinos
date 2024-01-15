@@ -8,13 +8,9 @@ import {
   actualizaPassword,
 } from "../db/userdb.js";
 import bcrypt from "bcryptjs";
+import { createToken, validaPassword, subirImagen, generateError } from "../libs/helpers.js";
 import {
-  createToken,
-  validaPassword,
-  subirImagen,
-  generateError,
-} from "../libs/helpers.js";
-import {
+  eliminarUserSchema,
   emailSchema,
   loginSchema,
   registroSchema,
@@ -47,9 +43,7 @@ export const registerUser = async (req, res, next) => {
       imageFileName
     );
 
-    res
-      .status(200)
-      .json({ userId, mensaje: "Usuario registrado exitosamente" });
+    res.status(200).json({ userId, mensaje: "Usuario registrado exitosamente" });
   } catch (error) {
     next(error);
   }
@@ -72,6 +66,7 @@ export const loginUser = async (req, res, next) => {
 
     res.status(200).json({
       mensaje: "Usuario logeado exitosamente",
+      avatar: data.avatar,
       token,
     });
   } catch (error) {
@@ -84,7 +79,6 @@ export const getUserProfile = async (req, res, next) => {
     const usuario = await getUserById(req.userId);
 
     res.status(200).json({
-      id: usuario.id,
       nombre: usuario.nombre,
       apellidos: usuario.apellidos,
       email: usuario.email,
@@ -148,9 +142,7 @@ export const updateEmail = async (req, res, next) => {
 
     await actualizaEmail(email, req.userId);
 
-    res
-      .status(200)
-      .json({ mensaje: "El email ha sido modificado exitosamente" });
+    res.status(200).json({ mensaje: "El email ha sido modificado exitosamente" });
   } catch (error) {
     next(error);
   }
@@ -168,9 +160,7 @@ export const updatePassword = async (req, res, next) => {
 
     await actualizaPassword(hashedPassword, req.userId);
 
-    res
-      .status(200)
-      .json({ mensaje: "La contraseña ha sido modificada exitosamente" });
+    res.status(200).json({ mensaje: "La contraseña ha sido modificada exitosamente" });
   } catch (error) {
     next(error);
   }
@@ -178,6 +168,18 @@ export const updatePassword = async (req, res, next) => {
 
 export const deleteProfile = async (req, res, next) => {
   try {
+    const { error, value } = eliminarUserSchema(req.body);
+
+    if (error) {
+      throw generateError(error.details[0].message, 404);
+    }
+
+    const { password } = value;
+
+    const datos = await getUserById(req.userId);
+
+    await validaPassword(password, datos.password, false);
+
     await deleteUser(req.userId);
 
     res.status(200).json({ mensaje: "Usuario eliminado exitosamente" });
