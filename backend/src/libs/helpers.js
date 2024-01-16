@@ -1,5 +1,6 @@
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import { unlink } from "fs/promises";
 import sharp from "sharp";
 import { nanoid } from "nanoid";
 import jwpt from "jsonwebtoken";
@@ -9,6 +10,18 @@ export const generateError = (mensaje, status) => {
   const error = new Error(mensaje);
   error.httpStatus = status;
   return error;
+};
+
+export const deleteImagen = async (imageName) => {
+  const uploadDirectorio = join(dirname(fileURLToPath(import.meta.url)), "../upload");
+  const imagePath = join(uploadDirectorio, imageName);
+
+  try {
+    await unlink(imagePath);
+  } catch (error) {
+    console.error(`Error al eliminar la imagen ${imageName}: ${error.message}`);
+    throw generateError("Error al eliminar la imagen del servidor", 500);
+  }
 };
 
 export const subirImagen = async (imagen) => {
