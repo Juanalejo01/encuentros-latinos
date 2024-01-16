@@ -53,10 +53,6 @@ export const mostrarDetalleEvento = async (req, res, next) => {
 
     let listado = await inscritosById(eventoId);
 
-    if (listado.length === 0) {
-      listado = 0;
-    }
-
     const total = await totalInscritosById(eventoId);
 
     res.status(200).json({
