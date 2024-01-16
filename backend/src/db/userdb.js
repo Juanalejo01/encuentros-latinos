@@ -104,7 +104,7 @@ export const updateUser = async (id, nombre, apellidos, biografia, imageFileName
 
     await connection.query(actualizacionUsuarioQuery, actualizarParametros);
 
-    return;
+    return getUserById(id);
   } finally {
     if (connection) {
       connection.release();

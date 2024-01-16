@@ -184,9 +184,11 @@ export const eventosByTematicaOrCiudad = async (tematica, ciudad) => {
       searchParams.push(ciudad);
     }
 
-    searchQuery += ` AND fecha_hora > NOW() ORDER BY fecha_hora`;
+    searchQuery += " AND fecha_hora > NOW() ORDER BY fecha_hora";
 
     const [filtro] = await connection.query(searchQuery, searchParams);
+
+    console.log(searchQuery);
 
     if (filtro.length === 0) {
       throw generateError("No se encontraron eventos para los criterios dados", 404);

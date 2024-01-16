@@ -1,3 +1,6 @@
+import { Button } from "../components/general/Button";
+import { BannerHome } from "../components/principal/BannerHome";
+
 export const HomePage = () => {
   return (
     <section className="layout__banner">
@@ -9,9 +12,12 @@ export const HomePage = () => {
         Hay eventos a diario: registrate para conocer nuevas amistades con las que compartir tus
         pasiones y empiezar a crear recuerdos inolvidables.
       </p>
-      <a href="#" className="banner__btn">
-        Unirse a Eventos Latinos
-      </a>
+      <Button
+        texto={"Unete a Eventos Latinos"}
+        onClick={() => alert("¡Botón clicado!")}
+        className={"banner__btn"}
+      />
+      <BannerHome />
     </section>
   );
 };

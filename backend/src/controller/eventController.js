@@ -6,7 +6,7 @@ import {
   eventosByTematicaOrCiudad,
 } from "../db/eventdb.js";
 import { inscritosById, totalInscritosById } from "../db/inscriptiondb.js";
-import { generateError, subirImagen } from "../libs/helpers.js";
+import { deleteImagen, generateError, subirImagen } from "../libs/helpers.js";
 import { eventoSchema } from "../schemas/eventosSchema.js";
 
 export const crearEvento = async (req, res, next) => {
@@ -104,6 +104,12 @@ export const actualizarEvento = async (req, res, next) => {
     let imagenFileName;
 
     if (req.files?.imagen) {
+      const imagenAntigua = evento.foto;
+
+      if (imagenAntigua) {
+        await deleteImagen(imagenAntigua);
+      }
+
       imagenFileName = await subirImagen(req.files.imagen);
     }
 
@@ -136,8 +142,13 @@ export const eliminarEvento = async (req, res, next) => {
     if (req.userId !== evento.usuario_id) {
       throw generateError("Autorización denegada", 401);
     }
+    const imagen = evento.foto;
 
     await eventoEliminadoById(eventoId);
+
+    if (imagen) {
+      await deleteImagen(imagen);
+    }
 
     res.status(200).json({
       mensaje: "Eliminado exitosamente",
