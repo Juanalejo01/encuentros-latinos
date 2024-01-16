@@ -188,12 +188,6 @@ export const eventosByTematicaOrCiudad = async (tematica, ciudad) => {
 
     const [filtro] = await connection.query(searchQuery, searchParams);
 
-    console.log(searchQuery);
-
-    if (filtro.length === 0) {
-      throw generateError("No se encontraron eventos para los criterios dados", 404);
-    }
-
     for (const evento of filtro) {
       evento.totalInscritos = await totalInscritosById(evento.id);
     }
