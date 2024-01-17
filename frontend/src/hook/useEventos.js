@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import { getAllEventosService } from "../services/eventosServices";
 
 export const useEventos = () => {
+  const [tematica, setTematica] = useState("");
+  const [ciudad, setCiudad] = useState("");
   const [eventos, setEventos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
-  const tematica = "";
-  const ciudad = "";
 
   useEffect(() => {
     const loadEventos = async () => {
@@ -25,7 +24,7 @@ export const useEventos = () => {
     };
 
     loadEventos();
-  }, []);
+  }, [tematica, ciudad]);
 
-  return { eventos, loading, error };
+  return { setTematica, setCiudad, eventos, loading, error };
 };

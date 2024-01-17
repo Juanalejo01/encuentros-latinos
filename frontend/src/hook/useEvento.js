@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getEventoService } from "../services/eventosServices";
 
 export const useEvento = (id) => {
-  const [evento, setEvento] = useState(null);
+  const [datos, setDatos] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -13,7 +13,7 @@ export const useEvento = (id) => {
 
         const data = await getEventoService(id);
 
-        setEvento(data);
+        setDatos(data);
       } catch (error) {
         setError(error.mensaje);
       } finally {
@@ -24,5 +24,5 @@ export const useEvento = (id) => {
     loadEvento();
   }, [id]);
 
-  return { evento, loading, error };
+  return { datos, loading, error };
 };

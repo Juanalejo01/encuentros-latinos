@@ -4,6 +4,8 @@ import {
   eventoActualizadoById,
   eventoEliminadoById,
   eventosByTematicaOrCiudad,
+  eventosByIdOfUser,
+  mostrarEventoById,
 } from "../db/eventdb.js";
 import { inscritosById, totalInscritosById } from "../db/inscriptiondb.js";
 import { deleteImagen, generateError, subirImagen } from "../libs/helpers.js";
@@ -149,6 +151,34 @@ export const eliminarEvento = async (req, res, next) => {
     res.status(200).json({
       mensaje: "Eliminado exitosamente",
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const allEventosByUser = async (req, res, next) => {
+  try {
+    const datosEventos = await eventosByIdOfUser(req.userId);
+
+    res.status(200).json({ datos: datosEventos });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const eventoByUser = async (req, res, next) => {
+  try {
+    const eventoId = Number(req.params.id);
+
+    const evento = await eventoById(eventoId);
+
+    if (req.userId !== evento.usuario_id) {
+      throw generateError("Autorización denegada", 401);
+    }
+
+    const datosEvento = await mostrarEventoById(eventoId);
+
+    res.status(200).json({ datos: datosEvento });
   } catch (error) {
     next(error);
   }
