@@ -53,14 +53,12 @@ export const mostrarDetalleEvento = async (req, res, next) => {
 
     const evento = await eventoById(eventoId);
 
-    let listado = await inscritosById(eventoId);
-
-    const total = await totalInscritosById(eventoId);
+    const listado = await inscritosById(eventoId);
 
     res.status(200).json({
       evento,
       listado,
-      total,
+      total: listado.length,
     });
   } catch (error) {
     next(error);
@@ -160,7 +158,7 @@ export const allEventosByUser = async (req, res, next) => {
   try {
     const datosEventos = await eventosByIdOfUser(req.userId);
 
-    res.status(200).json({ datos: datosEventos });
+    res.status(200).json({ datos: datosEventos, total: datosEventos.length });
   } catch (error) {
     next(error);
   }
