@@ -15,9 +15,9 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/eventos" element={<EventosPage />} />
         <Route path="/evento/:id" element={<DetalleEventoPage />} />
-        <Route path="*" element={<p>Página no encontrada</p>} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="*" element={<p>Página no encontrada</p>} />
       </Routes>
       <Footer />
     </>

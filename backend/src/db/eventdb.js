@@ -199,3 +199,40 @@ export const eventosByTematicaOrCiudad = async (tematica, ciudad) => {
     }
   }
 };
+
+export const eventosByIdOfUser = async (id) => {
+  let connection;
+  try {
+    connection = await getConnection();
+
+    const [eventos] = await connection.query(
+      "SELECT id, titulo, tematica, ciudad, fecha_hora, foto FROM eventos WHERE usuario_id = ? ORDER BY fecha_hora",
+      [id]
+    );
+
+    for (const evento of eventos) {
+      evento.totalInscritos = await totalInscritosById(evento.id);
+    }
+
+    return eventos;
+  } finally {
+    if (connection) {
+      connection.release();
+    }
+  }
+};
+
+export const mostrarEventoById = async (id) => {
+  let connection;
+  try {
+    connection = await getConnection();
+
+    const [[evento]] = await connection.query("SELECT * FROM eventos WHERE id = ?", id);
+
+    return evento;
+  } finally {
+    if (connection) {
+      connection.release();
+    }
+  }
+};

@@ -84,7 +84,7 @@ export const inscritosById = async (id) => {
     connection = await getConnection();
 
     const [inscripciones] = await connection.query(
-      "SELECT u.nombre, u.apellidos, u.avatar " +
+      "SELECT u.id, u.nombre, u.apellidos, u.avatar " +
         "FROM usuarios u " +
         "JOIN inscripciones i ON u.id = i.usuario_id " +
         "WHERE evento_id = ?",
