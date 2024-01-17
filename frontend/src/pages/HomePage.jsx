@@ -12,6 +12,7 @@ export const HomePage = () => {
         Hay eventos a diario: registrate para conocer nuevas amistades con las que compartir tus
         pasiones y empiezar a crear recuerdos inolvidables.
       </p>
+
       <Button
         texto={"Unete a Eventos Latinos"}
         onClick={() => alert("¡Botón clicado!")}

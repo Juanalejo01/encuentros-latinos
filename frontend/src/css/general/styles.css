@@ -1,0 +1,34 @@
+/* VARIABLE */
+:root {
+  --mx-width: 1320px;
+  --color-text-body: #525260;
+  --color-primary: #5956e9;
+  --color-secondary: #fff;
+  --color-banner: #2522ba;
+  --color-text-btn: #0d6efd;
+  --color-bg-btn: #ffdc60;
+  --color-subtitle: #c75c6f;
+  --color-title: #292930;
+  --color-bg-services: #f8f8f8;
+  --color-bg-projects: #ecf2f6;
+  --color-bg-dark: #27272e;
+  --color-hover-dark: #303035;
+  --color-description: #99a1aa;
+  --color-border: #e3e6e9;
+}
+
+/* ESTILOS GENERALES */
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  font-size: 1.6rem;
+  font-family: "DM Sans", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--color-text-body);
+}
