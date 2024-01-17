@@ -18,12 +18,20 @@ export const crearEvento = async (req, res, next) => {
     if (error) {
       throw generateError(error.details[0].message, 404);
     }
-    const { titulo, descripcion, tematica, pais, ciudad, localizacion, fechaHora } = value;
+    const {
+      titulo,
+      descripcion,
+      tematica,
+      pais,
+      ciudad,
+      localizacion,
+      fechaHora,
+    } = value;
 
     let imagenFileName;
 
     if (req.files?.imagen) {
-      imagenFileName = await subirImagen(req.files.imagen);
+      imagenFileName = await subirImagen(req.files.imagen, 1000);
     }
 
     const eventoId = await eventoNuevoDB(
@@ -87,7 +95,15 @@ export const actualizarEvento = async (req, res, next) => {
     if (error) {
       throw generateError(error.details[0].message, 404);
     }
-    const { titulo, descripcion, tematica, pais, ciudad, localizacion, fechaHora } = value;
+    const {
+      titulo,
+      descripcion,
+      tematica,
+      pais,
+      ciudad,
+      localizacion,
+      fechaHora,
+    } = value;
 
     const eventoId = Number(req.params.id);
 
@@ -106,7 +122,7 @@ export const actualizarEvento = async (req, res, next) => {
         await deleteImagen(imagenAntigua);
       }
 
-      imagenFileName = await subirImagen(req.files.imagen);
+      imagenFileName = await subirImagen(req.files.imagen, 1000);
     }
 
     await eventoActualizadoById(

@@ -13,7 +13,10 @@ export const generateError = (mensaje, status) => {
 };
 
 export const deleteImagen = async (imageName) => {
-  const uploadDirectorio = join(dirname(fileURLToPath(import.meta.url)), "../upload");
+  const uploadDirectorio = join(
+    dirname(fileURLToPath(import.meta.url)),
+    "../upload"
+  );
   const imagePath = join(uploadDirectorio, imageName);
 
   try {
@@ -24,15 +27,25 @@ export const deleteImagen = async (imageName) => {
   }
 };
 
-export const subirImagen = async (imagen) => {
-  const uploadDirectorio = join(dirname(fileURLToPath(import.meta.url)), "../upload");
+export const subirImagen = async (imagen, size) => {
+  const uploadDirectorio = join(
+    dirname(fileURLToPath(import.meta.url)),
+    "../upload"
+  );
   const image = sharp(imagen.data);
   const fileName = imagen.name;
 
-  if (fileName.endsWith(".jpg") || fileName.endsWith(".png") || fileName.endsWith(".jpeg")) {
-    image.resize(1000);
+  if (
+    fileName.endsWith(".jpg") ||
+    fileName.endsWith(".png") ||
+    fileName.endsWith(".jpeg")
+  ) {
+    image.resize(size);
   } else {
-    throw generateError("Por favor, asegúrate de subir una imagen en formato jpg, jpeg o png", 400);
+    throw generateError(
+      "Por favor, asegúrate de subir una imagen en formato jpg, jpeg o png",
+      400
+    );
   }
 
   const random = nanoid(10);
@@ -44,9 +57,14 @@ export const subirImagen = async (imagen) => {
 
 export const createToken = async (payload, expire) => {
   return new Promise((resolve, reject) => {
-    jwpt.sign(payload, process.env.JWT_SECRET, { expiresIn: expire }, (err, token) => {
-      err ? reject(err) : resolve(token);
-    });
+    jwpt.sign(
+      payload,
+      process.env.JWT_SECRET,
+      { expiresIn: expire },
+      (err, token) => {
+        err ? reject(err) : resolve(token);
+      }
+    );
   });
 };
 
