@@ -1,5 +1,6 @@
 import { EventosList } from "../components/eventos/EventosList";
 import { useEventos } from "../hook/useEventos";
+import "../css/eventos/eventosPage.css";
 
 export const EventosPage = () => {
   const { eventos, loading, error } = useEventos();

@@ -6,10 +6,11 @@ import { DetalleEventoPage } from "./pages/DetalleEventoPage";
 import { Header } from "./components/general/header/Header";
 import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
+import { Layout } from "./components/general/Layout";
 
 function App() {
   return (
-    <>
+    <Layout>
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -20,7 +21,7 @@ function App() {
         <Route path="*" element={<p>Página no encontrada</p>} />
       </Routes>
       <Footer />
-    </>
+    </Layout>
   );
 }
 
