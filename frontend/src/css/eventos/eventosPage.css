@@ -4,7 +4,6 @@
   overflow: hidden;
   padding: 0;
   height: 100vh;
-  border: 1px solid red;
 }
 
 .layout__eventos::before {
@@ -36,62 +35,117 @@
   margin-bottom: 2rem;
 }
 
-/* ESTILO DE LAS TARJETAS */
+/* ESTILO DE LAS TARJETAS Y SWIPPER */
+.swiper {
+  margin-top: 8rem;
+  margin-left: 5rem;
+  margin-right: 4rem;
+  height: 71rem;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  width: 5rem;
+  height: 5rem;
+  background-color: transparent;
+}
+
+.swiper-button-next {
+  background-image: url(../../img/flecha-azul.png);
+  background-size: cover;
+}
+
+.swiper-button-prev {
+  background-image: url(../../img/flecha-azul.png);
+  background-size: cover;
+  transform: rotateY(180deg);
+}
+
+/* .swiper-button-next:hover {
+  font-size: 5rem;
+  color: var(--main-color);
+}
+
+
+
+.swiper-button-prev:hover {
+  font-size: 5rem;
+  color: var(--main-color);
+} */
 
 .eventos__link {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  border-radius: 0 0 30px 30px;
+  transform: all 1000ms ease-in-out;
 }
 
 .eventos__evento {
-  width: calc(50%);
+  width: 90%;
 }
 
-.project__container-img {
+.evento__container-img {
   width: 100%;
   border-radius: 30px 30px 0 0;
   overflow: hidden;
 }
 
-.project__img {
+.evento__imagen {
   width: 100%;
-  transition: all 800ms ease-in-out;
+  transition: all 1000ms ease-in-out;
 }
 
-.project__img:hover {
-  transform: scale(1.2);
+.evento__imagen:hover {
+  transform: scale(1.1);
 }
 
-.project__content {
+.evento__content {
+  width: 100%;
   background-color: var(--color-secondary);
-  padding: 4rem 5rem;
+  border: 1px solid var(--color-bg-projects);
+  padding: 2rem 2.5rem;
   border-radius: 0 0 30px 30px;
 }
 
-.project__title {
+.eventos__link:hover {
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 10%);
+}
+
+.evento__title {
+  color: var(--color-title);
+  text-align: center;
   font-size: 3.2rem;
   font-weight: 500;
   line-height: 1.2;
-  margin-bottom: 1rem;
-  transform: all 300ms ease-in-out;
+  margin-bottom: 1.5rem;
 }
 
-.project__link-title {
-  color: var(--color-title);
-}
-
-.project__link-title:hover {
-  color: var(--color-banner);
-}
-
-.project__tags {
+.evento__tags {
+  color: var(--color-text-body);
   font-size: 1.7rem;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
 }
 
-.project-shapes__item {
-  position: absolute;
-  z-index: -1;
-  pointer-events: none;
+.evento__tag-ciudad,
+.evento__tag-fecha {
+  margin-bottom: 1rem;
+}
+
+.evento__tag-fecha {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+
+  font-size: 2rem;
+}
+
+.evento__tag-inscritos {
+  margin: 1rem 0;
+  text-align: center;
 }
