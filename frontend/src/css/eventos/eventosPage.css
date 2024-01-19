@@ -1,3 +1,97 @@
 .layout__eventos {
-  background-color: red;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  padding: 0;
+  height: 100vh;
+  border: 1px solid red;
+}
+
+.layout__eventos::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 60rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-banner);
+  z-index: -1;
+}
+
+/* ESTILO DEL CONTENIDO DE LA PAGINA DEL LISTADO DE EVENTOS */
+.eventos__header {
+  max-width: var(--mx-width);
+  margin: 2rem auto;
+  overflow: hidden;
+  margin-bottom: 6rem;
+  text-align: center;
+}
+
+.eventos__title {
+  display: inline-block;
+  color: var(--color-bg-btn);
+  font-size: 5.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+/* ESTILO DE LAS TARJETAS */
+
+.eventos__link {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.eventos__evento {
+  width: calc(50%);
+}
+
+.project__container-img {
+  width: 100%;
+  border-radius: 30px 30px 0 0;
+  overflow: hidden;
+}
+
+.project__img {
+  width: 100%;
+  transition: all 800ms ease-in-out;
+}
+
+.project__img:hover {
+  transform: scale(1.2);
+}
+
+.project__content {
+  background-color: var(--color-secondary);
+  padding: 4rem 5rem;
+  border-radius: 0 0 30px 30px;
+}
+
+.project__title {
+  font-size: 3.2rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  transform: all 300ms ease-in-out;
+}
+
+.project__link-title {
+  color: var(--color-title);
+}
+
+.project__link-title:hover {
+  color: var(--color-banner);
+}
+
+.project__tags {
+  font-size: 1.7rem;
+}
+
+.project-shapes__item {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
 }
