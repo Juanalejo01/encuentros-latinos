@@ -1,0 +1,194 @@
+.layout__detalles {
+  position: relative;
+  z-index: 1;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.layout__detalles::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 60rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-banner);
+  z-index: -1;
+}
+
+/* ESTILO DEL HEADER DE DETALLES */
+.detalles__header {
+  max-width: var(--mx-width);
+  margin: 2rem auto;
+  overflow: hidden;
+  margin-bottom: 6rem;
+  text-align: center;
+}
+
+.detalles__title {
+  display: inline-block;
+  color: var(--color-bg-btn);
+  font-size: 5.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+/* ESTILO PARA EL CONTENIDO DEL DETALLE DEL EVENTO */
+.detalles__content {
+  width: 100%;
+  height: 75rem;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--color-secondary);
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  border-radius: 10px;
+}
+
+/* ESTILOS DE LA PARTE IZQUIERDA DEL EVENTO */
+.content__dleft {
+  flex-basis: 34%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.detalles__imagen {
+  height: 56rem;
+  border-radius: 10px;
+}
+
+.detalles__author {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+}
+
+.author__imagen,
+.item__avatar {
+  width: 9%;
+  border-radius: 50%;
+}
+
+.item__avatar {
+  width: 14%;
+}
+
+/* ESTILOS DE LA PARTE DEL MEDIO */
+.content__dmiddle {
+  flex-basis: 36%;
+  overflow: visible;
+}
+
+.detalles__subtitle {
+  margin-bottom: 2rem;
+}
+
+.detalles__description {
+  margin-bottom: 3rem;
+}
+
+.detalles__tags {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 10px -4px var(--color-border);
+  border-radius: 10px;
+  padding: 1rem;
+  padding-left: 5rem;
+}
+.detalles__tag-ciudad {
+  margin-bottom: 2rem;
+}
+
+.detalles__tag-fecha {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* ESTILOS DE LA PARTE DERECHA */
+.content__dright {
+  border-radius: 10px;
+  box-shadow: 0 2px 10px -4px var(--color-border);
+  background-color: rgba(0, 0, 0, 0.2);
+  flex-basis: 30%;
+  padding: 2rem;
+}
+
+.detalles__inscritos {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.inscritos__title {
+  color: var(--color-bg-btn);
+  text-align: center;
+  font-size: 2rem;
+}
+
+.inscritos__lista {
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 58rem;
+  margin-bottom: 1rem;
+}
+
+.inscritos__vacio {
+  padding: 2rem;
+}
+
+.inscritos__item {
+  padding: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.inscritos__footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+/* ESTILO DEL BOTON */
+.detalles__btn {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
+  border: none;
+  overflow: hidden;
+  padding: 1rem 0;
+  padding-left: 1.5rem;
+  padding-right: 2rem;
+  background-color: var(--color-secondary);
+  border-radius: 20px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--color-primary);
+  transition: all 150ms ease-in-out;
+}
+
+.detalles__btn:hover {
+  background-color: var(--color-bg-btn);
+  color: var(--color-bg-dark);
+}
+
+.button-icon {
+  top: 1.3rem !important;
+}
+
+.detalles__btn:hover .button-icon {
+  right: 1.5rem;
+  top: 1.3rem;
+  opacity: 1;
+}
