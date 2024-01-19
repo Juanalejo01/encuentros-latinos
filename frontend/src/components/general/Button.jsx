@@ -5,7 +5,7 @@ export const Button = ({ texto, onClick, className }) => {
     <button className={`${className}`} onClick={onClick}>
       <span className="button-text">{texto}</span>
       <span className="button-icon">
-        <FaArrowRight size={14} /> {/* Ajusta el tamaño según tus preferencias */}
+        <FaArrowRight size={14} />
       </span>
     </button>
   );
