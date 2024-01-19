@@ -1,4 +1,5 @@
 import { Imagenes } from "./Imagenes";
+import "../../css/general/bubbles.css";
 
 export const BannerGeneral = () => {
   return (
@@ -15,19 +16,19 @@ export const BannerGeneral = () => {
         <img src={Imagenes().bubble13} className="shapes__img" />
       </li>
 
-      <li className="shapes__item shapes__item--shape5">
+      <li className="shapes__item shapes__item--shape4">
         <img src={Imagenes().bubble14} className="shapes__img" />
       </li>
 
-      <li className="shapes__item shapes__item--shape2">
+      <li className="shapes__item shapes__item--shape5">
         <img src={Imagenes().bubble16} className="shapes__img" />
       </li>
 
-      <li className="shapes__item shapes__item--shape4">
+      <li className="shapes__item shapes__item--shape6">
         <img src={Imagenes().bubble15} className="shapes__img" />
       </li>
 
-      <li className="shapes__item shapes__item--shape2">
+      <li className="shapes__item shapes__item--shape7">
         <img src={Imagenes().bubble16} className="shapes__img" />
       </li>
     </ul>

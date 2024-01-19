@@ -1,0 +1,101 @@
+/* EFECTOS DEL BANNER */
+.shapes__item {
+  position: absolute;
+  z-index: -1;
+}
+
+.shapes__item--shape1 {
+  top: 0;
+  left: 34%;
+}
+
+.shapes__item--shape2 {
+  top: 18rem;
+  left: 18%;
+  opacity: 0.5;
+  animation: moveShape3 20s infinite;
+}
+
+.shapes__item--shape3 {
+  top: 32%;
+  left: 20%;
+  animation: moveShape4 25s infinite;
+}
+
+.shapes__item--shape4 {
+  top: 44%;
+  left: 28%;
+  animation: moveShape3 25s infinite;
+}
+
+.shapes__item--shape5 {
+  top: 50%;
+  right: 17%;
+  animation: moveShape4 30s infinite;
+}
+
+.shapes__item--shape6 {
+  top: 26%;
+  right: 21%;
+  animation: moveShape5 30s infinite;
+}
+
+.shapes__item--shape7 {
+  top: 30%;
+  right: 15%;
+  animation: moveShape3 30s infinite;
+}
+
+@keyframes moveShape3 {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+
+  40% {
+    transform: translateX(50px) translateY(-200px);
+  }
+
+  75% {
+    transform: translateX(800px);
+  }
+
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@keyframes moveShape4 {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+
+  40% {
+    transform: translateX(-50px) translateY(200px);
+  }
+
+  75% {
+    transform: translateX(-500px);
+  }
+
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@keyframes moveShape5 {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+
+  40% {
+    transform: translateX(-600px) translateY(-500px);
+  }
+
+  75% {
+    transform: translateX(30px) translateY(-800px);
+  }
+
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
