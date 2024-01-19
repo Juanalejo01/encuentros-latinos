@@ -117,11 +117,3 @@ body {
 .button-text {
   margin-right: 2.5rem;
 }
-
-.button-icon {
-  position: absolute;
-  top: 2.5rem;
-  opacity: 0;
-  right: 0;
-  transition: all 300ms ease-in-out;
-}

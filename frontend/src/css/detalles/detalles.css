@@ -157,12 +157,13 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
 }
 
 /* ESTILO DEL BOTON */
 .detalles__btn {
-  display: inline-block;
   position: relative;
+  display: flex;
   cursor: pointer;
   z-index: 1;
   border: none;
@@ -181,14 +182,4 @@
 .detalles__btn:hover {
   background-color: var(--color-bg-btn);
   color: var(--color-bg-dark);
-}
-
-.button-icon {
-  top: 1.3rem !important;
-}
-
-.detalles__btn:hover .button-icon {
-  right: 1.5rem;
-  top: 1.3rem;
-  opacity: 1;
 }
