@@ -23,6 +23,6 @@ export const EventosList = ({ eventos }) => {
       ))}
     </Swiper>
   ) : (
-    <p className="eventos__mensaje">No hay eventos en este momento para mostrar</p>
+    <p className="eventos__mensaje">No hay eventos en este momento para mostrar...</p>
   );
 };

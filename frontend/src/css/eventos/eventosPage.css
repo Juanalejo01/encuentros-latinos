@@ -18,7 +18,7 @@
   z-index: -1;
 }
 
-/* ESTILO DEL CONTENIDO DE LA PAGINA DEL LISTADO DE EVENTOS */
+/* ESTILO DEL HEADER DE LA PAGINA DEL LISTADO DE EVENTOS */
 .eventos__header {
   max-width: var(--mx-width);
   margin: 2rem auto;
@@ -48,30 +48,13 @@
   width: 5rem;
   height: 5rem;
   background-color: transparent;
-}
-
-.swiper-button-next {
   background-image: url(../../img/flecha-azul.png);
   background-size: cover;
 }
 
 .swiper-button-prev {
-  background-image: url(../../img/flecha-azul.png);
-  background-size: cover;
   transform: rotateY(180deg);
 }
-
-/* .swiper-button-next:hover {
-  font-size: 5rem;
-  color: var(--main-color);
-}
-
-
-
-.swiper-button-prev:hover {
-  font-size: 5rem;
-  color: var(--main-color);
-} */
 
 .eventos__link {
   display: flex;
@@ -148,4 +131,10 @@
 .evento__tag-inscritos {
   margin: 1rem 0;
   text-align: center;
+}
+
+.eventos__mensaje {
+  text-align: center;
+  font-size: 5rem;
+  color: var(--color-secondary);
 }
