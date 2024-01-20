@@ -1,0 +1,140 @@
+.layout__eventos {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  padding: 0;
+  height: 100vh;
+}
+
+.layout__eventos::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 60rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-banner);
+  z-index: -1;
+}
+
+/* ESTILO DEL HEADER DE LA PAGINA DEL LISTADO DE EVENTOS */
+.eventos__header {
+  max-width: var(--mx-width);
+  margin: 2rem auto;
+  overflow: hidden;
+  margin-bottom: 6rem;
+  text-align: center;
+}
+
+.eventos__title {
+  display: inline-block;
+  color: var(--color-bg-btn);
+  font-size: 5.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+/* ESTILO DE LAS TARJETAS Y SWIPPER */
+.swiper {
+  margin-top: 8rem;
+  margin-left: 5rem;
+  margin-right: 4rem;
+  height: 71rem;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  width: 5rem;
+  height: 5rem;
+  background-color: transparent;
+  background-image: url(../../img/flecha-azul.png);
+  background-size: cover;
+}
+
+.swiper-button-prev {
+  transform: rotateY(180deg);
+}
+
+.eventos__link {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 0 0 30px 30px;
+  transform: all 1000ms ease-in-out;
+}
+
+.eventos__evento {
+  width: 90%;
+}
+
+.evento__container-img {
+  width: 100%;
+  border-radius: 30px 30px 0 0;
+  overflow: hidden;
+}
+
+.evento__imagen {
+  width: 100%;
+  transition: all 1000ms ease-in-out;
+}
+
+.evento__imagen:hover {
+  transform: scale(1.1);
+}
+
+.evento__content {
+  width: 100%;
+  background-color: var(--color-secondary);
+  border: 1px solid var(--color-bg-projects);
+  padding: 2rem 2.5rem;
+  border-radius: 0 0 30px 30px;
+}
+
+.eventos__link:hover {
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 10%);
+}
+
+.evento__title {
+  color: var(--color-title);
+  text-align: center;
+  font-size: 3.2rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.evento__tags {
+  color: var(--color-text-body);
+  font-size: 1.7rem;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+}
+
+.evento__tag-ciudad,
+.evento__tag-fecha {
+  margin-bottom: 1rem;
+}
+
+.evento__tag-fecha {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+
+  font-size: 2rem;
+}
+
+.evento__tag-inscritos {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.eventos__mensaje {
+  text-align: center;
+  font-size: 5rem;
+  color: var(--color-secondary);
+}

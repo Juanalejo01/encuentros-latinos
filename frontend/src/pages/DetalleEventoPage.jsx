@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import { useEvento } from "../hook/useEvento";
 import { Detalles } from "../components/detalles/Detalles";
 
+import "../css/detalles/detalles.css";
+
 export const DetalleEventoPage = () => {
   const { id } = useParams();
 
@@ -10,5 +12,5 @@ export const DetalleEventoPage = () => {
   if (loading) return <p>cargando evento...</p>;
   if (error) return <p>{error}</p>;
 
-  return <Detalles className="evento__detalles" datos={datos} />;
+  return <Detalles datos={datos} />;
 };

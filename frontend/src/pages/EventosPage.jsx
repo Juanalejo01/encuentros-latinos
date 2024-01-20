@@ -1,5 +1,7 @@
 import { EventosList } from "../components/eventos/EventosList";
 import { useEventos } from "../hook/useEventos";
+import "../css/eventos/eventosPage.css";
+import { BannerGeneral } from "../components/general/BannerGeneral";
 
 export const EventosPage = () => {
   const { eventos, loading, error } = useEventos();
@@ -9,9 +11,13 @@ export const EventosPage = () => {
 
   return (
     <section className="layout__eventos">
-      <h1 className="eventos__title">Listado de eventos</h1>
+      <header className="eventos__header">
+        <h1 className="eventos__title">Listado de eventos</h1>
+      </header>
 
       <EventosList eventos={eventos} />
+
+      <BannerGeneral />
     </section>
   );
 };

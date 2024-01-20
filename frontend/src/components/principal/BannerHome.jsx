@@ -1,35 +1,18 @@
-import { ImagenesBubbles } from "./ImagenesBubbles";
+import { Imagenes } from "../general/Imagenes";
 
 export const BannerHome = () => {
   return (
-    <ul className="shapes__list">
-      <li className="shapes__item shapes__item--shape1">
-        <img src={ImagenesBubbles().bubble12} className="shapes__img" />
-      </li>
+    <div className="banner__images">
+      <div className="banner__thumb banner__thumb--chat">
+        <img src={Imagenes().chat} />
+      </div>
+      <div className="banner__thumb banner__thumb--laptop">
+        <img className="banner__img" src={Imagenes().womenLaptop} />
+      </div>
 
-      <li className="shapes__item shapes__item--shape2">
-        <img src={ImagenesBubbles().bubble16} className="shapes__img" />
-      </li>
-
-      <li className="shapes__item shapes__item--shape3">
-        <img src={ImagenesBubbles().bubble13} className="shapes__img" />
-      </li>
-
-      <li className="shapes__item shapes__item--shape5">
-        <img src={ImagenesBubbles().bubble14} className="shapes__img" />
-      </li>
-
-      <li className="shapes__item shapes__item--shape2">
-        <img src={ImagenesBubbles().bubble16} className="shapes__img" />
-      </li>
-
-      <li className="shapes__item shapes__item--shape4">
-        <img src={ImagenesBubbles().bubble15} className="shapes__img" />
-      </li>
-
-      <li className="shapes__item shapes__item--shape2">
-        <img src={ImagenesBubbles().bubble16} className="shapes__img" />
-      </li>
-    </ul>
+      <div className="banner__thumb banner__thumb--mobile">
+        <img className="banner__img" src={Imagenes().menMobile} />
+      </div>
+    </div>
   );
 };
