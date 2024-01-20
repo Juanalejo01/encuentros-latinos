@@ -87,7 +87,7 @@ export const inscritosById = async (id) => {
       "SELECT u.id, u.nombre, u.apellidos, u.avatar " +
         "FROM usuarios u " +
         "JOIN inscripciones i ON u.id = i.usuario_id " +
-        "WHERE evento_id = ?",
+        "WHERE evento_id = ? ORDER BY i.fecha DESC",
       [id]
     );
 

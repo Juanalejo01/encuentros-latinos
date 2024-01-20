@@ -2,6 +2,7 @@
 .shapes__item {
   position: absolute;
   z-index: -1;
+  pointer-events: none;
 }
 
 .shapes__item--shape1 {

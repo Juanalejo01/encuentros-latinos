@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FaCalendar } from "react-icons/fa";
+import { FaRegClock, FaMapMarkerAlt, FaUserFriends, FaShapes } from "react-icons/fa";
 
 export const Evento = ({ evento }) => {
   const imagenUrl = `${import.meta.env.VITE_APP_BACKEND}/${evento.foto}`;
@@ -13,13 +13,22 @@ export const Evento = ({ evento }) => {
           <h2 className="evento__title">{evento.titulo}</h2>
 
           <div className="evento__tags">
-            <span className="evento__tag-tematica">Temática: {evento.tematica}</span>
-            <span className="evento__tag-ciudad">Ciudad: {evento.ciudad}</span>
-            <span className="evento__tag-fecha">
-              <FaCalendar />
-              {new Date(evento.fecha_hora).toLocaleString()}
+            <span className="evento__tag-tematica">
+              <FaShapes /> {evento.tematica}
             </span>
-            <span className="evento__tag-inscritos">Total inscritos: {evento.totalInscritos}</span>
+            <span className="evento__tag-ciudad">
+              <FaMapMarkerAlt /> {evento.ciudad}
+            </span>
+
+            <div className="evento__tag-bottom">
+              <span className="evento__tag-fecha">
+                <FaRegClock />
+                {new Date(evento.fecha_hora).toLocaleString()}
+              </span>
+              <span className="evento__tag-inscritos">
+                <FaUserFriends /> {evento.totalInscritos}
+              </span>
+            </div>
           </div>
         </div>
       </Link>
