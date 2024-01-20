@@ -37,10 +37,9 @@
 
 /* ESTILO DE LAS TARJETAS Y SWIPPER */
 .swiper {
-  margin-top: 8rem;
-  margin-left: 5rem;
+  margin-left: 10rem;
   margin-right: 4rem;
-  height: 71rem;
+  height: 73rem;
 }
 
 .swiper-button-prev,
@@ -66,7 +65,7 @@
 }
 
 .eventos__evento {
-  width: 90%;
+  width: 74%;
 }
 
 .evento__container-img {
@@ -113,15 +112,10 @@
   flex-direction: column;
 }
 
-.evento__tag-ciudad,
-.evento__tag-fecha {
-  margin-bottom: 1rem;
-}
-
 .evento__tag-fecha {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   gap: 2rem;
 
@@ -129,8 +123,38 @@
 }
 
 .evento__tag-inscritos {
-  margin: 1rem 0;
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  font-size: 2rem;
+}
+
+.evento__tag-bottom {
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-around;
+}
+
+.evento__tag-tematica {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.evento__tag-ciudad {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
 }
 
 .eventos__mensaje {

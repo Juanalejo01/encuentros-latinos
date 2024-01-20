@@ -1,6 +1,6 @@
 import { BannerGeneral } from "../general/BannerGeneral";
 import { Button } from "../general/Button";
-import { FaCalendar } from "react-icons/fa";
+import { FaRegClock, FaShapes, FaLocationArrow, FaCity, FaFlag } from "react-icons/fa";
 
 export const Detalles = ({ datos }) => {
   const imagenUrl = `${import.meta.env.VITE_APP_BACKEND}/${datos.evento.foto}`;
@@ -17,12 +17,12 @@ export const Detalles = ({ datos }) => {
           <div className="detalles__container-img">
             <img className="detalles__imagen" src={imagenUrl} alt={datos.evento.titulo} />
           </div>
-          <h3 className="detalles__subtitle">Organizador: </h3>
           <div className="detalles__author">
-            <img className="author__imagen" src={avatarUrl} alt={datos.evento.nombre} />
+            <h3 className="author__title">Organizador: </h3>
             <p className="author__nombre">
               {datos.evento.nombre} {datos.evento.apellidos}
             </p>
+            <img className="author__imagen" src={avatarUrl} alt={datos.evento.nombre} />
           </div>
         </div>
 
@@ -32,10 +32,22 @@ export const Detalles = ({ datos }) => {
             <p className="detalles__descripcion">{datos.evento.descripcion}</p>
           </div>
           <div className="detalles__tags">
-            <span className="detalles__tag-tematica">Temática: {datos.evento.tematica}</span>
-            <span className="detalles__tag-ciudad">Ciudad: {datos.evento.ciudad}</span>
+            <span className="detalles__tag-tematica">
+              <FaShapes /> {datos.evento.tematica}
+            </span>
+            <div className="detalles__tag-ubicacion">
+              <span className="detalles__tag-pais">
+                <FaFlag /> {datos.evento.pais}
+              </span>
+              <span className="detalles__tag-ciudad">
+                <FaCity /> {datos.evento.ciudad}
+              </span>
+              <span className="detalles__tag-localizacion">
+                <FaLocationArrow /> {datos.evento.localizacion}
+              </span>
+            </div>
             <span className="detalles__tag-fecha">
-              <FaCalendar /> {new Date(datos.evento.fecha_hora).toLocaleString()}
+              <FaRegClock /> {new Date(datos.evento.fecha_hora).toLocaleString()}
             </span>
           </div>
         </div>
