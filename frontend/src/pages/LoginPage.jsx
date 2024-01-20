@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { Header } from "../components/general/header/Header";
-import { Footer } from "../components/general/Footer";
 
 export const LoginPage = () => {
   const handleSubmit = (e) => {

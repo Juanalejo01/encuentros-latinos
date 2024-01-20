@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const RegisterPage = () => {
-  const [formData, setFormData] = useState({
+  const [, setFormData] = useState({
     nombre: "",
     apellidos: "",
     username: "",
@@ -26,8 +26,8 @@ export const RegisterPage = () => {
   };
 
   return (
-    <div>
-      <h2>Registro de Usuario</h2>
+    <section className="layout__registro">
+      <h1 className="registro__title">Registro de Usuario</h1>
       <form onSubmit={handleSubmit}>
         <label>Nombre:</label>
         <input type="text" name="nombre" required onChange={handleChange} />
@@ -70,6 +70,6 @@ export const RegisterPage = () => {
 
         <button type="submit">Registrarse</button>
       </form>
-    </div>
+    </section>
   );
 };

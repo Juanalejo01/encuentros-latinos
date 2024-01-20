@@ -3,9 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages/HomePage";
 import { EventosPage } from "./pages/EventosPage";
 import { DetalleEventoPage } from "./pages/DetalleEventoPage";
-import { Header } from "./components/general/header/Header";
 import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
+import { Header } from "./components/general/Header";
 
 function App() {
   return (
