@@ -32,9 +32,15 @@ export const Detalles = ({ datos }) => {
             <p className="detalles__descripcion">{datos.evento.descripcion}</p>
           </div>
           <div className="detalles__tags">
-            <span className="detalles__tag-tematica">
-              <FaShapes /> {datos.evento.tematica}
-            </span>
+            <div className="detalles__tag-cuando">
+              <span className="detalles__tag-fecha">
+                <FaRegClock /> {new Date(datos.evento.fecha_hora).toLocaleString()}
+              </span>
+              <span className="detalles__tag-tematica">
+                <FaShapes /> {datos.evento.tematica}
+              </span>
+            </div>
+
             <div className="detalles__tag-ubicacion">
               <span className="detalles__tag-pais">
                 <FaFlag /> {datos.evento.pais}
@@ -46,9 +52,6 @@ export const Detalles = ({ datos }) => {
                 <FaLocationArrow /> {datos.evento.localizacion}
               </span>
             </div>
-            <span className="detalles__tag-fecha">
-              <FaRegClock /> {new Date(datos.evento.fecha_hora).toLocaleString()}
-            </span>
           </div>
         </div>
 

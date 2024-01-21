@@ -1,20 +1,25 @@
 import { Evento } from "./Evento";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, A11y } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/a11y";
 
 export const EventosList = ({ eventos }) => {
+  const isSingleEvents = eventos.length === 1;
+  const isTwoEvents = eventos.length === 2;
+
   return eventos.length ? (
     <Swiper
-      className="eventos__list"
-      modules={[Navigation, Pagination, A11y]}
+      className={`eventos__list `}
+      modules={[Navigation, Pagination]}
       slidesPerView={3}
+      spaceBetween={10}
+      wrapperClass={isTwoEvents ? "two-cards" : ""}
+      centeredSlides={isSingleEvents}
       navigation
-      pagination={{ clickable: true }}
+      pagination={{ clickable: false }}
     >
       {eventos.map((evento) => (
         <SwiperSlide className="eventos__item" key={evento.id}>
