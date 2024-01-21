@@ -51,6 +51,10 @@
   background-size: cover;
 }
 
+.two-cards {
+  justify-content: space-evenly;
+}
+
 .swiper-button-prev {
   transform: rotateY(180deg);
 }
