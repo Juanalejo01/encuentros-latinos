@@ -12,7 +12,8 @@ export const Header = () => {
 
       <div className="search__bar">
         {/*omponente de barra de búsqueda aquí */}
-        <input type="text" placeholder="Buscar..." />
+        <input type="text" placeholder="Temática..." />
+        <input type="text" placeholder="Ciudad..." />
         <button type="button">Buscar</button>
       </div>
 
