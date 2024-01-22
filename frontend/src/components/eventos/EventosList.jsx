@@ -19,7 +19,7 @@ export const EventosList = ({ eventos }) => {
       wrapperClass={isTwoEvents ? "two-cards" : ""}
       centeredSlides={isSingleEvents}
       navigation
-      pagination={{ clickable: false }}
+      pagination={{ clickable: true }}
     >
       {eventos.map((evento) => (
         <SwiperSlide className="eventos__item" key={evento.id}>
