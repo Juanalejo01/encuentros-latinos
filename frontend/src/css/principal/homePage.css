@@ -39,14 +39,6 @@
   text-align: center;
 }
 
-.banner__subtitle {
-  display: inline-block;
-  color: var(--color-bg-btn);
-  font-size: 3rem;
-  font-weight: 500;
-  margin-bottom: 2rem;
-}
-
 .banner__title {
   width: 70%;
   margin: 0 auto;
@@ -56,6 +48,14 @@
   font-weight: 500;
   text-align: left;
   color: var(--color-secondary);
+}
+
+.banner__subtitle {
+  display: inline-block;
+  color: var(--color-bg-btn);
+  font-size: 3rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
 }
 
 .banner__description {

@@ -42,7 +42,6 @@ export const mostrarInscritos = async (req, res, next) => {
     let usuarios = await inscritosById(evento.id);
 
     if (usuarios.length === 0) {
-      console.log("hola");
       usuarios = 0;
     }
 

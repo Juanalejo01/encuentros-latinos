@@ -4,6 +4,10 @@
   overflow: hidden;
   padding: 0;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .layout__nofound::before {
@@ -16,4 +20,39 @@
   right: 0;
   background-color: var(--color-banner);
   z-index: -1;
+}
+
+.nofound__title {
+  margin-top: 22rem;
+  margin-bottom: 5rem;
+  font-size: 20rem;
+  color: var(--color-secondary);
+}
+
+.nofound__subtitle {
+  font-size: 8rem;
+  color: var(--color-bg-btn);
+}
+
+.nofound__btn {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
+  border: none;
+  overflow: hidden;
+  padding: 1.5rem 0;
+  padding-left: 1.5rem;
+  padding-right: 2rem;
+  background-color: var(--color-secondary);
+  border-radius: 20px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--color-primary);
+  transition: all 150ms ease-in-out;
+}
+
+.nofound__btn:hover {
+  background-color: var(--color-bg-btn);
+  color: var(--color-bg-dark);
 }
