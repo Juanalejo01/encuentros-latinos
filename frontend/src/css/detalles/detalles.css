@@ -161,6 +161,20 @@
   gap: 5rem;
 }
 
+.detalles__tag-fecha {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.detalles__tag-tematica {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
 /* ESTILOS DE LA PARTE DERECHA */
 .content__dright {
   border-radius: 10px;

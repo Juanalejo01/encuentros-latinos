@@ -6,6 +6,10 @@ import { DetalleEventoPage } from "./pages/DetalleEventoPage";
 import { RegisterPage } from "./pages/RegisterPage";
 import { LoginPage } from "./pages/LoginPage";
 import { PaginaNoFound } from "./pages/PaginaNoFound";
+import { PrivateRoutes } from "./components/private/PrivateRoutes";
+import { MisEventosPage } from "./pages/MisEventosPage";
+import { CrearEventosPage } from "./pages/CrearEventosPage";
+import { EditarEventosPage } from "./pages/EditarEventosPage";
 
 function App() {
   return (
@@ -16,6 +20,11 @@ function App() {
         <Route path="/evento/:id" element={<DetalleEventoPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path="/dashboard/eventos" element={<MisEventosPage />} />
+          <Route path="/dashboard/evento" element={<CrearEventosPage />} />
+          <Route path="/dashboard/evento/:id" element={<EditarEventosPage />} />
+        </Route>
         <Route path="*" element={<PaginaNoFound />} />
       </Routes>
     </Layout>

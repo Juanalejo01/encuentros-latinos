@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaRegClock, FaMapMarkerAlt, FaUserFriends, FaShapes } from "react-icons/fa";
+import { horaFormateada } from "../../services/fechaHoraFormateada";
 
 export const Evento = ({ evento }) => {
   const imagenUrl = `${import.meta.env.VITE_APP_BACKEND}/${evento.foto}`;
@@ -23,7 +24,7 @@ export const Evento = ({ evento }) => {
             <div className="evento__tag-bottom">
               <span className="evento__tag-fecha">
                 <FaRegClock />
-                {new Date(evento.fecha_hora).toLocaleString()}
+                {horaFormateada(evento.fecha_hora)} h
               </span>
               <span className="evento__tag-inscritos">
                 <FaUserFriends /> {evento.totalInscritos}
