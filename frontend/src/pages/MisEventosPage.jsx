@@ -1,7 +1,7 @@
 export const MisEventosPage = () => {
   return (
     <section>
-      <h1>Lista de Eventos</h1>
+      <h1>Lista de Eventos2</h1>
     </section>
   );
 };
