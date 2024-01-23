@@ -1,3 +1,4 @@
+import { horaFormateada } from "../../services/fechaHoraFormateada";
 import { BannerGeneral } from "../general/BannerGeneral";
 import { Button } from "../general/Button";
 import { FaRegClock, FaShapes, FaLocationArrow, FaCity, FaFlag } from "react-icons/fa";
@@ -34,7 +35,7 @@ export const Detalles = ({ datos }) => {
           <div className="detalles__tags">
             <div className="detalles__tag-cuando">
               <span className="detalles__tag-fecha">
-                <FaRegClock /> {new Date(datos.evento.fecha_hora).toLocaleString()}
+                <FaRegClock /> {horaFormateada(datos.evento.fecha_hora)} h
               </span>
               <span className="detalles__tag-tematica">
                 <FaShapes /> {datos.evento.tematica}
