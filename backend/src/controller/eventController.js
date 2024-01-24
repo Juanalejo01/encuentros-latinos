@@ -18,15 +18,7 @@ export const crearEvento = async (req, res, next) => {
     if (error) {
       throw generateError(error.details[0].message, 404);
     }
-    const {
-      titulo,
-      descripcion,
-      tematica,
-      pais,
-      ciudad,
-      localizacion,
-      fechaHora,
-    } = value;
+    const { titulo, descripcion, tematica, pais, ciudad, localizacion, fechaHora } = value;
 
     let imagenFileName;
 
@@ -95,15 +87,7 @@ export const actualizarEvento = async (req, res, next) => {
     if (error) {
       throw generateError(error.details[0].message, 404);
     }
-    const {
-      titulo,
-      descripcion,
-      tematica,
-      pais,
-      ciudad,
-      localizacion,
-      fechaHora,
-    } = value;
+    const { titulo, descripcion, tematica, pais, ciudad, localizacion, fechaHora } = value;
 
     const eventoId = Number(req.params.id);
 
