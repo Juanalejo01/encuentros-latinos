@@ -16,9 +16,11 @@ export const useRegistro = () => {
 
           const texto = await registerUserService({ data: usuario });
           setMensaje(texto);
+          setError("");
         }
       } catch (error) {
         setError(error.message);
+        setMensaje("");
       } finally {
         setSending(false);
         setClicked(false);
@@ -36,5 +38,6 @@ export const useRegistro = () => {
     error,
     setClicked,
     setError,
+    setMensaje,
   };
 };
