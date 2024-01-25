@@ -18,8 +18,13 @@ export const getConnection = async () => {
       });
     }
     const connection = await pool.getConnection();
+
+    if (!connection) {
+      throw generateError("Error de conexiónn, tienes que cambiar la IP", 1130);
+    }
+
     return connection;
   } catch (error) {
-    throw generateError("Error de conexión", 500);
+    console.error(error);
   }
 };
