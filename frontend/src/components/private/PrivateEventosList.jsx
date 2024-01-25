@@ -11,6 +11,12 @@ import { Link } from "react-router-dom";
 
 export const PrivateEventosList = ({ evento }) => {
   const imagenUrl = `${import.meta.env.VITE_APP_BACKEND}/${evento.foto}`;
+
+  const handleEliminarEvento = (eventoId) => {
+    // Lógica para eliminar el evento con el ID 'eventoId'
+    console.log("Evento eliminado:", eventoId);
+  };
+
   return (
     <article className="private-eventos__pevento">
       <div className="pevento__container-img">
@@ -42,9 +48,11 @@ export const PrivateEventosList = ({ evento }) => {
         <Link className="private-eventos__editar" to={`/dashboard/evento/${evento.id}`}>
           <FaPencilAlt />
         </Link>
-        <Link className="private-eventos__eliminar" to={`/evento/${evento.id}`}>
-          <FaTrashAlt />
-        </Link>
+
+        <FaTrashAlt
+          className="private-eventos__eliminar"
+          onClick={() => handleEliminarEvento(evento.id)}
+        />
       </div>
     </article>
   );

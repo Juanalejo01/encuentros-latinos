@@ -1,21 +1,31 @@
 import { useRef } from "react";
 import { FaCameraRetro } from "react-icons/fa";
+import { Button } from "../general/Button";
 
-export const FormularioEvento = () => {
+export const FormularioEvento = ({ handleForm, accion }) => {
   const fileInputRef = useRef(null);
+
+  const handleFileChange = (e) => {
+    // Aquí puedes manejar el cambio de la imagen
+    // Por ejemplo, puedes mostrar la imagen seleccionada o procesarla de alguna manera
+    console.log("Archivo seleccionado:", e.target.files[0]);
+  };
+
   return (
-    <form className="formulario__evento">
+    <form className="formulario__evento" onSubmit={handleForm}>
       <div className="formulario__top">
         <div className="formulario__foto">
-          <label htmlFor="fileInput">
+          <label htmlFor="imagen">
             <FaCameraRetro className="foto__icono" title="Descargar Foto" />
           </label>
           <input
-            id="fileInput"
+            id="imagen"
             type="file"
-            name="foto"
+            name="imagen"
             accept=".jpg, .png, .jpeg"
             ref={fileInputRef} // Asocia la referencia al input
+            style={{ display: "none" }}
+            onChange={handleFileChange} // Maneja el cambio de archivo
           />
         </div>
         <div className="formulario__otros-datos">
@@ -69,7 +79,7 @@ export const FormularioEvento = () => {
               <input
                 className="otros-datos__input"
                 type="datetime-local"
-                name="fecha_hora"
+                name="fechaHora"
                 required
               />
             </li>
@@ -78,10 +88,14 @@ export const FormularioEvento = () => {
       </div>
       <div className="formulario__detalles">
         <textarea
-          className="otros-datos__textarea"
-          name="detalles"
+          className="formulario__textarea"
+          name="descripcion"
           placeholder="Escribe aquí los detalles de tu evento"
+          required
         />
+        <div className="formulario__boton">
+          <Button texto={accion} className={"formulario__btn"} />
+        </div>
       </div>
     </form>
   );
