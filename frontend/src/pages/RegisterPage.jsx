@@ -1,8 +1,8 @@
+import { Button } from "../components/general/Button";
 import { useRegistro } from "../hook/useRegistro";
 
 export const RegisterPage = () => {
-  const { sending, error, setClicked, setError, setUsuario, mensaje } =
-    useRegistro();
+  const { sending, error, setClicked, setError, setUsuario, mensaje, setMensaje } = useRegistro();
 
   const handleForm = (e) => {
     e.preventDefault();
@@ -14,12 +14,13 @@ export const RegisterPage = () => {
 
     if (password !== confirmPassword) {
       setError("Las contraseñas no coinciden");
-      console.log(error);
+      setMensaje("");
       return;
     }
 
     if (imagen && imagen.size === 0) {
       setError("Debes adjuntar una imagen.");
+      setMensaje("");
       return;
     }
 
@@ -54,10 +55,10 @@ export const RegisterPage = () => {
         <label htmlFor="avatar">Subir Avatar:</label>
         <input type="file" name="avatar" />
 
-        <button type="submit">Registrarse</button>
+        <Button texto={"Registrate"} className={"registro__btn"} />
         {sending ? <p>Creando nuevo usuario...</p> : null}
         {mensaje ? <p>{mensaje}</p> : null}
-        {error ? <p> {error} </p> : null}
+        {error ? <p>{error}</p> : null}
       </form>
     </section>
   );
