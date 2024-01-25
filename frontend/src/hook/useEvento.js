@@ -15,7 +15,7 @@ export const useEvento = (id) => {
 
         setDatos(data);
       } catch (error) {
-        setError("Error del evento no existe!!");
+        setError(error.message);
       } finally {
         setLoading(false);
       }

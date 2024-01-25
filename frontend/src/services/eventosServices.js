@@ -48,6 +48,28 @@ export const getAllEventosByUserService = async (token) => {
 
     return json;
   } catch (error) {
-    throw new Error(`${error}`);
+    throw new Error(`${error.message}`);
+  }
+};
+
+export const createEventoService = async ({ data, token }) => {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_APP_BACKEND}/evento`, {
+      method: "POST",
+      body: data,
+      headers: {
+        Authorization: token,
+      },
+    });
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json.mensaje);
+    }
+
+    return;
+  } catch (error) {
+    throw new Error(`${error.message}`);
   }
 };

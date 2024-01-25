@@ -7,7 +7,7 @@ export const usePrivateEventos = () => {
   const [error, setError] = useState("");
 
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNzA2MDg4NjgyLCJleHAiOjE3MDYxNzUwODJ9.F10Dt2536RsOEdK_olCyYDCvcW369bESgRWKTmVgQ8U";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNzA2MTc3NDkxLCJleHAiOjE3MDYyNjM4OTF9.tpR_1noCyu3zzoLue-9Jq3sbYilt8UboTcgNo8QRh-g";
 
   useEffect(() => {
     const loadEventos = async () => {
@@ -18,7 +18,7 @@ export const usePrivateEventos = () => {
 
         setEventos(data);
       } catch (error) {
-        setError(error.mensaje);
+        setError(error.message);
       } finally {
         setLoading(false);
       }

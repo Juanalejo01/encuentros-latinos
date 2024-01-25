@@ -17,7 +17,7 @@ export const useEventos = () => {
 
         setEventos(data);
       } catch (error) {
-        setError(error.mensaje);
+        setError(error.message);
       } finally {
         setLoading(false);
       }

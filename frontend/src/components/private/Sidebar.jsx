@@ -8,13 +8,13 @@ export const Sidebar = () => {
         <h2 className="sidebar__title">Bienvenido Usuario!</h2>
       </header>
       <div className="sidebar__menu">
-        <NavLink to={"/dashboard/evento"} activeClassName="sidebar__activo">
+        <NavLink to={"/dashboard/evento"} className="sidebar__activo">
           Crear evento
         </NavLink>
-        <NavLink to={"/dashboard/eventos"} activeClassName="sidebar__activo">
+        <NavLink to={"/dashboard/eventos"} className="sidebar__activo">
           Mis eventos
         </NavLink>
-        <NavLink to={"#"} activeClassName="sidebar__activo">
+        <NavLink to={"#"} className="sidebar__activo">
           Configuración
         </NavLink>
       </div>
