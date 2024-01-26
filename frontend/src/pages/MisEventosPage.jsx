@@ -2,9 +2,9 @@ import { PrivateEventosList } from "../components/private/PrivateEventosList";
 import { usePrivateEventos } from "../hook/usePrivateEventos";
 
 export const MisEventosPage = () => {
-  const { eventos, loading, error } = usePrivateEventos();
+  const { eventos, loading, error, token, removeEvento } = usePrivateEventos();
 
-  if (loading) return <p>cargando evento...</p>;
+  if (loading) return <p>cargando eventos...</p>;
   if (error) return <p>{error}</p>;
 
   return (
@@ -15,7 +15,7 @@ export const MisEventosPage = () => {
       {eventos.total !== 0 ? (
         eventos.datos.map((evento) => (
           <div className="private-eventos__item" key={evento.id}>
-            <PrivateEventosList evento={evento} />
+            <PrivateEventosList evento={evento} removeEvento={removeEvento} token={token} />
           </div>
         ))
       ) : (

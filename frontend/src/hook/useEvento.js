@@ -24,5 +24,19 @@ export const useEvento = (id) => {
     loadEvento();
   }, [id]);
 
-  return { datos, loading, error };
+  const addListado = (datos) => {
+    setDatos([...datos.listado, datos.listado]);
+  };
+
+  const removeListado = (id) => {
+    setDatos((prevEventos) => {
+      const updatedEventos = prevEventos.listado.filter((evento) => evento.id !== id);
+      return {
+        ...prevEventos,
+        listado: updatedEventos,
+      };
+    });
+  };
+
+  return { datos, loading, error, removeListado, addListado };
 };

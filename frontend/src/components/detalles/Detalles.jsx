@@ -8,6 +8,15 @@ export const Detalles = ({ datos }) => {
   const avatarUrl = `${import.meta.env.VITE_APP_BACKEND}/${datos.evento.avatar}`;
   const inscritoUrl = `${import.meta.env.VITE_APP_BACKEND}/`;
 
+  /*   const handleEliminarEvento = async (eventoId) => {
+    try {
+      await eliminarEventoService(eventoId, token);
+      removeEvento(eventoId);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }; */
+
   return (
     <section className="layout__detalles">
       <header className="detalles__header">
