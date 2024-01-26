@@ -7,7 +7,7 @@ export const usePrivateEventos = () => {
   const [error, setError] = useState("");
 
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNzA2MTc3NDkxLCJleHAiOjE3MDYyNjM4OTF9.tpR_1noCyu3zzoLue-9Jq3sbYilt8UboTcgNo8QRh-g";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNzA2MjYyMTIyLCJleHAiOjE3MDYzNDg1MjJ9.xv2gqvDlfs9Q03owhlYLHyI_ZMKoiDVx-lBN_Z8-drQ";
 
   useEffect(() => {
     const loadEventos = async () => {
@@ -27,5 +27,16 @@ export const usePrivateEventos = () => {
     loadEventos();
   }, []);
 
-  return { eventos, loading, error };
+  const removeEvento = (id) => {
+    setEventos((prevEventos) => {
+      const updatedEventos = prevEventos.datos.filter((evento) => evento.id !== id);
+      return {
+        ...prevEventos,
+        datos: updatedEventos,
+        total: updatedEventos.length,
+      };
+    });
+  };
+
+  return { eventos, loading, error, setEventos, removeEvento, token };
 };
