@@ -6,6 +6,7 @@ import bubble16 from "../../img/bubble-16.png";
 import chat from "../../img/chat-group.png";
 import womenLaptop from "../../img/laptop-poses.png";
 import menMobile from "../../img/men-mobile.png";
+import descarga from "../../img/default.jpg";
 
 export const Imagenes = () => {
   const imagenes = {
@@ -17,6 +18,7 @@ export const Imagenes = () => {
     chat,
     womenLaptop,
     menMobile,
+    descarga,
   };
 
   return imagenes;

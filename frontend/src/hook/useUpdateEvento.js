@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { createEventoService } from "../services/eventosServices";
 import { useNavigate } from "react-router-dom";
+import { updateEventoService } from "../services/eventosServices";
 
-export const useCreateEvento = () => {
-  const [evento, setEvento] = useState([]);
+export const useUpdateEvento = (id) => {
+  const [eventoModificado, setEventoModificado] = useState([]);
   const [sending, setSending] = useState(false);
-  const [error, setError] = useState("");
+  const [fallo, setFallo] = useState("");
   const [clicked, setClicked] = useState(false);
 
   const navigate = useNavigate();
@@ -19,11 +19,11 @@ export const useCreateEvento = () => {
         if (clicked) {
           setSending(true);
 
-          await createEventoService({ data: evento, token });
+          await updateEventoService({ data: eventoModificado, id, token });
           navigate("/dashboard/eventos");
         }
       } catch (error) {
-        setError(error.message);
+        setFallo(error.message);
       } finally {
         setSending(false);
         setClicked(false);
@@ -31,7 +31,7 @@ export const useCreateEvento = () => {
     };
 
     loadEventos();
-  }, [clicked, evento, navigate]);
+  }, [clicked, eventoModificado, navigate, id]);
 
-  return { setEvento, evento, sending, error, setClicked, setError };
+  return { setEventoModificado, eventoModificado, sending, fallo, setClicked, setFallo };
 };
