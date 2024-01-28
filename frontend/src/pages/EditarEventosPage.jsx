@@ -6,18 +6,12 @@ import { useUpdateEvento } from "../hook/useUpdateEvento";
 export const EditarEventosPage = () => {
   const { id } = useParams();
   const { evento, loading, error } = usePrivateEvento(id);
-  const { fallo, setClicked, setFallo, setEventoModificado } = useUpdateEvento(id);
+  const { setClicked, setEventoModificado } = useUpdateEvento(id);
 
   const handleForm = (e) => {
     e.preventDefault();
 
     const data = new FormData(e.target);
-    const imagen = data.get("imagen");
-
-    if (imagen && imagen.size === 0) {
-      setFallo("Debes adjuntar una imagen.");
-      return;
-    }
 
     setClicked(true);
     setEventoModificado(data);
@@ -33,7 +27,6 @@ export const EditarEventosPage = () => {
       </div>
       {loading ? <p>Cargando datos del evento...</p> : null}
       {error ? <p>{error}</p> : null}
-      {fallo ? <p>{fallo}</p> : null}
     </section>
   );
 };

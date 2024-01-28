@@ -1,21 +1,57 @@
+import { useState } from "react";
+import { altaUsuarioEventoService, bajaUsuarioEventoService } from "../../services/eventosServices";
 import { horaFormateada } from "../../services/fechaHoraFormateada";
+import { useToken } from "../../services/useToken";
 import { BannerGeneral } from "../general/BannerGeneral";
 import { Button } from "../general/Button";
-import { FaRegClock, FaShapes, FaLocationArrow, FaCity, FaFlag } from "react-icons/fa";
+import { FaRegClock, FaShapes, FaLocationArrow, FaCity, FaFlag, FaTrashAlt } from "react-icons/fa";
 
-export const Detalles = ({ datos }) => {
+export const Detalles = ({ datos, removeListado, addListado }) => {
   const imagenUrl = `${import.meta.env.VITE_APP_BACKEND}/${datos.evento.foto}`;
   const avatarUrl = `${import.meta.env.VITE_APP_BACKEND}/${datos.evento.avatar}`;
   const inscritoUrl = `${import.meta.env.VITE_APP_BACKEND}/`;
+  const { token } = useToken();
+  const [texto, setTexto] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  /*   const handleEliminarEvento = async (eventoId) => {
+  const handleEliminarInscripcion = async (eventoId, id) => {
     try {
-      await eliminarEventoService(eventoId, token);
-      removeEvento(eventoId);
+      setLoading(true);
+
+      if (error) {
+        setError("");
+      }
+
+      const texto = await bajaUsuarioEventoService(eventoId, token);
+
+      removeListado(id);
+      setTexto(texto);
     } catch (error) {
-      console.error(error.message);
+      setError(error.message);
+    } finally {
+      setLoading(false);
     }
-  }; */
+  };
+
+  const handleAddInscripcion = async (eventoId) => {
+    try {
+      setLoading(true);
+
+      if (error) {
+        setError("");
+      }
+
+      const dato = await altaUsuarioEventoService(eventoId, token);
+
+      addListado(dato.usuario);
+      setTexto(dato.mensaje);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section className="layout__detalles">
@@ -68,25 +104,35 @@ export const Detalles = ({ datos }) => {
         <div className="content__dright">
           <div className="detalles__inscritos">
             <h4 className="inscritos__title">Lista de asistentes:</h4>
-
-            {datos.listado.length ? (
+            {texto ? <p>{texto}</p> : null}
+            {error ? <p>{error}</p> : null}
+            {datos.total !== 0 ? (
               <ul className="inscritos__lista">
-                {datos.listado.map((inscrito) => (
-                  <li className="inscritos__item" key={inscrito.id}>
-                    <img
-                      className="item__avatar"
-                      src={inscritoUrl + inscrito.avatar}
-                      alt={inscrito.nombre}
-                    />
-                    <p className="item__nombre">
-                      {inscrito.nombre} {inscrito.apellidos}
-                    </p>
+                {loading ? <p>Cargando listado...</p> : null}
+
+                {datos.listado.map((inscrito, index) => (
+                  <li className="inscritos__item" key={index}>
+                    <div className="item__usuario">
+                      <img
+                        className="item__avatar"
+                        src={inscritoUrl + inscrito.avatar}
+                        alt={inscrito.nombre}
+                      />
+                      <p className="item__nombre">
+                        {inscrito.nombre} {inscrito.apellidos}
+                      </p>
+                    </div>
+                    <div className="item__eliminar">
+                      <FaTrashAlt
+                        className="eliminar__inscrito"
+                        onClick={() => handleEliminarInscripcion(datos.evento.id, inscrito.id)}
+                      />
+                    </div>
                   </li>
                 ))}
               </ul>
             ) : (
               <p className="inscritos__lista inscritos__vacio">
-                {" "}
                 No hay nadie inscrito a este evento...
               </p>
             )}
@@ -94,7 +140,7 @@ export const Detalles = ({ datos }) => {
           <div className="inscritos__footer">
             <Button
               texto={"Asistir"}
-              onClick={() => alert("¡Botón clicado!")}
+              onClick={() => handleAddInscripcion(datos.evento.id)}
               className={"detalles__btn"}
             />
             <span className="inscritos__total">Nº de asistentes: {datos.total}</span>

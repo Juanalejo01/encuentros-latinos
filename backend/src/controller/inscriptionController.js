@@ -7,9 +7,10 @@ export const inscribirMe = async (req, res, next) => {
 
     const evento = await eventoById(eventoId);
 
-    await inscrito(req.userId, evento.id);
+    const usuario = await inscrito(req.userId, evento.id);
 
     res.status(200).json({
+      usuario,
       mensaje: `Te has inscrito al evento ${evento.titulo} correctamente`,
     });
   } catch (error) {
@@ -28,24 +29,6 @@ export const desInscribirMe = async (req, res, next) => {
     res.status(200).json({
       mensaje: `Te has desinscrito del evento ${evento.titulo} correctamente`,
     });
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const mostrarInscritos = async (req, res, next) => {
-  try {
-    const eventoId = Number(req.params.id);
-
-    const evento = await eventoById(eventoId);
-
-    let usuarios = await inscritosById(evento.id);
-
-    if (usuarios.length === 0) {
-      usuarios = 0;
-    }
-
-    res.status(200).json(usuarios);
   } catch (error) {
     next(error);
   }

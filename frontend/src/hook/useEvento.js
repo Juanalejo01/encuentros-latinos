@@ -11,9 +11,10 @@ export const useEvento = (id) => {
       try {
         setLoading(true);
 
-        const data = await getEventoService(id);
-
-        setDatos(data);
+        if (id) {
+          const data = await getEventoService(id);
+          setDatos(data);
+        }
       } catch (error) {
         setError(error.message);
       } finally {
@@ -24,19 +25,27 @@ export const useEvento = (id) => {
     loadEvento();
   }, [id]);
 
-  const addListado = (datos) => {
-    setDatos([...datos.listado, datos.listado]);
-  };
-
-  const removeListado = (id) => {
+  const addListado = (nuevoUsuario) => {
+    console.log(nuevoUsuario);
     setDatos((prevEventos) => {
-      const updatedEventos = prevEventos.listado.filter((evento) => evento.id !== id);
       return {
         ...prevEventos,
-        listado: updatedEventos,
+        listado: [nuevoUsuario, ...prevEventos.listado],
+        total: prevEventos.total + 1, // Incrementar el total de usuarios
       };
     });
   };
 
-  return { datos, loading, error, removeListado, addListado };
+  const removeListado = (id) => {
+    setDatos((prevEventos) => {
+      const updatedEventos = prevEventos.listado.filter((listado) => listado.id !== id);
+      return {
+        ...prevEventos,
+        listado: updatedEventos,
+        total: updatedEventos.length,
+      };
+    });
+  };
+
+  return { datos, loading, error, addListado, removeListado };
 };

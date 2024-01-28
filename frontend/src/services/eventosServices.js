@@ -136,10 +136,6 @@ export const updateEventoService = async ({ data, id, token }) => {
   }
 };
 
-/* 
-router.put("/evento/:id", authRequired, actualizarEvento);
-*/
-
 export const altaUsuarioEventoService = async (id, token) => {
   try {
     const response = await fetch(`${import.meta.env.VITE_APP_BACKEND}/inscription/${id}`, {
@@ -155,7 +151,7 @@ export const altaUsuarioEventoService = async (id, token) => {
       throw new Error(json.mensaje);
     }
 
-    return json.mensaje;
+    return json;
   } catch (error) {
     throw new Error(`${error.message}`);
   }
@@ -177,6 +173,22 @@ export const bajaUsuarioEventoService = async (id, token) => {
     }
 
     return json.mensaje;
+  } catch (error) {
+    throw new Error(`${error.message}`);
+  }
+};
+
+export const listadoUsuariosEventoService = async (id) => {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_APP_BACKEND}/inscriptiones/${id}`);
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json.mensaje);
+    }
+
+    return json;
   } catch (error) {
     throw new Error(`${error.message}`);
   }
