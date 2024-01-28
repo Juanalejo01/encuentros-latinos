@@ -16,15 +16,19 @@ const expireInscripcion = async (id, connection) => {
   return;
 };
 
-const isInscritoById = async (id, userId, connection) => {
+const isInscritoById = async (id, userId, inscrito, connection) => {
   const [inscripciones] = await connection.query(
-    "SELECT * FROM inscripciones WHERE evento_id = ?",
-    [id]
+    "SELECT * FROM inscripciones WHERE evento_id = ? AND usuario_id = ?",
+    [id, userId]
   );
 
-  for (const inscripcion of inscripciones) {
-    if (inscripcion.usuario_id === userId) {
+  if (inscrito) {
+    if (inscripciones.length > 0) {
       throw generateError("No puedes inscribirte dos veces en el mismo evento", 422);
+    }
+  } else {
+    if (inscripciones.length > 0) {
+      return inscripciones[0];
     }
   }
 
@@ -38,14 +42,37 @@ export const inscrito = async (userId, eventId) => {
 
     await expireInscripcion(eventId, connection);
 
-    await isInscritoById(eventId, userId, connection);
+    await isInscritoById(eventId, userId, true, connection);
 
-    await connection.query("INSERT INTO inscripciones (usuario_id, evento_id) VALUES(?,?)", [
-      userId,
-      eventId,
-    ]);
+    const [result] = await connection.query(
+      "INSERT INTO inscripciones (usuario_id, evento_id) VALUES(?,?)",
+      [userId, eventId]
+    );
 
-    return;
+    const [usuario] = await inscritoById(result.insertId);
+
+    return usuario;
+  } finally {
+    if (connection) {
+      connection.release();
+    }
+  }
+};
+
+const inscritoById = async (id) => {
+  let connection;
+  try {
+    connection = await getConnection();
+
+    const [inscripcion] = await connection.query(
+      "SELECT i.id, u.nombre, u.apellidos, u.avatar " +
+        "FROM usuarios u " +
+        "JOIN inscripciones i ON u.id = i.usuario_id " +
+        "WHERE i.id = ?",
+      [id]
+    );
+
+    return inscripcion;
   } finally {
     if (connection) {
       connection.release();
@@ -58,17 +85,16 @@ export const desInscrito = async (userId, eventId) => {
   try {
     connection = await getConnection();
 
-    const usuario = await isInscritoById(eventId);
+    const usuario = await isInscritoById(eventId, userId, false, connection);
 
     if (!usuario) {
       throw generateError("Este usuario no está inscrito en este evento", 422);
     }
 
-    if (userId !== usuario.usuario_id) {
-      throw generateError("Acceso denegado", 401);
-    }
-
-    await connection.query("DELETE FROM inscripciones WHERE evento_id = ?", [eventId]);
+    await connection.query("DELETE FROM inscripciones WHERE evento_id = ? AND usuario_id = ?", [
+      eventId,
+      userId,
+    ]);
 
     return;
   } finally {
@@ -84,7 +110,7 @@ export const inscritosById = async (id) => {
     connection = await getConnection();
 
     const [inscripciones] = await connection.query(
-      "SELECT u.id, u.nombre, u.apellidos, u.avatar " +
+      "SELECT i.id, u.nombre, u.apellidos, u.avatar " +
         "FROM usuarios u " +
         "JOIN inscripciones i ON u.id = i.usuario_id " +
         "WHERE evento_id = ? ORDER BY i.fecha DESC",

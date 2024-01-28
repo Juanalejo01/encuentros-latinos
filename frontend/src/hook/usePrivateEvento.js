@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { getEventoByUserService } from "../services/eventosServices";
+import { useToken } from "../services/useToken";
 
 export const usePrivateEvento = (id) => {
   const [evento, setEvento] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNzA2MzQ5MDQyLCJleHAiOjE3MDY0MzU0NDJ9.8EvKdaYV-ABxUsTZohR8EoLxXA0oBW-HHQsgbvS-YKM";
+  const { token } = useToken();
 
   useEffect(() => {
     const loadEvento = async () => {
@@ -25,7 +24,7 @@ export const usePrivateEvento = (id) => {
     };
 
     loadEvento();
-  }, [id]);
+  }, [id, token]);
 
   return { evento, loading, error };
 };
