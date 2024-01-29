@@ -8,9 +8,14 @@ import "../css/eventos/eventosPage.css";
 export const EventosPage = () => {
   const { eventos, loading, error } = useEventos();
 
-  if (loading) return <p className="eventos__cargando">Cargando...</p>;
-  if (error) return <PaginaNoFound />;
+  if (loading)
+    return (
+      <p className="spinner__eventos">
+        <div className="spinner"></div>
+      </p>
+    );
 
+  if (error) return <PaginaNoFound />;
   return (
     <section className="layout__eventos">
       <header className="eventos__header">
