@@ -5,7 +5,7 @@ export const Header = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/register");
+    navigate("/login");
   };
 
   return (

@@ -1,4 +1,5 @@
-.layout__eventos {
+.layout__eventos,
+.spinner__eventos {
   position: relative;
   z-index: 1;
   overflow: hidden;
@@ -17,6 +18,12 @@
   right: 0;
   background-color: var(--color-banner);
   z-index: -1;
+}
+
+.spinner__eventos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ESTILO DEL HEADER DE LA PAGINA DEL LISTADO DE EVENTOS */

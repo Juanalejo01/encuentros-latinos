@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../components/general/Button";
 import { BannerHome } from "../components/principal/BannerHome";
 
-/* ESTILOS DE LA PAGINA HOME */
 import "../css/principal/homePage.css";
 
 export const HomePage = () => {

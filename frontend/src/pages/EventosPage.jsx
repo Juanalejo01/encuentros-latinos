@@ -1,12 +1,18 @@
 import { EventosList } from "../components/eventos/EventosList";
 import { useEventos } from "../hook/useEventos";
-import "../css/eventos/eventosPage.css";
 import { BannerGeneral } from "../components/general/BannerGeneral";
+
+import "../css/eventos/eventosPage.css";
 
 export const EventosPage = () => {
   const { eventos, loading, error } = useEventos();
 
-  if (loading) return <p className="eventos__cargando">Cargando...</p>;
+  if (loading)
+    return (
+      <p className="spinner__eventos">
+        <div className="spinner"></div>
+      </p>
+    );
   if (error) return <p>{error}</p>;
 
   return (

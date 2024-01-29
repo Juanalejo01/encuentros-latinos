@@ -70,13 +70,6 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
             </p>
             <img className="author__imagen" src={avatarUrl} alt={datos.evento.nombre} />
           </div>
-        </div>
-
-        <div className="content__dmiddle">
-          <div className="detalles__description">
-            <h3 className="detalles__subtitle">Detalles:</h3>
-            <p className="detalles__descripcion">{datos.evento.descripcion}</p>
-          </div>
           <div className="detalles__tags">
             <div className="detalles__tag-cuando">
               <span className="detalles__tag-fecha">
@@ -98,6 +91,13 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
                 <FaLocationArrow /> {datos.evento.localizacion}
               </span>
             </div>
+          </div>
+        </div>
+
+        <div className="content__dmiddle">
+          <div className="detalles__description">
+            <h3 className="detalles__subtitle">Detalles:</h3>
+            <p className="detalles__descripcion">{datos.evento.descripcion}</p>
           </div>
         </div>
 
