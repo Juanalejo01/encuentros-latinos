@@ -7,6 +7,7 @@ import chat from "../../img/chat-group.png";
 import womenLaptop from "../../img/laptop-poses.png";
 import menMobile from "../../img/men-mobile.png";
 import descarga from "../../img/default.jpg";
+import logotipo from "../../img/encuentros-latinos.png";
 
 export const Imagenes = () => {
   const imagenes = {
@@ -19,6 +20,7 @@ export const Imagenes = () => {
     womenLaptop,
     menMobile,
     descarga,
+    logotipo,
   };
 
   return imagenes;

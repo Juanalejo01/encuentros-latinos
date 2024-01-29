@@ -15,6 +15,7 @@
   --color-hover-dark: #303035;
   --color-description: #99a1aa;
   --color-border: #e3e6e9;
+  --color-text-logo: #ffac79;
 }
 
 /* ESTILOS GENERALES */
@@ -50,12 +51,44 @@ body {
 }
 
 .logo {
-  width: 187px;
+  position: relative;
+  flex-basis: 20%;
+  display: flex;
+}
+
+.logo__title {
+  font-size: 2rem;
+  color: var(--color-text-logo);
 }
 
 .search__bar {
   display: flex;
   flex-direction: row;
+  flex-basis: 40%;
+}
+
+/* BOTON LOGIN */
+.login__btn {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
+  border: none;
+  overflow: hidden;
+  padding: 1rem 0;
+  padding-left: 1.5rem;
+  padding-right: 2.5rem;
+  background-color: var(--color-text-logo);
+  border-radius: 20px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--color-primary);
+  transition: all 150ms ease-in-out;
+}
+
+.login__btn:hover {
+  background-color: var(--color-bg-btn);
+  color: var(--color-bg-dark);
 }
 
 /* FOOTER */

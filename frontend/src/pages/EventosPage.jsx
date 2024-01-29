@@ -6,7 +6,7 @@ import { BannerGeneral } from "../components/general/BannerGeneral";
 export const EventosPage = () => {
   const { eventos, loading, error } = useEventos();
 
-  if (loading) return <p>cargando evento...</p>;
+  if (loading) return <p className="eventos__cargando">Cargando...</p>;
   if (error) return <p>{error}</p>;
 
   return (

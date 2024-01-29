@@ -3,7 +3,8 @@
   z-index: 1;
   overflow: hidden;
   padding: 0;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
 }
 
 .layout__eventos::before {
