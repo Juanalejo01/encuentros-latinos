@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getEventoByUserService } from "../services/eventosServices";
-import { useToken } from "../services/useToken";
+import { AuthContext } from "../context/AuthContext";
 
 export const usePrivateEvento = (id) => {
   const [evento, setEvento] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const { token } = useToken();
+  const { token } = useContext(AuthContext);
 
   useEffect(() => {
     const loadEvento = async () => {

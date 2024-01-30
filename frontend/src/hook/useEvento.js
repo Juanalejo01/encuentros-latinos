@@ -26,7 +26,6 @@ export const useEvento = (id) => {
   }, [id]);
 
   const addListado = (nuevoUsuario) => {
-    console.log(nuevoUsuario);
     setDatos((prevEventos) => {
       return {
         ...prevEventos,

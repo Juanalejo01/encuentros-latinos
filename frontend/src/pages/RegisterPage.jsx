@@ -1,8 +1,9 @@
 import { Button } from "../components/general/Button";
 import { useRegistro } from "../hook/useRegistro";
+import { toast } from "sonner";
 
 export const RegisterPage = () => {
-  const { sending, error, setClicked, setError, setUsuario, mensaje, setMensaje } = useRegistro();
+  const { sending, setClicked, setUsuario } = useRegistro();
 
   const handleForm = (e) => {
     e.preventDefault();
@@ -13,14 +14,12 @@ export const RegisterPage = () => {
     const confirmPassword = data.get("confirmPassword");
 
     if (password !== confirmPassword) {
-      setError("Las contraseñas no coinciden");
-      setMensaje("");
+      toast.error("Las contraseñas no coinciden");
       return;
     }
 
     if (imagen && imagen.size === 0) {
-      setError("Debes adjuntar una imagen.");
-      setMensaje("");
+      toast.error("Debes adjuntar una imagen de avatar.");
       return;
     }
 
@@ -57,8 +56,6 @@ export const RegisterPage = () => {
 
         <Button texto={"Registrate"} className={"registro__btn"} />
         {sending ? <p>Creando nuevo usuario...</p> : null}
-        {mensaje ? <p>{mensaje}</p> : null}
-        {error ? <p>{error}</p> : null}
       </form>
     </section>
   );

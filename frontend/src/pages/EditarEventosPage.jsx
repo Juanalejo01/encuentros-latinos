@@ -2,11 +2,17 @@ import { useParams } from "react-router-dom";
 import { FormularioEvento } from "../components/private/FormularioEvento";
 import { usePrivateEvento } from "../hook/usePrivateEvento";
 import { useUpdateEvento } from "../hook/useUpdateEvento";
+import { PaginaNoFound } from "./PaginaNoFound";
+import { toast } from "sonner";
 
 export const EditarEventosPage = () => {
   const { id } = useParams();
   const { evento, loading, error } = usePrivateEvento(id);
-  const { setClicked, setEventoModificado } = useUpdateEvento(id);
+  const { fallo, setClicked, setEventoModificado } = useUpdateEvento(id);
+
+  if (error) {
+    return <PaginaNoFound />;
+  }
 
   const handleForm = (e) => {
     e.preventDefault();
@@ -15,6 +21,7 @@ export const EditarEventosPage = () => {
 
     setClicked(true);
     setEventoModificado(data);
+    toast.error(fallo);
   };
 
   return (
@@ -26,7 +33,6 @@ export const EditarEventosPage = () => {
         <FormularioEvento handleForm={handleForm} evento={evento} accion={"Editar"} />
       </div>
       {loading ? <p>Cargando datos del evento...</p> : null}
-      {error ? <p>{error}</p> : null}
     </section>
   );
 };

@@ -54,7 +54,7 @@ export const userLogindb = async (email) => {
     await findEmail(email, connection, "login");
 
     const [[usuario]] = await connection.query(
-      "SELECT id, password, avatar FROM usuarios WHERE email = ?",
+      "SELECT id, nombre, password, avatar FROM usuarios WHERE email = ?",
       [email]
     );
 
