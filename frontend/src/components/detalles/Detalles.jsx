@@ -1,34 +1,31 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { altaUsuarioEventoService, bajaUsuarioEventoService } from "../../services/eventosServices";
 import { horaFormateada } from "../../services/fechaHoraFormateada";
-import { useToken } from "../../services/useToken";
 import { BannerGeneral } from "../general/BannerGeneral";
 import { Button } from "../general/Button";
 import { FaRegClock, FaShapes, FaLocationArrow, FaCity, FaFlag, FaTrashAlt } from "react-icons/fa";
+import { AuthContext } from "../../context/AuthContext";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 export const Detalles = ({ datos, removeListado, addListado }) => {
   const imagenUrl = `${import.meta.env.VITE_APP_BACKEND}/${datos.evento.foto}`;
   const avatarUrl = `${import.meta.env.VITE_APP_BACKEND}/${datos.evento.avatar}`;
   const inscritoUrl = `${import.meta.env.VITE_APP_BACKEND}/`;
-  const { token } = useToken();
-  const [texto, setTexto] = useState("");
+  const { token, usuarioId } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   const handleEliminarInscripcion = async (eventoId, id) => {
     try {
       setLoading(true);
 
-      if (error) {
-        setError("");
-      }
-
       const texto = await bajaUsuarioEventoService(eventoId, token);
-
+      toast.success(texto);
       removeListado(id);
-      setTexto(texto);
     } catch (error) {
-      setError(error.message);
+      toast.error(error.message);
     } finally {
       setLoading(false);
     }
@@ -38,16 +35,16 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
     try {
       setLoading(true);
 
-      if (error) {
-        setError("");
+      if (!token || token === " ") {
+        navigate("/register");
+        toast.error("Tienes que estar registrado para poder inscribirte en este evento.");
+      } else {
+        const dato = await altaUsuarioEventoService(eventoId, token);
+        toast.success(dato.mensaje);
+        addListado(dato.usuario);
       }
-
-      const dato = await altaUsuarioEventoService(eventoId, token);
-
-      addListado(dato.usuario);
-      setTexto(dato.mensaje);
     } catch (error) {
-      setError(error.message);
+      toast.error(error.message);
     } finally {
       setLoading(false);
     }
@@ -104,8 +101,6 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
         <div className="content__dright">
           <div className="detalles__inscritos">
             <h4 className="inscritos__title">Lista de asistentes:</h4>
-            {texto ? <p>{texto}</p> : null}
-            {error ? <p>{error}</p> : null}
             {datos.total !== 0 ? (
               <ul className="inscritos__lista">
                 {loading ? <p>Cargando listado...</p> : null}
@@ -123,10 +118,12 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
                       </p>
                     </div>
                     <div className="item__eliminar">
-                      <FaTrashAlt
-                        className="eliminar__inscrito"
-                        onClick={() => handleEliminarInscripcion(datos.evento.id, inscrito.id)}
-                      />
+                      {usuarioId && inscrito.usuario_id === usuarioId ? (
+                        <FaTrashAlt
+                          className="eliminar__inscrito"
+                          onClick={() => handleEliminarInscripcion(datos.evento.id, inscrito.id)}
+                        />
+                      ) : null}
                     </div>
                   </li>
                 ))}

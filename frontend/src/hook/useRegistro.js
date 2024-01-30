@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { registerUserService } from "../services/gestionUserServices";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 export const useRegistro = () => {
   const [usuario, setUsuario] = useState([]);
   const [sending, setSending] = useState(false);
-  const [error, setError] = useState("");
   const [clicked, setClicked] = useState(false);
-  const [mensaje, setMensaje] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const sendUsuarios = async () => {
@@ -15,12 +16,11 @@ export const useRegistro = () => {
           setSending(true);
 
           const texto = await registerUserService({ data: usuario });
-          setMensaje(texto);
-          setError("");
+          navigate("/login");
+          toast.success(texto);
         }
       } catch (error) {
-        setError(error.message);
-        setMensaje("");
+        toast.error(error.message);
       } finally {
         setSending(false);
         setClicked(false);
@@ -28,16 +28,12 @@ export const useRegistro = () => {
     };
 
     sendUsuarios();
-  }, [clicked, usuario]);
+  }, [clicked, usuario, navigate]);
 
   return {
-    mensaje,
     setUsuario,
     usuario,
     sending,
-    error,
     setClicked,
-    setError,
-    setMensaje,
   };
 };

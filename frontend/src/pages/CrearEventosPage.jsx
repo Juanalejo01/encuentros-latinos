@@ -1,8 +1,9 @@
 import { FormularioEvento } from "../components/private/FormularioEvento";
 import { useCreateEvento } from "../hook/useCreateEvento";
+import { toast } from "sonner";
 
 export const CrearEventosPage = () => {
-  const { sending, error, setClicked, setError, setEvento } = useCreateEvento();
+  const { sending, error, setClicked, setEvento } = useCreateEvento();
 
   const handleForm = (e) => {
     e.preventDefault();
@@ -11,12 +12,13 @@ export const CrearEventosPage = () => {
     const imagen = data.get("imagen");
 
     if (imagen && imagen.size === 0) {
-      setError("Debes adjuntar una imagen.");
+      toast.error("Debes adjuntar una imagen.");
       return;
     }
 
     setClicked(true);
     setEvento(data);
+    toast.error(error);
   };
 
   return (
@@ -28,7 +30,6 @@ export const CrearEventosPage = () => {
         <FormularioEvento handleForm={handleForm} accion={"Crear"} />
       </div>
       {sending ? <p>Creando nuevo evento...</p> : null}
-      {error ? <p>{error}</p> : null}
     </section>
   );
 };

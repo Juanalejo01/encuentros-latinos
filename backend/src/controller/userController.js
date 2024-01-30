@@ -50,9 +50,7 @@ export const registerUser = async (req, res, next) => {
       imageFileName
     );
 
-    res
-      .status(200)
-      .json({ userId, mensaje: "Usuario registrado exitosamente" });
+    res.status(200).json({ userId, mensaje: "Usuario registrado exitosamente" });
   } catch (error) {
     next(error);
   }
@@ -75,6 +73,7 @@ export const loginUser = async (req, res, next) => {
 
     res.status(200).json({
       mensaje: "Usuario logeado exitosamente",
+      nombre: data.nombre,
       avatar: data.avatar,
       token,
     });
@@ -122,13 +121,7 @@ export const updateProfile = async (req, res, next) => {
       imageFileName = await subirImagen(req.files.avatar, 500);
     }
 
-    usuario = await updateUser(
-      req.userId,
-      nombre,
-      apellidos,
-      biografia,
-      imageFileName
-    );
+    usuario = await updateUser(req.userId, nombre, apellidos, biografia, imageFileName);
 
     res.status(200).json({
       mensaje: "Usuario actualizado correctamente",
@@ -163,9 +156,7 @@ export const updateEmail = async (req, res, next) => {
 
     await actualizaEmail(email, req.userId);
 
-    res
-      .status(200)
-      .json({ mensaje: "El email ha sido modificado exitosamente" });
+    res.status(200).json({ mensaje: "El email ha sido modificado exitosamente" });
   } catch (error) {
     next(error);
   }
@@ -189,9 +180,7 @@ export const updatePassword = async (req, res, next) => {
 
     await actualizaPassword(hashedPassword, req.userId);
 
-    res
-      .status(200)
-      .json({ mensaje: "La contraseña ha sido modificada exitosamente" });
+    res.status(200).json({ mensaje: "La contraseña ha sido modificada exitosamente" });
   } catch (error) {
     next(error);
   }

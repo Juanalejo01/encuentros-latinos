@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useEvento } from "../hook/useEvento";
 import { Detalles } from "../components/detalles/Detalles";
+import { PaginaNoFound } from "./PaginaNoFound";
 
 import "../css/detalles/detalles.css";
-import { PaginaNoFound } from "./PaginaNoFound";
 
 export const DetalleEventoPage = () => {
   const { id } = useParams();

@@ -1,12 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/general/Button";
 import { BannerHome } from "../components/principal/BannerHome";
+import { AuthContext } from "../context/AuthContext";
+import { useContext } from "react";
 
-/* ESTILOS DE LA PAGINA HOME */
 import "../css/principal/homePage.css";
 
 export const HomePage = () => {
   const navigate = useNavigate();
+  const { usuarioId } = useContext(AuthContext);
+
+  if (usuarioId) {
+    navigate("/eventos");
+  }
 
   const handleClick = () => {
     navigate("/register");

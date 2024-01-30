@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { updateEventoService } from "../services/eventosServices";
-import { useToken } from "../services/useToken";
+import { AuthContext } from "../context/AuthContext";
 
 export const useUpdateEvento = (id) => {
   const [eventoModificado, setEventoModificado] = useState([]);
   const [sending, setSending] = useState(false);
   const [fallo, setFallo] = useState("");
   const [clicked, setClicked] = useState(false);
-  const { token } = useToken();
+  const { token } = useContext(AuthContext);
 
   const navigate = useNavigate();
 

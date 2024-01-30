@@ -1,7 +1,11 @@
 import { NavLink } from "react-router-dom";
 import { Button } from "../general/Button";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 export const Sidebar = () => {
+  const { logoutHandler } = useContext(AuthContext);
+
   return (
     <section className="layout__sidebar">
       <header className="sidebar__header">
@@ -18,11 +22,7 @@ export const Sidebar = () => {
           Configuración
         </NavLink>
       </div>
-      <Button
-        texto={"Cerrar sesión"}
-        onClick={() => alert("¡Botón clicado!")}
-        className={"sidebar__btn"}
-      />
+      <Button texto={"Cerrar sesión"} onClick={() => logoutHandler()} className={"sidebar__btn"} />
     </section>
   );
 };

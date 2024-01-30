@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { Toaster } from "sonner";
 import { Layout } from "./components/general/Layout";
 import { HomePage } from "./pages/HomePage";
 import { EventosPage } from "./pages/EventosPage";
@@ -14,6 +15,7 @@ import { EditarEventosPage } from "./pages/EditarEventosPage";
 function App() {
   return (
     <Layout>
+      <Toaster position="top-center" richColors />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/eventos" element={<EventosPage />} />
