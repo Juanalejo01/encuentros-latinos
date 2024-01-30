@@ -10,7 +10,12 @@ export const DetalleEventoPage = () => {
 
   const { datos, loading, error, removeListado, addListado } = useEvento(id);
 
-  if (loading) return <p>cargando evento...</p>;
+  if (loading)
+    return (
+      <p className="spinner__evento">
+        <div className="spinner"></div>
+      </p>
+    );
   if (error) return <PaginaNoFound />;
 
   return <Detalles datos={datos} removeListado={removeListado} addListado={addListado} />;
