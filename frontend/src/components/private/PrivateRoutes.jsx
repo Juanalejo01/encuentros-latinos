@@ -12,9 +12,9 @@ export const PrivateRoutes = () => {
   }
 
   return (
-    <>
+    <main className="layout__private">
       <Sidebar />
       <Outlet />
-    </>
+    </main>
   );
 };
