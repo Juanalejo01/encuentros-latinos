@@ -19,7 +19,7 @@ export const HomePage = () => {
   };
 
   return (
-    <section className="layout__banner">
+    <main className="layout__banner">
       <header className="banner__header">
         <h2 className="banner__subtitle">Encuentros Latinos</h2>
         <h1 className="banner__title">
@@ -33,6 +33,6 @@ export const HomePage = () => {
         <Button texto={"Unete a Eventos Latinos"} onClick={handleClick} className={"banner__btn"} />
       </header>
       <BannerHome />
-    </section>
+    </main>
   );
 };
