@@ -45,10 +45,11 @@ body {
 .layout__header {
   width: 100%;
   height: 6rem;
-  padding: 1.5rem 3rem;
+  padding: 0.25rem 3rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
@@ -86,7 +87,6 @@ body {
   text-align: center;
   color: var(--color-bg-dark);
   transition: all 150ms ease-in-out;
-  top: -0.5rem;
 }
 
 .login__btn:hover {
@@ -99,10 +99,11 @@ body {
   width: 100%;
   height: 5rem;
   border-top: 1px solid var(--color-border);
-  padding: 1.5rem 15rem;
+  padding: 0.25rem 15rem;
   font-size: 1.7rem;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .footer__copyright {
