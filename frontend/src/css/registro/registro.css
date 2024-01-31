@@ -1,0 +1,156 @@
+.layout__registro {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  padding: 0;
+  height: 100%;
+  min-height: 100vh;
+}
+
+.layout__registro::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-banner);
+  z-index: -1;
+}
+
+/* ESTILOS DEL HEADER */
+.registro__header {
+  max-width: var(--mx-width);
+  margin: 2rem auto;
+  overflow: hidden;
+  margin-bottom: 6rem;
+  text-align: center;
+}
+
+.registro__title {
+  display: inline-block;
+  color: var(--color-bg-btn);
+  font-size: 5.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+/* ESTILOS DEL FORMULARIO */
+.registro__content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.registro__formulario {
+  position: relative;
+  width: 70rem;
+  height: 54rem;
+  padding: 2rem 3rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--color-bg-btn);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  border-radius: 5px;
+  border: 1px solid var(--color-bg-btn);
+}
+
+.formulario__columna--1,
+.formulario__columna--2,
+.formulario__columna--3 {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0 4rem;
+}
+
+.formulario__columna--3 {
+  height: 14rem;
+  align-items: flex-start;
+}
+
+.formulario__nombre,
+.formulario__password,
+.formulario__apellidos,
+.formulario__email,
+.formulario__biografia {
+  flex-basis: 35%;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formulario__biografia {
+  width: 100%;
+}
+
+.formulario__avatar {
+  position: relative;
+  width: 15rem;
+  height: 15rem;
+}
+
+.avatar__label,
+.registro__imagen-preview {
+  cursor: pointer;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 1px solid var(--color-banner);
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+}
+
+.registro__imagen-preview {
+  z-index: 1;
+}
+
+.input__nombre,
+.input__apellidos,
+.input__password,
+.input__email,
+.textarea__bio {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--color-banner);
+  border-radius: 10px;
+  color: var(--color-secondary);
+  padding: 0.5rem 1rem;
+}
+
+.textarea__bio {
+  resize: none;
+}
+
+/* ESTILO DEL BOTON */
+.registro__btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1;
+  border: none;
+  overflow: hidden;
+  padding: 2rem 0;
+  padding-left: 1.5rem;
+  padding-right: 2rem;
+  background-color: var(--color-secondary);
+  border-radius: 20px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--color-primary);
+  transition: all 150ms ease-in-out;
+}
+
+.registro__btn:hover {
+  background-color: var(--color-bg-btn);
+  color: var(--color-bg-dark);
+}

@@ -30,7 +30,7 @@ export const FormularioEvento = ({ handleForm, accion, evento }) => {
             accept=".jpg, .png, .jpeg"
             ref={fileInputRef}
             style={{ display: "none" }}
-            onChange={handleFileChange} // Maneja el cambio de archivo
+            onChange={handleFileChange}
           />
           {imagen ? (
             <img src={URL.createObjectURL(imagen)} alt="Preview" />
