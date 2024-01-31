@@ -9,7 +9,9 @@ export const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setToken } = useContext(AuthContext);
+  const [avatar, setAvatar] = useState(null);
   const navigate = useNavigate();
+  console.log(avatar);
 
   const handleForm = async (e) => {
     e.preventDefault();
@@ -17,6 +19,7 @@ export const LoginPage = () => {
     try {
       const data = await loginUserService({ email, password });
       setToken(data.token);
+      setAvatar(data.avatar);
       navigate("/eventos");
       toast.success(`Bienvenid@ ${data.nombre}`);
     } catch (error) {
@@ -29,7 +32,12 @@ export const LoginPage = () => {
       <h2>Iniciar sesión</h2>
       <form onSubmit={handleForm}>
         <label>Email:</label>
-        <input type="email" name="email" required onChange={(e) => setEmail(e.target.value)} />
+        <input
+          type="email"
+          name="email"
+          required
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
         <label>Contraseña:</label>
         <input
