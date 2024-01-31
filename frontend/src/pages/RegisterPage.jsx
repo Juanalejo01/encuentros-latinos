@@ -41,7 +41,7 @@ export const RegisterPage = () => {
   };
 
   return (
-    <section className="layout__registro">
+    <main className="layout__registro">
       <header className="registro__header">
         <h1 className="registro__title">Registro de Usuario</h1>
       </header>
@@ -73,7 +73,7 @@ export const RegisterPage = () => {
                 type="password"
                 id="password"
                 name="password"
-                tabIndex={3}
+                tabIndex={4}
                 required
               />
 
@@ -94,7 +94,7 @@ export const RegisterPage = () => {
                 type="email"
                 id="email"
                 name="email"
-                tabIndex={4}
+                tabIndex={3}
                 required
               />
             </div>
@@ -136,11 +136,28 @@ export const RegisterPage = () => {
             </div>
           </div>
           <Button texto={"Registrate"} className={"registro__btn"} />
-          {sending ? <div className="spinner"></div> : null}
         </form>
+        {sending ? <div className="spinner"></div> : null}
       </section>
 
       <BannerGeneral />
-    </section>
+    </main>
   );
 };
+
+/* 
+ICONOS PARA EL LOGIN
+import { FaSignInAlt } from "react-icons/fa";
+
+PARA EL CERRAR SESION
+import { FaSignOutAlt } from "react-icons/fa";
+
+PARA CARGAR IMAGIENES
+import { FaRegImage } from "react-icons/fa";
+
+PARA LAS FECHAS
+import { FaRegCalendarCheck } from "react-icons/fa";
+
+PARA MODIFICAR DATOS DEL USUARIO
+import { FaRegEdit } from "react-icons/fa";
+*/

@@ -51,7 +51,7 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
   };
 
   return (
-    <section className="layout__detalles">
+    <main className="layout__detalles">
       <header className="detalles__header">
         <h2 className="detalles__title">{datos.evento.titulo}</h2>
       </header>
@@ -146,6 +146,6 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
       </div>
 
       <BannerGeneral />
-    </section>
+    </main>
   );
 };
