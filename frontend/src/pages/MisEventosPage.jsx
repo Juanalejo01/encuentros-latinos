@@ -7,6 +7,7 @@ export const MisEventosPage = () => {
   if (loading) return <p>cargando eventos...</p>;
   if (error) return <p>{error}</p>;
 
+  console.log(eventos);
   return (
     <section className="layout__private-eventos">
       <header className="private-eventos__header">
