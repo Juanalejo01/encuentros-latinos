@@ -12,7 +12,7 @@ import { BannerGeneral } from "../components/general/BannerGeneral";
 export const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setToken, setAvatar } = useContext(AuthContext);
+  const { setToken, setAvatar, setNombre } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleForm = async (e) => {
@@ -22,6 +22,7 @@ export const LoginPage = () => {
       const data = await loginUserService({ email, password });
       setToken(data.token);
       setAvatar(data.avatar);
+      setNombre(data.nombre);
       localStorage.setItem("avatar", data.avatar); // Set the avatar in localStorage
       navigate("/eventos");
       toast.success(`Bienvenid@ ${data.nombre}`);
@@ -33,7 +34,7 @@ export const LoginPage = () => {
   return (
     <main className="layout__login">
       <header className="login__header">
-        <h1 className="login__title">Iniciar sesión</h1>
+        <h2 className="login__title">Iniciar sesión</h2>
       </header>
 
       <section className="login__content">

@@ -11,8 +11,8 @@ export const PaginaNoFound = () => {
   };
   return (
     <main className="layout__nofound">
-      <h1 className="nofound__title">404</h1>
-      <h2 className="nofound__subtitle">Página no encontrada...</h2>
+      <h2 className="nofound__title">404</h2>
+      <h3 className="nofound__subtitle">Página no encontrada...</h3>
       <BannerGeneral />
       <Button texto={"Volver a inicio"} onClick={handleClick} className={"nofound__btn"} />
     </main>

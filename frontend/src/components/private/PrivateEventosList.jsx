@@ -28,7 +28,7 @@ export const PrivateEventosList = ({ evento, removeEvento, token }) => {
         <img className="pevento__imagen" src={imagenUrl} alt={evento.titulo} />
       </div>
       <div className="pevento__content">
-        <h2 className="pevento__title">{evento.titulo}</h2>
+        <h3 className="pevento__title">{evento.titulo}</h3>
 
         <div className="pevento__tags">
           <span className="pevento__tag-tematica">

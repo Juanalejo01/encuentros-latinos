@@ -10,16 +10,16 @@ export const EventosPage = () => {
 
   if (loading)
     return (
-      <p className="spinner__eventos">
+      <div className="spinner__eventos">
         <div className="spinner"></div>
-      </p>
+      </div>
     );
 
   if (error) return <PaginaNoFound />;
   return (
     <main className="layout__eventos">
       <header className="eventos__header">
-        <h1 className="eventos__title">Listado de eventos</h1>
+        <h2 className="eventos__title">Listado de eventos</h2>
       </header>
 
       <EventosList eventos={eventos} />

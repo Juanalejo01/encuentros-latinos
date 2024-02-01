@@ -25,7 +25,7 @@ export const EditarEventosPage = () => {
   return (
     <section className="layout__crear-evento">
       <header className="crear-evento__header">
-        <h1 className="crear-evento__title">Editar Evento</h1>
+        <h2 className="crear-evento__title">Editar Evento</h2>
       </header>
       <div className="crear-evento__formulario">
         <FormularioEvento handleForm={handleForm} evento={evento} accion={"Editar"} />

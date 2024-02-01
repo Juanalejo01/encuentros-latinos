@@ -6,7 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 import "../../css/general/styles.css";
 
 export const Header = () => {
-  const { logoutHandler, usuarioId } = useContext(AuthContext);
+  const { logoutHandler, usuarioId, avatar } = useContext(AuthContext);
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
 
@@ -19,7 +19,6 @@ export const Header = () => {
   };
 
   const handleDashboardClick = () => {
-    navigate("/dashboard/eventos");
     setShowMenu(false);
   };
 
@@ -49,23 +48,23 @@ export const Header = () => {
 
       <div className="button-left">
         {!usuarioId ? (
-          <Button
-            texto={"Login"}
-            onClick={handleLoginClick}
-            className={"login__btn"}
-          />
+          <Button texto={"Login"} onClick={handleLoginClick} className={"login__btn"} />
         ) : (
           <div className="user__menu">
             <img
-              src={`${import.meta.env.VITE_APP_BACKEND}/perfil/${usuarioId}`}
+              src={`${import.meta.env.VITE_APP_BACKEND}/${avatar}`}
               alt="Avatar"
               className="avatar__img"
               onClick={handleAvatarClick}
             />
             {showMenu && (
               <div className="menu">
-                <NavLink onClick={handleDashboardClick}>Dashboard</NavLink>
-                <NavLink onClick={handleLogoutClick}>Cerrar sesión</NavLink>
+                <NavLink to={"/dashboard/eventos"} onClick={handleDashboardClick}>
+                  Dashboard
+                </NavLink>
+                <NavLink to={"/"} onClick={handleLogoutClick}>
+                  Cerrar sesión
+                </NavLink>
               </div>
             )}
           </div>

@@ -10,7 +10,8 @@ export const HomePage = () => {
   const navigate = useNavigate();
   const { usuarioId } = useContext(AuthContext);
 
-  if (usuarioId) {
+  if (typeof usuarioId === "number") {
+    console.log(usuarioId);
     navigate("/eventos");
   }
 
@@ -21,10 +22,10 @@ export const HomePage = () => {
   return (
     <main className="layout__banner">
       <header className="banner__header">
-        <h2 className="banner__subtitle">Encuentros Latinos</h2>
-        <h1 className="banner__title">
+        <h3 className="banner__subtitle">Encuentros Latinos</h3>
+        <h2 className="banner__title">
           ¿Te gustaría conocer a gente nueva con la que compartir tus pasiones?
-        </h1>
+        </h2>
         <p className="banner__description">
           Hay eventos a diario: registrate para conocer nuevas amistades con las que compartir tus
           pasiones y empiezar a crear recuerdos inolvidables.

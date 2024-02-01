@@ -12,9 +12,9 @@ export const DetalleEventoPage = () => {
 
   if (loading)
     return (
-      <p className="spinner__evento">
+      <div className="spinner__evento">
         <div className="spinner"></div>
-      </p>
+      </div>
     );
   if (error) return <PaginaNoFound />;
 
