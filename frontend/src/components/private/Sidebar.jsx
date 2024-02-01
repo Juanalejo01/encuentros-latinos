@@ -6,12 +6,12 @@ import { AuthContext } from "../../context/AuthContext";
 import "../../css/private/sidebar.css";
 
 export const Sidebar = () => {
-  const { logoutHandler } = useContext(AuthContext);
+  const { userData, logoutHandler } = useContext(AuthContext);
 
   return (
     <section className="layout__sidebar">
       <header className="sidebar__header">
-        <h2 className="sidebar__title">Bienvenido, usuario!</h2>
+        <h2 className="sidebar__title">Bienvenido, {userData.nombre}!</h2>
       </header>
       <div className="sidebar__menu">
         <NavLink to={"/dashboard/evento"} end className="sidebar__item">

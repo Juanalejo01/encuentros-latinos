@@ -73,6 +73,7 @@ export const loginUser = async (req, res, next) => {
 
     res.status(200).json({
       mensaje: "Usuario logeado exitosamente",
+      id: data.id,
       nombre: data.nombre,
       avatar: data.avatar,
       token,
@@ -87,6 +88,7 @@ export const getUserProfile = async (req, res, next) => {
     const usuario = await getUserById(req.userId);
 
     res.status(200).json({
+      id: usuario.id,
       nombre: usuario.nombre,
       apellidos: usuario.apellidos,
       email: usuario.email,
