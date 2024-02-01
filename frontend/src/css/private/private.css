@@ -1,0 +1,15 @@
+.layout__private {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  padding: 0;
+  height: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+
+  background-color: rgba(0, 0, 0, 0.1);
+  border-top: 1px solid var(--color-border);
+}

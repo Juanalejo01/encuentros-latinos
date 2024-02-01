@@ -2,11 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { createEventoService } from "../services/eventosServices";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import { toast } from "sonner";
 
 export const useCreateEvento = () => {
   const [evento, setEvento] = useState([]);
   const [sending, setSending] = useState(false);
-  const [error, setError] = useState("");
   const [clicked, setClicked] = useState(false);
   const { token } = useContext(AuthContext);
 
@@ -20,9 +20,10 @@ export const useCreateEvento = () => {
 
           await createEventoService({ data: evento, token });
           navigate("/dashboard/eventos");
+          toast.success("Evento creado exitosamente!!.");
         }
       } catch (error) {
-        setError(error.message);
+        toast.error(error.message);
       } finally {
         setSending(false);
         setClicked(false);
@@ -32,5 +33,5 @@ export const useCreateEvento = () => {
     loadEventos();
   }, [clicked, evento, navigate, token]);
 
-  return { setEvento, evento, sending, error, setClicked, setError };
+  return { setEvento, evento, sending, setClicked };
 };

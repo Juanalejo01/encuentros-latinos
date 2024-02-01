@@ -29,7 +29,7 @@ export const Header = () => {
   return (
     <header className="layout__header">
       <div className="logo">
-        <Link className="logo__link" to={"/"}>
+        <Link className="logo__link" to={usuarioId ? "/eventos" : "/"}>
           <h1 className="logo__title">ENCUENTROS LATINOS</h1>
         </Link>
       </div>
@@ -41,11 +41,7 @@ export const Header = () => {
 
       <div className="button-left">
         {!usuarioId ? (
-          <Button
-            texto={"Login"}
-            onClick={handleLoginClick}
-            className={"login__btn"}
-          />
+          <Button texto={"Login"} onClick={handleLoginClick} className={"login__btn"} />
         ) : (
           <div className="user__menu">
             <img
