@@ -1,17 +1,22 @@
 import { useRef, useState } from "react";
-import { FaCameraRetro } from "react-icons/fa";
 import { Button } from "../general/Button";
 import { formateaFecha } from "../../services/formateaFecha";
-import { Imagenes } from "../general/Imagenes";
+import { FaRegImage } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export const FormularioEvento = ({ handleForm, accion, evento }) => {
   const [imagen, setImagen] = useState("");
+  const navigate = useNavigate();
   const fileInputRef = useRef(null);
   const fechaHoraInicial = accion === "Editar" ? evento?.fecha_hora : "";
   const fechaHoraFormateada = fechaHoraInicial ? formateaFecha(fechaHoraInicial) : "";
 
   const handleFileChange = (e) => {
     setImagen(e.target.files[0]);
+  };
+
+  const handleClick = () => {
+    navigate("/dashboard/eventos");
   };
 
   const imagenUrl = evento ? `${import.meta.env.VITE_APP_BACKEND}/${evento.foto}` : "";
@@ -21,7 +26,23 @@ export const FormularioEvento = ({ handleForm, accion, evento }) => {
       <div className="formulario__top">
         <div className="formulario__foto">
           <label htmlFor="imagen">
-            <FaCameraRetro className="foto__icono" title="Descargar Foto" />
+            {imagen ? (
+              <img
+                className="foto__formulario"
+                src={URL.createObjectURL(imagen)}
+                alt="Preview"
+                title="Modifica esta imagen"
+              />
+            ) : evento ? (
+              <img
+                className="foto__formulario"
+                src={imagenUrl}
+                alt="Descarga"
+                title="Modifica esta imagen"
+              />
+            ) : (
+              <FaRegImage className="foto__label" title="Descargar imagen" />
+            )}
           </label>
           <input
             id="imagen"
@@ -32,77 +53,69 @@ export const FormularioEvento = ({ handleForm, accion, evento }) => {
             style={{ display: "none" }}
             onChange={handleFileChange}
           />
-          {imagen ? (
-            <img src={URL.createObjectURL(imagen)} alt="Preview" />
-          ) : evento ? (
-            <img src={imagenUrl} alt="Descarga" />
-          ) : (
-            <img src={Imagenes().descarga} alt="Descarga" />
-          )}
         </div>
-        <div className="formulario__otros-datos">
-          <ul className="otros-datos__content">
-            <li className="otros-datos__item">
-              <input
-                className="otros-datos__input"
-                type="text"
-                name="titulo"
-                placeholder="Título del evento"
-                defaultValue={accion === "Editar" ? evento?.titulo ?? "" : ""}
-                required
-              />
-            </li>
-            <li className="otros-datos__item">
-              <input
-                className="otros-datos__input"
-                type="text"
-                name="tematica"
-                placeholder="Temática"
-                defaultValue={accion === "Editar" ? evento?.tematica ?? "" : ""}
-                required
-              />
-            </li>
-            <li className="otros-datos__item">
-              <input
-                className="otros-datos__input"
-                type="text"
-                name="pais"
-                placeholder="País"
-                defaultValue={accion === "Editar" ? evento?.pais ?? "" : ""}
-                required
-              />
-            </li>
-            <li className="otros-datos__item">
-              <input
-                className="otros-datos__input"
-                type="text"
-                name="ciudad"
-                placeholder="Ciudad"
-                defaultValue={accion === "Editar" ? evento?.ciudad ?? "" : ""}
-                required
-              />
-            </li>
-            <li className="otros-datos__item">
-              <input
-                className="otros-datos__input"
-                type="text"
-                name="localizacion"
-                placeholder="Localización"
-                defaultValue={accion === "Editar" ? evento?.localizacion ?? "" : ""}
-                required
-              />
-            </li>
-            <li className="otros-datos__item">
-              <input
-                className="otros-datos__input"
-                type="datetime-local"
-                name="fechaHora"
-                defaultValue={accion === "Editar" ? fechaHoraFormateada : ""}
-                required
-              />
-            </li>
-          </ul>
-        </div>
+
+        <ul className="otros-datos__content">
+          <li className="otros-datos__item">
+            <input
+              className="otros-datos__input"
+              type="text"
+              name="titulo"
+              placeholder="Título del evento"
+              defaultValue={accion === "Editar" ? evento?.titulo ?? "" : ""}
+              required
+            />
+          </li>
+          <li className="otros-datos__item">
+            <input
+              className="otros-datos__input"
+              type="text"
+              name="tematica"
+              placeholder="Temática"
+              defaultValue={accion === "Editar" ? evento?.tematica ?? "" : ""}
+              required
+            />
+          </li>
+          <li className="otros-datos__item">
+            <input
+              className="otros-datos__input"
+              type="text"
+              name="pais"
+              placeholder="País"
+              defaultValue={accion === "Editar" ? evento?.pais ?? "" : ""}
+              required
+            />
+          </li>
+          <li className="otros-datos__item">
+            <input
+              className="otros-datos__input"
+              type="text"
+              name="ciudad"
+              placeholder="Ciudad"
+              defaultValue={accion === "Editar" ? evento?.ciudad ?? "" : ""}
+              required
+            />
+          </li>
+          <li className="otros-datos__item">
+            <input
+              className="otros-datos__input"
+              type="text"
+              name="localizacion"
+              placeholder="Localización"
+              defaultValue={accion === "Editar" ? evento?.localizacion ?? "" : ""}
+              required
+            />
+          </li>
+          <li className="otros-datos__item">
+            <input
+              className="otros-datos__input"
+              type="datetime-local"
+              name="fechaHora"
+              defaultValue={accion === "Editar" ? fechaHoraFormateada : ""}
+              required
+            />
+          </li>
+        </ul>
       </div>
       <div className="formulario__detalles">
         <textarea
@@ -112,8 +125,9 @@ export const FormularioEvento = ({ handleForm, accion, evento }) => {
           defaultValue={accion === "Editar" ? evento?.descripcion ?? "" : ""}
           required
         />
-        <div className="formulario__boton">
+        <div className="formulario__botones">
           <Button texto={accion} className={"formulario__btn"} />
+          <Button texto={"Cancelar"} onClick={handleClick} className={"formulario__btn-cancelar"} />
         </div>
       </div>
     </form>

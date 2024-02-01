@@ -1,0 +1,152 @@
+.layout__crear-evento {
+  flex-basis: 85%;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  height: 100vh;
+}
+
+/* ESTILOS DEL HEADER */
+.crear-evento__header {
+  max-width: var(--mx-width);
+  margin: 2rem auto;
+  overflow: hidden;
+  margin: 2rem 15rem;
+
+  display: flex;
+  justify-content: center;
+}
+
+.crear-evento__title {
+  display: inline-block;
+  color: var(--color-banner);
+  font-size: 5.5rem;
+  font-weight: 700;
+}
+
+/* ESTILOS DEL FORMULARIO */
+.crear-evento__formulario {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.formulario__evento {
+  position: relative;
+  width: 100rem;
+  height: 70rem;
+  padding: 3rem 4rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--color-sidebar);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.formulario__top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+}
+
+.formulario__foto {
+  position: relative;
+  width: 45rem;
+  height: 35rem;
+  display: flex;
+}
+
+.foto__label,
+.foto__formulario {
+  cursor: pointer;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 25px;
+  top: 0;
+  left: 0;
+}
+
+.otros-datos__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.otros-datos__input,
+.formulario__textarea {
+  background-color: rgba(0, 0, 0, 0.4);
+  border: none;
+  border-radius: 10px;
+  color: var(--color-secondary);
+  padding: 0.5rem 1rem;
+}
+
+.otros-datos__input {
+  width: 30rem;
+  height: 3.5rem;
+}
+
+.formulario__textarea {
+  width: 70rem;
+  height: 25rem;
+  resize: none;
+}
+
+::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) hue-rotate(180deg); /* Cambia el color del icono */
+}
+
+.formulario__detalles {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+/* ESTILOS DEL BOTON */
+.formulario__botones {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.formulario__btn,
+.formulario__btn-cancelar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1;
+  border: none;
+  overflow: hidden;
+  padding: 1.5rem 0;
+  padding-left: 1.5rem;
+  padding-right: 2rem;
+  background-color: var(--color-secondary);
+  border-radius: 20px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--color-primary);
+  transition: all 150ms ease-in-out;
+}
+
+.formulario__btn:hover {
+  background-color: var(--color-bg-btn);
+  color: var(--color-bg-dark);
+}
+
+.formulario__btn-cancelar:hover {
+  background-color: var(--color-bg-btn-orange);
+  color: var(--color-bg-dark);
+}

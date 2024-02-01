@@ -3,6 +3,8 @@ import { Sidebar } from "./Sidebar";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
+import "../../css/private/private.css";
+
 export const PrivateRoutes = () => {
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();

@@ -2,11 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { updateEventoService } from "../services/eventosServices";
 import { AuthContext } from "../context/AuthContext";
+import { toast } from "sonner";
 
 export const useUpdateEvento = (id) => {
   const [eventoModificado, setEventoModificado] = useState([]);
   const [sending, setSending] = useState(false);
-  const [fallo, setFallo] = useState("");
   const [clicked, setClicked] = useState(false);
   const { token } = useContext(AuthContext);
 
@@ -20,9 +20,10 @@ export const useUpdateEvento = (id) => {
 
           await updateEventoService({ data: eventoModificado, id, token });
           navigate("/dashboard/eventos");
+          toast.success("Evento modificado exitosamente!!.");
         }
       } catch (error) {
-        setFallo(error.message);
+        toast.error(error.message);
       } finally {
         setSending(false);
         setClicked(false);
@@ -32,5 +33,5 @@ export const useUpdateEvento = (id) => {
     loadEventos();
   }, [clicked, eventoModificado, navigate, id, token]);
 
-  return { setEventoModificado, eventoModificado, sending, fallo, setClicked, setFallo };
+  return { setEventoModificado, eventoModificado, sending, setClicked };
 };

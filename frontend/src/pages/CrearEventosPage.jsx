@@ -2,8 +2,10 @@ import { FormularioEvento } from "../components/private/FormularioEvento";
 import { useCreateEvento } from "../hook/useCreateEvento";
 import { toast } from "sonner";
 
+import "../css/eventos/crearEventos.css";
+
 export const CrearEventosPage = () => {
-  const { sending, error, setClicked, setEvento } = useCreateEvento();
+  const { sending, setClicked, setEvento } = useCreateEvento();
 
   const handleForm = (e) => {
     e.preventDefault();
@@ -18,7 +20,6 @@ export const CrearEventosPage = () => {
 
     setClicked(true);
     setEvento(data);
-    toast.error(error);
   };
 
   return (
