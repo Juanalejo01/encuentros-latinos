@@ -43,7 +43,7 @@ export const RegisterPage = () => {
   return (
     <main className="layout__registro">
       <header className="registro__header">
-        <h1 className="registro__title">Registro de Usuario</h1>
+        <h2 className="registro__title">Registro de Usuario</h2>
       </header>
 
       <section className="registro__content">

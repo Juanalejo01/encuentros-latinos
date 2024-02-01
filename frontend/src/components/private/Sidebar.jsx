@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Button } from "../general/Button";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -6,12 +6,18 @@ import { AuthContext } from "../../context/AuthContext";
 import "../../css/private/sidebar.css";
 
 export const Sidebar = () => {
-  const { userData, logoutHandler } = useContext(AuthContext);
+  const { nombre, logoutHandler } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogoutClick = () => {
+    logoutHandler();
+    navigate("/");
+  };
 
   return (
     <section className="layout__sidebar">
       <header className="sidebar__header">
-        <h2 className="sidebar__title">Bienvenido, {userData.nombre}!</h2>
+        <h2 className="sidebar__title">Bienvenido, {nombre}!</h2>
       </header>
       <div className="sidebar__menu">
         <NavLink to={"/dashboard/evento"} end className="sidebar__item">
@@ -25,11 +31,7 @@ export const Sidebar = () => {
         </NavLink>
       </div>
       <div className="sidebar__boton">
-        <Button
-          texto={"Cerrar sesión"}
-          onClick={() => logoutHandler()}
-          className={"sidebar__btn"}
-        />
+        <Button texto={"Cerrar sesión"} onClick={handleLogoutClick} className={"sidebar__btn"} />
       </div>
     </section>
   );

@@ -11,7 +11,7 @@ export const Evento = ({ evento }) => {
           <img className="evento__imagen" src={imagenUrl} alt={evento.titulo} />
         </div>
         <div className="evento__content">
-          <h2 className="evento__title">{evento.titulo}</h2>
+          <h3 className="evento__title">{evento.titulo}</h3>
 
           <div className="evento__tags">
             <span className="evento__tag-tematica">

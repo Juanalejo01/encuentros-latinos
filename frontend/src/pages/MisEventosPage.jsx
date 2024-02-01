@@ -10,7 +10,7 @@ export const MisEventosPage = () => {
   return (
     <section className="layout__private-eventos">
       <header className="private-eventos__header">
-        <h1 className="private-eventos__title">Lista de Eventos (Total: {eventos.total})</h1>
+        <h2 className="private-eventos__title">Lista de Eventos (Total: {eventos.total})</h2>
       </header>
       {eventos.total !== 0 ? (
         eventos.datos.map((evento) => (
