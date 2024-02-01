@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Button } from "./Button";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -17,7 +17,7 @@ export const Header = () => {
   };
 
   const handleDashboardClick = () => {
-    navigate("/dashboard");
+    navigate("/dashboard/eventos");
     setShowMenu(false);
   };
 
@@ -36,7 +36,13 @@ export const Header = () => {
       <div className="search__bar">
         <input type="text" placeholder="Temática..." />
         <input type="text" placeholder="Ciudad..." />
-        <button type="button">Buscar</button>
+        <Button
+          texto={"Buscar"}
+          onClick={() => {
+            alert("haz hecho click en el boton");
+          }}
+          className={"login__btn"}
+        />
       </div>
 
       <div className="button-left">
@@ -52,8 +58,8 @@ export const Header = () => {
             />
             {showMenu && (
               <div className="menu">
-                <button onClick={handleDashboardClick}>Dashboard</button>
-                <button onClick={handleLogoutClick}>Cerrar sesión</button>
+                <NavLink onClick={handleDashboardClick}>Dashboard</NavLink>
+                <NavLink onClick={handleLogoutClick}>Cerrar sesión</NavLink>
               </div>
             )}
           </div>
