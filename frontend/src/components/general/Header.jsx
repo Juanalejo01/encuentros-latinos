@@ -3,6 +3,8 @@ import { Button } from "./Button";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
+import "../../css/general/styles.css";
+
 export const Header = () => {
   const { logoutHandler, usuarioId } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -47,13 +49,17 @@ export const Header = () => {
 
       <div className="button-left">
         {!usuarioId ? (
-          <Button texto={"Login"} onClick={handleLoginClick} className={"login__btn"} />
+          <Button
+            texto={"Login"}
+            onClick={handleLoginClick}
+            className={"login__btn"}
+          />
         ) : (
           <div className="user__menu">
             <img
               src={`${import.meta.env.VITE_APP_BACKEND}/perfil/${usuarioId}`}
               alt="Avatar"
-              className="avatar"
+              className="avatar__img"
               onClick={handleAvatarClick}
             />
             {showMenu && (

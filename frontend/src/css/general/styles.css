@@ -70,6 +70,19 @@ body {
   flex-basis: 40%;
 }
 
+/*IMG AVATAR*/
+.avatar__img {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  object-fit: cover;
+  border: 1px solid var(--color-banner);
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+}
+
 /* BOTON LOGIN */
 .login__btn {
   display: inline-block;

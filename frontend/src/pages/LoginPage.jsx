@@ -12,10 +12,8 @@ import { BannerGeneral } from "../components/general/BannerGeneral";
 export const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setToken } = useContext(AuthContext);
-  const [avatar, setAvatar] = useState(null);
+  const { setToken, setAvatar } = useContext(AuthContext);
   const navigate = useNavigate();
-  console.log(avatar);
 
   const handleForm = async (e) => {
     e.preventDefault();
@@ -24,6 +22,7 @@ export const LoginPage = () => {
       const data = await loginUserService({ email, password });
       setToken(data.token);
       setAvatar(data.avatar);
+      localStorage.setItem("avatar", data.avatar); // Set the avatar in localStorage
       navigate("/eventos");
       toast.success(`Bienvenid@ ${data.nombre}`);
     } catch (error) {
