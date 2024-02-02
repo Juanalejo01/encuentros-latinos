@@ -2,6 +2,7 @@ import { PrivateEventosList } from "../components/private/PrivateEventosList";
 import { usePrivateEventos } from "../hook/usePrivateEventos";
 import { useState } from "react";
 import { toast } from "sonner";
+import { Link } from "react-router-dom";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 import ReactPaginate from "react-paginate";
 
@@ -36,12 +37,14 @@ export const MisEventosPage = () => {
       <header className="private-eventos__header">
         <h2 className="private-eventos__title">Lista de Eventos (Total: {eventos.total})</h2>
       </header>
-      <div className="private-eventos__content">
+      <ul className="private-eventos__content">
         {eventos.total !== 0 ? (
           eventosPaginaActual.map((evento) => (
-            <div className="private-eventos__item" key={evento.id}>
-              <PrivateEventosList evento={evento} removeEvento={removeEvento} token={token} />
-            </div>
+            <li className="private-eventos__item" key={evento.id}>
+              <Link className="private-eventos__link" to={`/evento/${evento.id}`}>
+                <PrivateEventosList evento={evento} removeEvento={removeEvento} token={token} />
+              </Link>
+            </li>
           ))
         ) : (
           <p className="private-eventos__mensaje">No tienes ningún evento creado aún.</p>
@@ -59,7 +62,7 @@ export const MisEventosPage = () => {
             activeClassName={"active__pagination"}
           />
         ) : null}
-      </div>
+      </ul>
     </section>
   );
 };
