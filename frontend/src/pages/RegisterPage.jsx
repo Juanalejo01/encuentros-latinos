@@ -160,4 +160,7 @@ import { FaRegCalendarCheck } from "react-icons/fa";
 
 PARA MODIFICAR DATOS DEL USUARIO
 import { FaRegEdit } from "react-icons/fa";
+
+PARA TEMATICA
+import { FaRegLightbulb } from "react-icons/fa";
 */

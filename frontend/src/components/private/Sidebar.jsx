@@ -19,7 +19,7 @@ export const Sidebar = () => {
       <header className="sidebar__header">
         <h2 className="sidebar__title">Bienvenido, {nombre}!</h2>
       </header>
-      <div className="sidebar__menu">
+      <menu className="sidebar__menu">
         <NavLink to={"/dashboard/evento"} end className="sidebar__item">
           Crear evento
         </NavLink>
@@ -29,7 +29,7 @@ export const Sidebar = () => {
         <NavLink to={"/"} className="sidebar__item">
           Configuración
         </NavLink>
-      </div>
+      </menu>
       <div className="sidebar__boton">
         <Button texto={"Cerrar sesión"} onClick={handleLogoutClick} className={"sidebar__btn"} />
       </div>

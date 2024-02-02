@@ -10,7 +10,7 @@ export const EventosPage = () => {
 
   if (loading)
     return (
-      <div className="spinner__eventos">
+      <div className="spinner__container">
         <div className="spinner"></div>
       </div>
     );
