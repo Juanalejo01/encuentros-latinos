@@ -62,6 +62,11 @@ body {
 .logo__title {
   font-size: 2rem;
   color: var(--color-text-logo);
+  transform: all 500ms ease-in-out;
+}
+
+.logo__title:hover {
+  color: var(--color-bg-btn-orange);
 }
 
 .search__bar {
@@ -113,8 +118,12 @@ body {
   height: 100%;
   cursor: pointer;
   object-fit: cover;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   border-radius: 50%;
+}
+
+.avatar__img:hover {
+  box-shadow: none;
 }
 
 /* ESTILOS PARA EL SUBMENU */
@@ -170,13 +179,21 @@ body {
   width: 4rem;
   height: 4rem;
   overflow: hidden;
+  background-color: var(--color-text-logo);
+  color: var(--color-banner);
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
+  transition: all 500ms ease-in-out;
 }
+
+.search__boton:hover {
+  background-color: var(--color-bg-btn-orange);
+}
+
 .search__btn {
   width: 100%;
   height: 100%;
-  background-color: var(--color-bg-btn-orange);
+  filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5));
   cursor: pointer;
 }
 
@@ -191,10 +208,7 @@ body {
 }
 
 .search__ciudad {
-  border-bottom: 1px solid var(--color-border);
-  border-left: none;
-  border-top: 1px solid var(--color-border);
-  border-right: 1px solid var(--color-border);
+  border: 1px solid var(--color-border);
 }
 
 .search__ciudad:hover {
@@ -208,6 +222,10 @@ body {
 
 .search__input::placeholder {
   color: rgba(0, 0, 0, 0.3);
+}
+
+.search__input:focus {
+  outline: 1px solid var(--color-banner);
 }
 
 /* FOOTER */
