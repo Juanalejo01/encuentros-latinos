@@ -34,6 +34,11 @@
   justify-content: space-around;
   align-items: center;
 }
+
+.private-eventos__link {
+  color: var(--color-text-body);
+}
+
 .private-eventos__item {
   position: relative;
   width: 60rem;

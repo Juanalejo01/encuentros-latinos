@@ -4,8 +4,6 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { FaSistrix } from "react-icons/fa";
 
-import "../../css/general/styles.css";
-
 export const Header = () => {
   const { logoutHandler, usuarioId, avatar } = useContext(AuthContext);
   const navigate = useNavigate();
