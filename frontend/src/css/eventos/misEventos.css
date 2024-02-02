@@ -1,0 +1,222 @@
+.layout__private-eventos,
+.spinner__container-private {
+  flex-basis: 85%;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  height: 100vh;
+}
+
+/* ESTILOS DEL HEADER */
+.private-eventos__header {
+  max-width: var(--mx-width);
+  margin: 2rem auto;
+  overflow: hidden;
+  margin: 2rem 15rem;
+
+  display: flex;
+  justify-content: center;
+}
+
+.private-eventos__title {
+  display: inline-block;
+  color: var(--color-banner);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 5.5rem;
+  font-weight: 700;
+}
+
+/* ESTILO PARA EL LISTADO DE EVENTOS */
+.private-eventos__content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+.private-eventos__item {
+  position: relative;
+  width: 60rem;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  border-radius: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.private-eventos__pevento {
+  position: relative;
+  width: 100%;
+  height: 23rem;
+  display: flex;
+  background-color: var(--color-secondary);
+}
+
+.pevento__container-img {
+  flex-basis: 32%;
+  position: relative;
+  height: 25rem;
+  display: flex;
+  transition: all 1000ms ease-in-out;
+}
+
+.pevento__container-img:hover {
+  flex-basis: 42%;
+}
+
+.pevento__imagen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  transition: all 1000ms ease-in-out;
+}
+
+.pevento__imagen:hover {
+  transform: scale(1.1);
+}
+
+.pevento__content {
+  position: relative;
+  flex-basis: 50%;
+  background-color: var(--color-secondary);
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  left: -2rem;
+  padding: 2rem;
+}
+
+.content__tags {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.pevento__title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.pevento__tags {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.pevento__tag-bottom {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.pevento__tag-inscritos,
+.pevento__tag-fecha {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ESTILO PARA LA ETIQUETA DE CADUCADO */
+.pvento__caducado {
+  position: absolute;
+  color: rgba(244, 67, 54, 0.5);
+  border: 2px dotted rgba(244, 67, 54, 0.5);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 3.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 2px 2px 5px -5px rgba(0, 0, 0, 0.5);
+  transform: rotate(-45deg);
+  top: -1rem;
+  left: 3rem;
+}
+
+/* ESTILO PARA LOS ICONOS DE EDITAR Y ELIMINAR */
+.private-eventos__iconos {
+  flex-basis: 25%;
+  overflow: hidden;
+  background-color: var(--color-sidebar);
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.private-eventos__editar,
+.private-eventos__eliminar {
+  flex-basis: 50%;
+  width: 100%;
+  border-bottom: 1px solid var(--color-description);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-banner);
+  transform: all 1000ms ease-in-out;
+}
+
+.private-eventos__editar:hover,
+.private-eventos__eliminar:hover {
+  background-color: var(--color-bg-btn-orange);
+  color: var(--color-secondary);
+}
+
+.private-eventos__eliminar {
+  cursor: pointer;
+}
+
+.private-eventos__editar-icono,
+.private-eventos__eliminar-icono {
+  filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5));
+  font-size: 5rem;
+}
+
+/* ESTILO DEL MENSAJE CUANDO NO EXISTEN EVENTOS */
+.private-eventos__mensaje {
+  text-align: center;
+  font-size: 5rem;
+  color: var(--color-secondary);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.pagination {
+  position: absolute;
+  bottom: 1rem;
+  padding: 1rem 2rem;
+  display: flex;
+  gap: 2rem;
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  border-radius: 15px;
+}
+
+.previous,
+.next {
+  position: relative;
+  cursor: pointer;
+}
+
+.disabled,
+.active__pagination {
+  color: var(--color-description);
+  cursor: none;
+  pointer-events: none;
+}
+
+.icono__anterior {
+  position: absolute;
+  top: 0.4rem;
+  left: -1rem;
+}
+
+.icono__siguiente {
+  position: absolute;
+  top: 0.4rem;
+  right: -1rem;
+  cursor: pointer;
+}

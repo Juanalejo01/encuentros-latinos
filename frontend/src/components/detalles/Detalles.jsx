@@ -122,6 +122,7 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
                         <FaTrashAlt
                           className="eliminar__inscrito"
                           onClick={() => handleEliminarInscripcion(datos.evento.id, inscrito.id)}
+                          title="No asistir"
                         />
                       ) : null}
                     </div>
