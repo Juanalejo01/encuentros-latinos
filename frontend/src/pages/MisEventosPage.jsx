@@ -46,7 +46,7 @@ export const MisEventosPage = () => {
         ) : (
           <p className="private-eventos__mensaje">No tienes ningún evento creado aún.</p>
         )}
-        {eventos.total !== 0 ? (
+        {eventos.total > 6 ? (
           <ReactPaginate
             previousLabel={<FaChevronLeft className="icono__anterior" title="Anterior" />}
             nextLabel={<FaChevronRight className="icono__siguiente" title="Siguiente" />}
