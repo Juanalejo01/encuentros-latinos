@@ -49,7 +49,7 @@
   font-weight: 500;
   text-align: center;
   color: var(--color-primary);
-  transition: all 150ms ease-in-out;
+  transition: all 300ms ease-in-out;
 }
 
 .nofound__btn:hover {

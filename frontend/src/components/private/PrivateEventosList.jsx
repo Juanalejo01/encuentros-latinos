@@ -9,6 +9,7 @@ import {
 import { horaFormateada } from "../../services/fechaHoraFormateada";
 import { Link } from "react-router-dom";
 import { eliminarEventoService } from "../../services/eventosServices";
+import { toast } from "sonner";
 
 export const PrivateEventosList = ({ evento, removeEvento, token }) => {
   const imagenUrl = `${import.meta.env.VITE_APP_BACKEND}/${evento.foto}`;
@@ -18,6 +19,7 @@ export const PrivateEventosList = ({ evento, removeEvento, token }) => {
     try {
       await eliminarEventoService(eventoId, token);
       removeEvento(eventoId);
+      toast.dismiss();
     } catch (error) {
       console.error(error.message);
     }
@@ -25,7 +27,7 @@ export const PrivateEventosList = ({ evento, removeEvento, token }) => {
 
   return (
     <article className="private-eventos__pevento">
-      <Link className="private-eventos__link" to={`/evento/${evento.id}`}>
+      <Link className="private-eventos__link" to={`/evento/${evento.id}`} title="Mostrar">
         <div className="pevento__container-img">
           <img className="pevento__imagen" src={imagenUrl} alt={evento.titulo} />
         </div>
@@ -61,16 +63,35 @@ export const PrivateEventosList = ({ evento, removeEvento, token }) => {
         <Link
           className="private-eventos__editar"
           to={`/dashboard/evento/${evento.id}`}
-          title="Editar evento"
+          title="Editar"
         >
           <FaPencilAlt className="private-eventos__editar-icono" />
+          Editar
         </Link>
-        <div className="private-eventos__eliminar" title="Eliminar evento">
-          <FaTrashAlt
-            className="private-eventos__eliminar-icono"
-            onClick={() => handleEliminarEvento(evento.id)}
-          />
-        </div>
+        <button
+          className="private-eventos__eliminar"
+          title="Eliminar"
+          onClick={() => {
+            toast.custom((t) => (
+              <div className="mensaje__eliminar">
+                <h4 className="eliminar__title">
+                  ¿Estás seguro de que quieres eliminar este evento?
+                </h4>
+                <div className="eliminar__botones">
+                  <button className="eliminar__btn" onClick={() => handleEliminarEvento(evento.id)}>
+                    Sí
+                  </button>
+                  <button className="eliminar__btn" onClick={() => toast.dismiss(t)}>
+                    No
+                  </button>
+                </div>
+              </div>
+            ));
+          }}
+        >
+          <FaTrashAlt className="private-eventos__eliminar-icono" />
+          Eliminar
+        </button>
       </div>
     </article>
   );

@@ -24,6 +24,7 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
       const texto = await bajaUsuarioEventoService(eventoId, token);
       toast.success(texto);
       removeListado(id);
+      toast.dismiss();
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -127,7 +128,31 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
                       {usuarioId && inscrito.usuario_id === usuarioId ? (
                         <FaTrashAlt
                           className="eliminar__inscrito"
-                          onClick={() => handleEliminarInscripcion(datos.evento.id, inscrito.id)}
+                          onClick={() => {
+                            toast.custom((t) => (
+                              <div className="mensaje__eliminar">
+                                <h4 className="eliminar__title">
+                                  ¿Estás seguro de que no puedes asistir a este evento?
+                                </h4>
+                                <div className="eliminar__botones">
+                                  <button
+                                    className="eliminar__btn"
+                                    onClick={() =>
+                                      handleEliminarInscripcion(datos.evento.id, inscrito.id)
+                                    }
+                                  >
+                                    Sí
+                                  </button>
+                                  <button
+                                    className="eliminar__btn"
+                                    onClick={() => toast.dismiss(t)}
+                                  >
+                                    No
+                                  </button>
+                                </div>
+                              </div>
+                            ));
+                          }}
                           title="No asistir"
                         />
                       ) : null}

@@ -46,6 +46,11 @@
   position: relative;
   color: var(--color-text-body);
   display: flex;
+  transition: all 500ms linear;
+}
+
+.private-eventos__link:hover {
+  color: var(--color-primary);
 }
 
 .private-eventos__item {
@@ -66,7 +71,7 @@
 }
 
 .pevento__container-img {
-  flex-basis: 42%;
+  flex-basis: 45%;
   position: relative;
   height: 25rem;
   display: flex;
@@ -74,7 +79,7 @@
 }
 
 .pevento__container-img:hover {
-  flex-basis: 47%;
+  flex-basis: 50%;
 }
 
 .pevento__imagen {
@@ -93,7 +98,7 @@
 
 .pevento__content {
   position: relative;
-  flex-basis: 58%;
+  flex-basis: 60%;
   background-color: var(--color-secondary);
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
@@ -154,7 +159,7 @@
 
 /* ESTILO PARA LOS ICONOS DE EDITAR Y ELIMINAR */
 .private-eventos__iconos {
-  flex-basis: 25%;
+  flex-basis: 20%;
   overflow: hidden;
   background-color: var(--color-sidebar);
   border-top-left-radius: 25px;
@@ -170,11 +175,14 @@
   flex-basis: 50%;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
   color: var(--color-banner);
-  transform: all 1000ms ease-in-out;
+  transition: all 600ms ease-in-out;
 }
+
 .private-eventos__editar {
   border-bottom: 1px solid var(--color-description);
 }
@@ -187,12 +195,14 @@
 
 .private-eventos__eliminar {
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 
 .private-eventos__editar-icono,
 .private-eventos__eliminar-icono {
   filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5));
-  font-size: 5rem;
+  font-size: 2.5rem;
 }
 
 /* ESTILO DEL MENSAJE CUANDO NO EXISTEN EVENTOS */
@@ -223,11 +233,14 @@
   cursor: pointer;
 }
 
+.pagination li:not(.previous):not(.next):not(.disabled):not(.active__pagination) {
+  cursor: pointer;
+}
+
 .disabled,
 .active__pagination {
   color: var(--color-description);
-  cursor: none;
-  pointer-events: none;
+  cursor: not-allowed;
 }
 
 .icono__anterior {
@@ -240,5 +253,4 @@
   position: absolute;
   top: 0.4rem;
   right: -1rem;
-  cursor: pointer;
 }
