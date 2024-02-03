@@ -164,7 +164,7 @@ export const eventoEliminadoById = async (id) => {
   }
 };
 
-export const eventosByTematicaOrCiudad = async (tematica, ciudad) => {
+export const eventosByTematicaOrCiudad = async (tematica, ciudad, ordenar) => {
   let connection;
 
   try {
@@ -190,6 +190,10 @@ export const eventosByTematicaOrCiudad = async (tematica, ciudad) => {
 
     for (const evento of filtro) {
       evento.totalInscritos = await totalInscritosById(evento.id);
+    }
+
+    if (ordenar === "true") {
+      filtro.sort((a, b) => b.totalInscritos - a.totalInscritos);
     }
 
     return filtro;

@@ -1,7 +1,9 @@
-export const getAllEventosService = async (tematica, ciudad) => {
+export const getAllEventosService = async (tematica, ciudad, ordenar) => {
   try {
     const response = await fetch(
-      `${import.meta.env.VITE_APP_BACKEND}/eventos?tematica=${tematica}&ciudad=${ciudad}`
+      `${
+        import.meta.env.VITE_APP_BACKEND
+      }/eventos?tematica=${tematica}&ciudad=${ciudad}&ordenar=${ordenar}`
     );
 
     const json = await response.json();

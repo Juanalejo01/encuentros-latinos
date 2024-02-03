@@ -4,6 +4,7 @@ import { getAllEventosService } from "../services/eventosServices";
 export const useEventos = () => {
   const [tematica, setTematica] = useState("");
   const [ciudad, setCiudad] = useState("");
+  const [ordenar, setOrdenar] = useState(false);
   const [eventos, setEventos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -12,8 +13,7 @@ export const useEventos = () => {
     const loadEventos = async () => {
       try {
         setLoading(true);
-
-        const data = await getAllEventosService(tematica, ciudad);
+        const data = await getAllEventosService(tematica, ciudad, ordenar);
 
         setEventos(data);
       } catch (error) {
@@ -24,7 +24,7 @@ export const useEventos = () => {
     };
 
     loadEventos();
-  }, [tematica, ciudad]);
+  }, [tematica, ciudad, ordenar]);
 
-  return { setTematica, setCiudad, eventos, loading, error };
+  return { setTematica, setCiudad, setOrdenar, eventos, loading, error };
 };
