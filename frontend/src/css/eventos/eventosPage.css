@@ -20,6 +20,12 @@
   z-index: -1;
 }
 
+.spinner__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* ESTILO DEL HEADER DE LA PAGINA DEL LISTADO DE EVENTOS */
 .eventos__header {
   max-width: var(--mx-width);

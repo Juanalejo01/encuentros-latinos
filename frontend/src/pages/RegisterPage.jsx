@@ -49,17 +49,30 @@ export const RegisterPage = () => {
       <section className="registro__content">
         <form className="registro__formulario" onSubmit={handleForm}>
           <div className="formulario__columna--1">
-            <div className="formulario__nombre">
-              <label htmlFor="nombre">Nombre:</label>
-              <input className="input__nombre" type="text" name="nombre" tabIndex={1} required />
+            <div className="formulario__nombre-apellidos">
+              <div className="formulario__nombre">
+                <label htmlFor="nombre">Nombre:</label>
+                <input className="input__nombre" type="text" name="nombre" tabIndex={1} required />
+              </div>
+              <div className="formulario__apellidos">
+                <label htmlFor="apellidos">Apellidos:</label>
+                <input
+                  className="input__apellidos"
+                  type="text"
+                  name="apellidos"
+                  tabIndex={2}
+                  required
+                />
+              </div>
             </div>
-            <div className="formulario__apellidos">
-              <label htmlFor="apellidos">Apellidos:</label>
+            <div className="formulario__email">
+              <label htmlFor="email">Email:</label>
               <input
-                className="input__apellidos"
-                type="text"
-                name="apellidos"
-                tabIndex={2}
+                className="input__email"
+                type="email"
+                id="email"
+                name="email"
+                tabIndex={3}
                 required
               />
             </div>
@@ -76,25 +89,14 @@ export const RegisterPage = () => {
                 tabIndex={4}
                 required
               />
-
+            </div>
+            <div className="formulario__password-confirma">
               <label htmlFor="confirmPassword">Confirmar Contraseña:</label>
               <input
                 className="input__password"
                 type="password"
                 name="confirmPassword"
                 tabIndex={5}
-                required
-              />
-            </div>
-
-            <div className="formulario__email">
-              <label htmlFor="email">Email:</label>
-              <input
-                className="input__email"
-                type="email"
-                id="email"
-                name="email"
-                tabIndex={3}
                 required
               />
             </div>
@@ -137,7 +139,7 @@ export const RegisterPage = () => {
           </div>
           <Button texto={"Registrate"} className={"registro__btn"} />
         </form>
-        {sending ? <div className="spinner"></div> : null}
+        {sending ? <div className="spinner__registro"></div> : null}
       </section>
 
       <BannerGeneral />

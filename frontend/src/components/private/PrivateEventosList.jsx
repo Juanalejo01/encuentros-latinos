@@ -25,39 +25,45 @@ export const PrivateEventosList = ({ evento, removeEvento, token }) => {
 
   return (
     <article className="private-eventos__pevento">
-      <div className="pevento__container-img">
-        <img className="pevento__imagen" src={imagenUrl} alt={evento.titulo} />
-      </div>
+      <Link className="private-eventos__link" to={`/evento/${evento.id}`}>
+        <div className="pevento__container-img">
+          <img className="pevento__imagen" src={imagenUrl} alt={evento.titulo} />
+        </div>
 
-      <div className="pevento__content">
-        <div className="content__tags">
-          <h3 className="pevento__title">{evento.titulo}</h3>
+        <div className="pevento__content">
+          <div className="content__tags">
+            <h3 className="pevento__title">{evento.titulo}</h3>
 
-          <div className="pevento__tags">
-            <span className="pevento__tag-tematica">
-              <FaShapes /> {evento.tematica}
-            </span>
-            <span className="pevento__tag-ciudad">
-              <FaMapMarkerAlt /> {evento.ciudad}
-            </span>
-
-            <div className="pevento__tag-bottom">
-              <span className="pevento__tag-fecha">
-                <FaRegClock />
-                {horaFormateada(evento.fecha_hora)} h
+            <div className="pevento__tags">
+              <span className="pevento__tag-tematica">
+                <FaShapes /> {evento.tematica}
               </span>
-              <span className="pevento__tag-inscritos">
-                <FaUserFriends /> {evento.totalInscritos}
+              <span className="pevento__tag-ciudad">
+                <FaMapMarkerAlt /> {evento.ciudad}
               </span>
+
+              <div className="pevento__tag-bottom">
+                <span className="pevento__tag-fecha">
+                  <FaRegClock />
+                  {horaFormateada(evento.fecha_hora)} h
+                </span>
+                <span className="pevento__tag-inscritos">
+                  <FaUserFriends /> {evento.totalInscritos}
+                </span>
+              </div>
+              {eventoCaducado && <p className="pvento__caducado">Caducado</p>}
             </div>
-            {eventoCaducado && <p className="pvento__caducado">Caducado</p>}
           </div>
         </div>
-      </div>
+      </Link>
 
       <div className="private-eventos__iconos">
-        <Link className="private-eventos__editar" to={`/dashboard/evento/${evento.id}`}>
-          <FaPencilAlt className="private-eventos__editar-icono" title="Editar evento" />
+        <Link
+          className="private-eventos__editar"
+          to={`/dashboard/evento/${evento.id}`}
+          title="Editar evento"
+        >
+          <FaPencilAlt className="private-eventos__editar-icono" />
         </Link>
         <div className="private-eventos__eliminar" title="Eliminar evento">
           <FaTrashAlt

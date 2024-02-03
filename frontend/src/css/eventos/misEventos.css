@@ -7,6 +7,12 @@
   height: 100vh;
 }
 
+.spinner__container-private {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* ESTILOS DEL HEADER */
 .private-eventos__header {
   max-width: var(--mx-width);
@@ -36,7 +42,10 @@
 }
 
 .private-eventos__link {
+  flex-basis: 80%;
+  position: relative;
   color: var(--color-text-body);
+  display: flex;
 }
 
 .private-eventos__item {
@@ -57,7 +66,7 @@
 }
 
 .pevento__container-img {
-  flex-basis: 32%;
+  flex-basis: 42%;
   position: relative;
   height: 25rem;
   display: flex;
@@ -65,7 +74,7 @@
 }
 
 .pevento__container-img:hover {
-  flex-basis: 42%;
+  flex-basis: 47%;
 }
 
 .pevento__imagen {
@@ -84,18 +93,21 @@
 
 .pevento__content {
   position: relative;
-  flex-basis: 50%;
+  flex-basis: 58%;
   background-color: var(--color-secondary);
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
   left: -2rem;
-  padding: 2rem;
+  padding: 1rem 0;
 }
 
 .content__tags {
   position: relative;
+  margin-top: 2rem;
+  margin-left: 2rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .pevento__title {
@@ -105,6 +117,7 @@
 
 .pevento__tags {
   position: relative;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -136,8 +149,7 @@
   text-transform: uppercase;
   box-shadow: 2px 2px 5px -5px rgba(0, 0, 0, 0.5);
   transform: rotate(-45deg);
-  top: -1rem;
-  left: 3rem;
+  left: 2rem;
 }
 
 /* ESTILO PARA LOS ICONOS DE EDITAR Y ELIMINAR */
@@ -157,12 +169,14 @@
 .private-eventos__eliminar {
   flex-basis: 50%;
   width: 100%;
-  border-bottom: 1px solid var(--color-description);
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--color-banner);
   transform: all 1000ms ease-in-out;
+}
+.private-eventos__editar {
+  border-bottom: 1px solid var(--color-description);
 }
 
 .private-eventos__editar:hover,
@@ -189,13 +203,16 @@
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* ESTILOS DEL COMPONENTE DE PAGINACIÓN */
+
 .pagination {
   position: absolute;
-  bottom: 1rem;
+  bottom: 0.6rem;
   padding: 1rem 2rem;
   display: flex;
   gap: 2rem;
   background-color: var(--color-primary);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   color: var(--color-secondary);
   border-radius: 15px;
 }

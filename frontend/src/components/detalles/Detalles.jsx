@@ -61,11 +61,13 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
             <img className="detalles__imagen" src={imagenUrl} alt={datos.evento.titulo} />
           </div>
           <div className="detalles__author">
-            <h3 className="author__title">Organizador: </h3>
-            <p className="author__nombre">
-              {datos.evento.nombre} {datos.evento.apellidos}
-            </p>
             <img className="author__imagen" src={avatarUrl} alt={datos.evento.nombre} />
+            <p className="author__nombre">
+              Organizado por{" "}
+              <strong>
+                {datos.evento.nombre} {datos.evento.apellidos}
+              </strong>
+            </p>
           </div>
           <div className="detalles__tags">
             <div className="detalles__tag-cuando">
@@ -103,7 +105,11 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
             <h4 className="inscritos__title">Lista de asistentes:</h4>
             {datos.total !== 0 ? (
               <ul className="inscritos__lista">
-                {loading ? <p>Cargando listado...</p> : null}
+                {loading ? (
+                  <div className="spinner__lista" role="status">
+                    <span className="spinner__detalles"></span>
+                  </div>
+                ) : null}
 
                 {datos.listado.map((inscrito, index) => (
                   <li className="inscritos__item" key={index}>

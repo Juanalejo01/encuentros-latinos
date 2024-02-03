@@ -2,7 +2,6 @@ import { PrivateEventosList } from "../components/private/PrivateEventosList";
 import { usePrivateEventos } from "../hook/usePrivateEventos";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Link } from "react-router-dom";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 import ReactPaginate from "react-paginate";
 
@@ -27,7 +26,7 @@ export const MisEventosPage = () => {
   if (loading)
     return (
       <div className="spinner__container-private">
-        <div className="spinner"></div>
+        <span className="spinner"></span>
       </div>
     );
   if (error) return toast.error(error);
@@ -41,9 +40,7 @@ export const MisEventosPage = () => {
         {eventos.total !== 0 ? (
           eventosPaginaActual.map((evento) => (
             <li className="private-eventos__item" key={evento.id}>
-              <Link className="private-eventos__link" to={`/evento/${evento.id}`}>
-                <PrivateEventosList evento={evento} removeEvento={removeEvento} token={token} />
-              </Link>
+              <PrivateEventosList evento={evento} removeEvento={removeEvento} token={token} />
             </li>
           ))
         ) : (
