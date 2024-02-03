@@ -55,11 +55,14 @@
   margin-bottom: 2rem;
 }
 
-.formulario__foto {
+.formulario__foto,
+.spinner__editar {
   position: relative;
   width: 45rem;
   height: 35rem;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .foto__label,
