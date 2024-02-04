@@ -149,10 +149,10 @@ export const eventosInscritoByIdOfUser = async (id) => {
     connection = await getConnection();
 
     const [eventos] = await connection.query(
-      `SELECT eventos.id, eventos.titulo, eventos.tematica, eventos.ciudad, eventos.fecha_hora, eventos.foto 
+      `SELECT eventos.id, inscripciones.id AS inscrito, eventos.titulo, eventos.tematica, eventos.ciudad, eventos.fecha_hora, eventos.foto 
        FROM eventos 
-       INNER JOIN inscripciones ON eventos.id = inscripciones.id_evento 
-       WHERE inscripciones.id_usuario = ? 
+       INNER JOIN inscripciones ON eventos.id = inscripciones.evento_id
+       WHERE inscripciones.usuario_id = ? 
        ORDER BY CASE WHEN eventos.fecha_hora > NOW() THEN 1 ELSE 2 END, eventos.fecha_hora`,
       [id]
     );

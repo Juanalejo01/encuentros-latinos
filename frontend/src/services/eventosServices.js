@@ -195,3 +195,23 @@ export const listadoUsuariosEventoService = async (id) => {
     throw new Error(`${error.message}`);
   }
 };
+
+export const getAllSuscripcionesByUserService = async (token) => {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_APP_BACKEND}/inscription`, {
+      headers: {
+        Authorization: token,
+      },
+    });
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json.mensaje);
+    }
+
+    return json;
+  } catch (error) {
+    throw new Error(`${error.message}`);
+  }
+};

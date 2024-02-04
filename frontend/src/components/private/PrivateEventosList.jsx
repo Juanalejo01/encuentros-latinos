@@ -8,12 +8,26 @@ import {
 } from "react-icons/fa";
 import { horaFormateada } from "../../services/fechaHoraFormateada";
 import { Link } from "react-router-dom";
-import { eliminarEventoService } from "../../services/eventosServices";
+import { bajaUsuarioEventoService, eliminarEventoService } from "../../services/eventosServices";
 import { toast } from "sonner";
+import { useEvento } from "../../hook/useEvento";
 
-export const PrivateEventosList = ({ evento, removeEvento, token }) => {
+export const PrivateEventosList = ({ evento, removeEvento, token, opcion }) => {
   const imagenUrl = `${import.meta.env.VITE_APP_BACKEND}/${evento.foto}`;
   const eventoCaducado = new Date() > new Date(evento.fecha_hora);
+  const { removeListado } = useEvento(evento.id);
+
+  const handleEliminarInscripcion = async (eventoId, id) => {
+    try {
+      const texto = await bajaUsuarioEventoService(eventoId, token);
+      toast.success(texto);
+      removeListado(id);
+      removeEvento(eventoId);
+      toast.dismiss();
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   const handleEliminarEvento = async (eventoId) => {
     try {
@@ -59,28 +73,58 @@ export const PrivateEventosList = ({ evento, removeEvento, token }) => {
         </div>
       </Link>
 
-      <div className="private-eventos__iconos">
-        <Link
-          className="private-eventos__editar"
-          to={`/dashboard/evento/${evento.id}`}
-          title="Editar"
-        >
-          <FaPencilAlt className="private-eventos__editar-icono" />
-          Editar
-        </Link>
+      <div
+        className={
+          opcion === "Eventos" ? "private-eventos__iconos" : "private-suscripciones__icono"
+        }
+      >
+        {opcion === "Eventos" && (
+          <Link
+            className="private-eventos__editar"
+            to={`/dashboard/evento/${evento.id}`}
+            title="Editar"
+          >
+            <FaPencilAlt className="private-eventos__editar-icono" />
+            Editar
+          </Link>
+        )}
+
         <button
-          className="private-eventos__eliminar"
+          className={
+            opcion === "Eventos" ? "private-eventos__eliminar" : "private-suscripciones__noasistir"
+          }
           title="Eliminar"
           onClick={() => {
             toast.custom((t) => (
               <div className="mensaje__eliminar">
-                <h4 className="eliminar__title">
-                  ¿Estás seguro de que quieres eliminar este evento?
-                </h4>
+                {opcion === "Suscripcion" ? (
+                  <h4 className="eliminar__title">
+                    ¿Estás seguro de que no quieres asistir a este evento?
+                  </h4>
+                ) : (
+                  <h4 className="eliminar__title">
+                    ¿Estás seguro de que quieres eliminar este evento?
+                  </h4>
+                )}
+
                 <div className="eliminar__botones">
-                  <button className="eliminar__btn" onClick={() => handleEliminarEvento(evento.id)}>
-                    Sí
-                  </button>
+                  {opcion === "Eventos" && (
+                    <button
+                      className="eliminar__btn"
+                      onClick={() => handleEliminarEvento(evento.id)}
+                    >
+                      Sí
+                    </button>
+                  )}
+                  {opcion === "Suscripcion" && (
+                    <button
+                      className="eliminar__btn"
+                      onClick={() => handleEliminarInscripcion(evento.id, evento.inscrito)}
+                    >
+                      Sí
+                    </button>
+                  )}
+
                   <button className="eliminar__btn" onClick={() => toast.dismiss(t)}>
                     No
                   </button>
@@ -90,7 +134,7 @@ export const PrivateEventosList = ({ evento, removeEvento, token }) => {
           }}
         >
           <FaTrashAlt className="private-eventos__eliminar-icono" />
-          Eliminar
+          {opcion === "Eventos" ? <spam>Eliminar</spam> : <spam>No asistir</spam>}
         </button>
       </div>
     </article>
