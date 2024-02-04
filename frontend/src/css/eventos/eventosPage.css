@@ -195,8 +195,9 @@
 }
 
 .ordenar__btn {
+  position: relative;
   cursor: pointer;
-  background-color: var(--color-text-body);
+  background-color: var(--color-description);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   color: var(--color-secondary);
   border: none;
@@ -212,6 +213,28 @@
 
 .active__ordenar {
   cursor: not-allowed;
-  background-color: var(--color-description);
+  background-color: var(--color-bg-btn);
+  color: var(--color-bg-dark);
+  border: 1px dotted var(--color-bg-btn-orange);
   box-shadow: none;
+}
+
+.ordenar__btn span {
+  display: inline-block;
+}
+
+.cambiar__escala {
+  animation-name: cambiar-escala;
+  animation-duration: 2s; /* Duración de la animación */
+  animation-iteration-count: infinite; /* Animación infinita */
+  animation-direction: alternate; /* Alterna entre agrandar y reducir */
+}
+
+@keyframes cambiar-escala {
+  from {
+    transform: scale(0.9); /* Reducir tamaño inicial */
+  }
+  to {
+    transform: scale(1.2); /* Aumentar tamaño */
+  }
 }
