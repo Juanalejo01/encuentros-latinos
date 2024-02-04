@@ -20,12 +20,17 @@
   z-index: -1;
 }
 
+.spinner__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* ESTILO DEL HEADER DE LA PAGINA DEL LISTADO DE EVENTOS */
 .eventos__header {
   max-width: var(--mx-width);
   margin: 2rem auto;
   overflow: hidden;
-  margin-bottom: 6rem;
   text-align: center;
 }
 
@@ -60,13 +65,23 @@
   transform: rotateY(180deg);
 }
 
+.swiper-button-next.swiper-button-disabled,
+.swiper-button-prev.swiper-button-disabled {
+  cursor: not-allowed;
+  pointer-events: inherit;
+}
+
 .eventos__link {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   border-radius: 0 0 30px 30px;
-  transform: all 1000ms ease-in-out;
+  transition: all 500ms ease-in-out;
+}
+
+.eventos__link:hover {
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 10%);
 }
 
 .eventos__evento {
@@ -94,10 +109,6 @@
   border: 1px solid var(--color-bg-projects);
   padding: 2.2rem;
   border-radius: 0 0 30px 30px;
-}
-
-.eventos__link:hover {
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 10%);
 }
 
 .evento__title {
@@ -163,4 +174,67 @@
   text-align: center;
   font-size: 5rem;
   color: var(--color-secondary);
+}
+
+/* ESTILOS PARA ORDENAR */
+.ordenar__inscritos {
+  position: relative;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.ordenar__title {
+  margin-right: 1rem;
+  color: var(--color-secondary);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ordenar__btn {
+  position: relative;
+  cursor: pointer;
+  background-color: var(--color-description);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  color: var(--color-secondary);
+  border: none;
+  width: 3rem;
+  border-radius: 5px;
+  transition: all 300ms ease-in-out;
+}
+
+.ordenar__btn:hover:not(.active__ordenar) {
+  background-color: var(--color-hover-dark);
+  transform: scale(1.1);
+}
+
+.active__ordenar {
+  cursor: not-allowed;
+  background-color: var(--color-bg-btn);
+  color: var(--color-bg-dark);
+  border: 1px dotted var(--color-bg-btn-orange);
+  box-shadow: none;
+}
+
+.ordenar__btn span {
+  display: inline-block;
+}
+
+.cambiar__escala {
+  animation-name: cambiar-escala;
+  animation-duration: 2s; /* Duración de la animación */
+  animation-iteration-count: infinite; /* Animación infinita */
+  animation-direction: alternate; /* Alterna entre agrandar y reducir */
+}
+
+@keyframes cambiar-escala {
+  from {
+    transform: scale(0.9); /* Reducir tamaño inicial */
+  }
+  to {
+    transform: scale(1.2); /* Aumentar tamaño */
+  }
 }

@@ -6,6 +6,7 @@
   --color-secondary: #fff;
   --color-banner: #2522ba;
   --color-text-btn: #0d6efd;
+  --color-bg-toast: rgba(13, 109, 253, 0.9);
   --color-bg-btn: #ffdc60;
   --color-subtitle: #c75c6f;
   --color-title: #292930;
@@ -61,7 +62,13 @@ body {
 
 .logo__title {
   font-size: 2rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   color: var(--color-text-logo);
+  transition: all 500ms ease-in-out;
+}
+
+.logo__title:hover {
+  color: var(--color-bg-btn-orange);
 }
 
 .search__bar {
@@ -87,7 +94,7 @@ body {
   font-weight: 500;
   text-align: center;
   color: var(--color-bg-dark);
-  transition: all 150ms ease-in-out;
+  transition: all 300ms ease-in-out;
 }
 
 .login__btn:hover {
@@ -113,8 +120,13 @@ body {
   height: 100%;
   cursor: pointer;
   object-fit: cover;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--color-border);
   border-radius: 50%;
+  transition: all 500ms ease-in-out;
+}
+
+.avatar__img:hover {
+  border: 1px solid var(--color-description);
 }
 
 /* ESTILOS PARA EL SUBMENU */
@@ -170,20 +182,31 @@ body {
   width: 4rem;
   height: 4rem;
   overflow: hidden;
+  background-color: var(--color-text-logo);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  color: var(--color-banner);
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
+  transition: all 500ms ease-in-out;
 }
+
+.search__boton:hover {
+  background-color: var(--color-bg-btn-orange);
+}
+
 .search__btn {
   width: 100%;
   height: 100%;
-  background-color: var(--color-bg-btn-orange);
+  filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5));
   cursor: pointer;
 }
 
 .search__tematica {
   border: 1px solid var(--color-border);
+  box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
+  transition: all 500ms ease-in-out;
 }
 
 .search__tematica:hover {
@@ -191,10 +214,9 @@ body {
 }
 
 .search__ciudad {
-  border-bottom: 1px solid var(--color-border);
-  border-left: none;
-  border-top: 1px solid var(--color-border);
-  border-right: 1px solid var(--color-border);
+  border: 1px solid var(--color-border);
+  box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);
+  transition: all 500ms ease-in-out;
 }
 
 .search__ciudad:hover {
@@ -208,6 +230,10 @@ body {
 
 .search__input::placeholder {
   color: rgba(0, 0, 0, 0.3);
+}
+
+.search__input:focus {
+  outline: 1px solid var(--color-banner);
 }
 
 /* FOOTER */
@@ -292,4 +318,39 @@ body {
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* ESTILOS PARA EL MENSAJE DE ELIMINAR DEL TOAST */
+.mensaje__eliminar {
+  background-color: var(--color-primary);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: max-content;
+  margin-top: 10rem;
+  border-radius: 15px;
+}
+
+.eliminar__title {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  color: var(--color-bg-btn);
+  margin-bottom: 2rem;
+}
+
+.eliminar__botones {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.eliminar__btn {
+  background-color: var(--color-text-body);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  color: var(--color-secondary);
+  padding: 1rem;
+  width: 5rem;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+
+.eliminar__btn:hover {
+  background-color: var(--color-hover-dark);
 }

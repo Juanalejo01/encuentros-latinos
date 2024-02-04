@@ -28,7 +28,12 @@ export const EditarEventosPage = () => {
         <h2 className="crear-evento__title">Editar Evento</h2>
       </header>
       <div className="crear-evento__formulario">
-        <FormularioEvento handleForm={handleForm} evento={evento} accion={"Editar"} />
+        <FormularioEvento
+          handleForm={handleForm}
+          evento={evento}
+          accion={"Editar"}
+          loading={loading}
+        />
       </div>
       {loading ? <p>Cargando datos del evento...</p> : null}
     </section>

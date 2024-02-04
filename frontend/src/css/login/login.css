@@ -89,7 +89,7 @@
   font-weight: 500;
   text-align: center;
   color: var(--color-primary);
-  transition: all 150ms ease-in-out;
+  transition: all 300ms ease-in-out;
 }
 
 .login__formulario-btn:hover {
@@ -99,6 +99,7 @@
 
 .link__registro {
   color: var(--color-secondary);
+  transition: all 300ms linear;
 }
 
 .link__registro:hover {

@@ -164,7 +164,7 @@ export const eventoEliminadoById = async (id) => {
   }
 };
 
-export const eventosByTematicaOrCiudad = async (tematica, ciudad) => {
+export const eventosByTematicaOrCiudad = async (tematica, ciudad, ordenar) => {
   let connection;
 
   try {
@@ -192,6 +192,10 @@ export const eventosByTematicaOrCiudad = async (tematica, ciudad) => {
       evento.totalInscritos = await totalInscritosById(evento.id);
     }
 
+    if (ordenar === "true") {
+      filtro.sort((a, b) => b.totalInscritos - a.totalInscritos);
+    }
+
     return filtro;
   } finally {
     if (connection) {
@@ -206,7 +210,7 @@ export const eventosByIdOfUser = async (id) => {
     connection = await getConnection();
 
     const [eventos] = await connection.query(
-      "SELECT id, titulo, tematica, ciudad, fecha_hora, foto FROM eventos WHERE usuario_id = ? ORDER BY fecha_hora",
+      "SELECT id, titulo, tematica, ciudad, fecha_hora, foto FROM eventos WHERE usuario_id = ? ORDER BY CASE WHEN fecha_hora > NOW() THEN 1 ELSE 2 END, fecha_hora",
       [id]
     );
 

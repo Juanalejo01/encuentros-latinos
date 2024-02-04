@@ -1,5 +1,5 @@
 import { eventoById } from "../db/eventdb.js";
-import { inscrito, desInscrito, inscritosById } from "../db/inscriptiondb.js";
+import { inscrito, desInscrito, eventosInscritoByIdOfUser } from "../db/inscriptiondb.js";
 
 export const inscribirMe = async (req, res, next) => {
   try {
@@ -29,6 +29,16 @@ export const desInscribirMe = async (req, res, next) => {
     res.status(200).json({
       mensaje: `Te has desinscrito del evento ${evento.titulo} correctamente`,
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const eventoInscrito = async (req, res, next) => {
+  try {
+    const datosEventos = await eventosInscritoByIdOfUser(req.userId);
+
+    res.status(200).json({ datos: datosEventos, total: datosEventos.length });
   } catch (error) {
     next(error);
   }

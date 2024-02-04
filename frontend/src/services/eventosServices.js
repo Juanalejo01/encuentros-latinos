@@ -1,7 +1,9 @@
-export const getAllEventosService = async (tematica, ciudad) => {
+export const getAllEventosService = async (tematica, ciudad, ordenar) => {
   try {
     const response = await fetch(
-      `${import.meta.env.VITE_APP_BACKEND}/eventos?tematica=${tematica}&ciudad=${ciudad}`
+      `${
+        import.meta.env.VITE_APP_BACKEND
+      }/eventos?tematica=${tematica}&ciudad=${ciudad}&ordenar=${ordenar}`
     );
 
     const json = await response.json();
@@ -181,6 +183,26 @@ export const bajaUsuarioEventoService = async (id, token) => {
 export const listadoUsuariosEventoService = async (id) => {
   try {
     const response = await fetch(`${import.meta.env.VITE_APP_BACKEND}/inscriptiones/${id}`);
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json.mensaje);
+    }
+
+    return json;
+  } catch (error) {
+    throw new Error(`${error.message}`);
+  }
+};
+
+export const getAllSuscripcionesByUserService = async (token) => {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_APP_BACKEND}/inscription`, {
+      headers: {
+        Authorization: token,
+      },
+    });
 
     const json = await response.json();
 
