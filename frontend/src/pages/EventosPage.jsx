@@ -36,19 +36,19 @@ export const EventosPage = () => {
         <h2 className="eventos__title">Listado de eventos</h2>
         <div className="ordenar__inscritos">
           <h3 className="ordenar__title">
-            Ordenar Por <FaUserFriends />
+            Ordenado Por <FaUserFriends />
           </h3>
           <button
             onClick={handleClickSi}
             className={`ordenar__btn ${clickeado ? "active__ordenar" : ""}`}
           >
-            Sí
+            <span className={`${clickeado ? "cambiar__escala" : ""}`}>Sí</span>
           </button>
           <button
             onClick={handleClickNo}
             className={`ordenar__btn ${!clickeado ? "active__ordenar" : ""}`}
           >
-            No
+            <span className={!clickeado ? "cambiar__escala" : ""}>No</span>
           </button>
         </div>
       </header>
