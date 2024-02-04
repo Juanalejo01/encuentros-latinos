@@ -34,7 +34,11 @@ export const Sidebar = () => {
         </NavLink>
       </menu>
       <div className="sidebar__boton">
-        <Button texto={"Cerrar sesión"} onClick={handleLogoutClick} className={"sidebar__btn"} />
+        <Button
+          texto={"Cerrar sesión"}
+          onClick={handleLogoutClick}
+          className={"sidebar__btn"}
+        />
       </div>
     </section>
   );

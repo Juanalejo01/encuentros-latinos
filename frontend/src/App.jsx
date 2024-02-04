@@ -11,6 +11,7 @@ import { PrivateRoutes } from "./components/private/PrivateRoutes";
 import { MisEventosPage } from "./pages/MisEventosPage";
 import { CrearEventosPage } from "./pages/CrearEventosPage";
 import { EditarEventosPage } from "./pages/EditarEventosPage";
+import { ActualizarUsuarios } from "./pages/ActualizarUsuarioPage";
 import { MisSuscripcionesPage } from "./pages/MisSuscripcionesPage";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/evento/:id" element={<DetalleEventoPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/configuracion" element={<ActualizarUsuarios />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/dashboard/eventos" element={<MisEventosPage />} />
           <Route path="/dashboard/suscripciones" element={<MisSuscripcionesPage />} />
