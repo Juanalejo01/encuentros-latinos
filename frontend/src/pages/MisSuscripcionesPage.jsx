@@ -1,5 +1,5 @@
 import { PrivateEventosList } from "../components/private/PrivateEventosList";
-import { usePrivateEventos } from "../hook/usePrivateEventos";
+import { usePrivateSuscripciones } from "../hook/usePrivateSuscipciones";
 import { useState } from "react";
 import { toast } from "sonner";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
@@ -7,8 +7,8 @@ import ReactPaginate from "react-paginate";
 
 import "../css/eventos/misEventos.css";
 
-export const MisEventosPage = () => {
-  const { eventos, loading, error, token, removeEvento } = usePrivateEventos();
+export const MisSuscripcionesPage = () => {
+  const { eventos, loading, error, token, removeSuscripcion } = usePrivateSuscripciones();
   const [paginaActual, setPaginaActual] = useState(0);
 
   const eventosPorPagina = 6;
@@ -34,7 +34,7 @@ export const MisEventosPage = () => {
   return (
     <section className="layout__private-eventos">
       <header className="private-eventos__header">
-        <h2 className="private-eventos__title">Lista de Eventos (Total: {eventos.total})</h2>
+        <h2 className="private-eventos__title">Lista de Suscripciones (Total: {eventos.total})</h2>
       </header>
       <ul className="private-eventos__content">
         {eventos.total !== 0 ? (
@@ -42,9 +42,9 @@ export const MisEventosPage = () => {
             <li className="private-eventos__item" key={evento.id}>
               <PrivateEventosList
                 evento={evento}
-                removeEvento={removeEvento}
+                removeEvento={removeSuscripcion}
                 token={token}
-                opcion={"Eventos"}
+                opcion={"Suscripcion"}
               />
             </li>
           ))

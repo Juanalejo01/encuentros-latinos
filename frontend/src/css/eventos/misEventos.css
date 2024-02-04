@@ -158,7 +158,8 @@
 }
 
 /* ESTILO PARA LOS ICONOS DE EDITAR Y ELIMINAR */
-.private-eventos__iconos {
+.private-eventos__iconos,
+.private-suscripciones__icono {
   flex-basis: 20%;
   overflow: hidden;
   background-color: var(--color-sidebar);
@@ -170,8 +171,17 @@
   align-items: center;
 }
 
+.private-suscripciones__icono {
+  transition: all 200ms ease-in-out;
+}
+
+.private-suscripciones__icono:hover {
+  background-color: var(--color-bg-btn-orange);
+}
+
 .private-eventos__editar,
-.private-eventos__eliminar {
+.private-eventos__eliminar,
+.private-suscripciones__noasistir {
   flex-basis: 50%;
   width: 100%;
   display: flex;
@@ -180,7 +190,11 @@
   align-items: center;
   gap: 1rem;
   color: var(--color-banner);
-  transition: all 600ms ease-in-out;
+  transition: all 500ms ease-in-out;
+}
+
+.private-suscripciones__noasistir:hover {
+  color: var(--color-secondary);
 }
 
 .private-eventos__editar {
@@ -193,7 +207,8 @@
   color: var(--color-secondary);
 }
 
-.private-eventos__eliminar {
+.private-eventos__eliminar,
+.private-suscripciones__noasistir {
   cursor: pointer;
   background-color: transparent;
   border: none;
