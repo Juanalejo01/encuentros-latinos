@@ -1,0 +1,97 @@
+<main className="layout__registro">
+      <header className="registro__header">
+        <h2 className="registro__title">Editar mis Datos</h2>
+      </header>
+
+      <section className="registro__content">
+        <form className="registro__formulario">
+          <div className="formulario__columna--1">
+            <div className="formulario__nombre">
+              <label htmlFor="nombre">Nombre:</label>
+              <input
+                className="input__nombre"
+                type="text"
+                name="nombre"
+                tabIndex={1}
+                required
+              />
+            </div>
+            <div className="formulario__apellidos">
+              <label htmlFor="apellidos">Apellidos:</label>
+              <input
+                className="input__apellidos"
+                type="text"
+                name="apellidos"
+                tabIndex={2}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="formulario__columna--2">
+            <div className="formulario__password">
+              <label htmlFor="password">Contraseña:</label>
+              <input
+                className="input__password"
+                type="password"
+                id="password"
+                name="password"
+                tabIndex={4}
+                required
+              />
+
+              <label htmlFor="confirmPassword">Confirmar Contraseña:</label>
+              <input
+                className="input__password"
+                type="password"
+                name="confirmPassword"
+                tabIndex={5}
+                required
+              />
+            </div>
+
+            <div className="formulario__email">
+              <label htmlFor="email">Email:</label>
+              <input
+                className="input__email"
+                type="email"
+                id="email"
+                name="email"
+                tabIndex={3}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="formulario__columna--3">
+            <div className="formulario__biografia">
+              <label htmlFor="biografia">Biografia:</label>
+              <textarea
+                className="textarea__bio"
+                name="biografia"
+                rows="4"
+                cols="50"
+                tabIndex={6}
+              />
+            </div>
+
+            <div className="formulario__avatar">
+              <label htmlFor="avatar">
+                <FaUserPlus
+                  className="avatar__label"
+                  title="Descargar Avatar"
+                />
+              </label>
+              <input
+                type="file"
+                name="avatar"
+                id="avatar"
+                accept=".jpg, .png, .jpeg"
+                style={{ display: "none" }}
+              />
+            </div>
+          </div>
+          <Button texto={"Registrate"} className={"registro__btn"} />
+        </form>
+      </section>
+    </main>
