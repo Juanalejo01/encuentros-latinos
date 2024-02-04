@@ -1,8 +1,7 @@
 .layout__sidebar {
-  flex-basis: 13%;
+  flex-basis: 10%;
   position: relative;
   overflow: hidden;
-  padding: 0;
   height: 100vh;
   background-color: var(--color-sidebar);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
@@ -17,7 +16,7 @@
   position: relative;
   flex-basis: 15%;
   border-bottom: 1px solid var(--color-border);
-  padding: 0 2.2rem;
+  padding: 0 1.4rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,6 +24,7 @@
 
 .sidebar__title {
   text-transform: capitalize;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* ESTILOS MENU */
@@ -41,17 +41,20 @@
   padding: 1rem 3rem;
   margin: 0.5rem 0;
   text-align: center;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   color: var(--color-primary);
   transition: all 300ms ease-in-out;
 }
 
 .sidebar__item:hover {
   background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 25px;
 }
 
 .sidebar__item.active {
   background-color: rgba(0, 0, 0, 0.04);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 25px;
   font-weight: 500;
   color: var(--color-secondary);
@@ -61,25 +64,23 @@
 .sidebar__boton {
   display: flex;
   justify-content: center;
+  padding: 0 1.5rem;
 }
 
 .sidebar__btn {
   position: relative;
-  display: flex;
-  justify-content: center;
   cursor: pointer;
   z-index: 1;
   border: none;
   overflow: hidden;
-  padding: 1.5rem 0;
-  padding-left: 1.5rem;
-  padding-right: 2rem;
+  padding: 1.5rem 0.8rem;
   background-color: var(--color-text-logo);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   font-weight: 500;
   text-align: center;
   color: var(--color-bg-dark);
-  transition: all 150ms ease-in-out;
+  transition: all 300ms ease-in-out;
 }
 
 .sidebar__btn:hover {

@@ -69,8 +69,9 @@ export const filtrarEventosByTematicaOrCiudad = async (req, res, next) => {
   try {
     const tematica = req.query.tematica || "";
     const ciudad = req.query.ciudad || "";
+    const ordenar = req.query.ordenar || false;
 
-    const filtro = await eventosByTematicaOrCiudad(tematica, ciudad);
+    const filtro = await eventosByTematicaOrCiudad(tematica, ciudad, ordenar);
 
     res.status(200).json({
       filtro,

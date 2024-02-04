@@ -4,7 +4,7 @@ import { formateaFecha } from "../../services/formateaFecha";
 import { FaRegImage } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-export const FormularioEvento = ({ handleForm, accion, evento }) => {
+export const FormularioEvento = ({ handleForm, accion, evento, loading }) => {
   const [imagen, setImagen] = useState("");
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
@@ -34,12 +34,18 @@ export const FormularioEvento = ({ handleForm, accion, evento }) => {
                 title="Modifica esta imagen"
               />
             ) : evento ? (
-              <img
-                className="foto__formulario"
-                src={imagenUrl}
-                alt="Descarga"
-                title="Modifica esta imagen"
-              />
+              loading ? (
+                <div className="spinner__editar" role="status">
+                  <span className="spinner"></span>
+                </div>
+              ) : (
+                <img
+                  className="foto__formulario"
+                  src={imagenUrl}
+                  alt="Descarga"
+                  title="Modifica esta imagen"
+                />
+              )
             ) : (
               <FaRegImage className="foto__label" title="Descargar imagen" />
             )}

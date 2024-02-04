@@ -24,6 +24,7 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
       const texto = await bajaUsuarioEventoService(eventoId, token);
       toast.success(texto);
       removeListado(id);
+      toast.dismiss();
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -61,11 +62,13 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
             <img className="detalles__imagen" src={imagenUrl} alt={datos.evento.titulo} />
           </div>
           <div className="detalles__author">
-            <h3 className="author__title">Organizador: </h3>
-            <p className="author__nombre">
-              {datos.evento.nombre} {datos.evento.apellidos}
-            </p>
             <img className="author__imagen" src={avatarUrl} alt={datos.evento.nombre} />
+            <p className="author__nombre">
+              Organizado por{" "}
+              <strong>
+                {datos.evento.nombre} {datos.evento.apellidos}
+              </strong>
+            </p>
           </div>
           <div className="detalles__tags">
             <div className="detalles__tag-cuando">
@@ -103,7 +106,11 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
             <h4 className="inscritos__title">Lista de asistentes:</h4>
             {datos.total !== 0 ? (
               <ul className="inscritos__lista">
-                {loading ? <p>Cargando listado...</p> : null}
+                {loading ? (
+                  <div className="spinner__lista" role="status">
+                    <span className="spinner__detalles"></span>
+                  </div>
+                ) : null}
 
                 {datos.listado.map((inscrito, index) => (
                   <li className="inscritos__item" key={index}>
@@ -121,7 +128,32 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
                       {usuarioId && inscrito.usuario_id === usuarioId ? (
                         <FaTrashAlt
                           className="eliminar__inscrito"
-                          onClick={() => handleEliminarInscripcion(datos.evento.id, inscrito.id)}
+                          onClick={() => {
+                            toast.custom((t) => (
+                              <div className="mensaje__eliminar">
+                                <h4 className="eliminar__title">
+                                  ¿Estás seguro de que no puedes asistir a este evento?
+                                </h4>
+                                <div className="eliminar__botones">
+                                  <button
+                                    className="eliminar__btn"
+                                    onClick={() =>
+                                      handleEliminarInscripcion(datos.evento.id, inscrito.id)
+                                    }
+                                  >
+                                    Sí
+                                  </button>
+                                  <button
+                                    className="eliminar__btn"
+                                    onClick={() => toast.dismiss(t)}
+                                  >
+                                    No
+                                  </button>
+                                </div>
+                              </div>
+                            ));
+                          }}
+                          title="No asistir"
                         />
                       ) : null}
                     </div>
