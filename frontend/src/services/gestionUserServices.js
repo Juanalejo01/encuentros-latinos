@@ -1,6 +1,3 @@
-import React from "react";
-import { AuthContext } from "../context/AuthContext";
-
 export const registerUserService = async ({ data }) => {
   try {
     const response = await fetch(
@@ -39,38 +36,111 @@ export const loginUserService = async ({ email, password }) => {
   return json;
 };
 
-export function useUpdateUserService({ data }) {
-  const { token } = React.useContext(AuthContext);
-
-  const formData = new FormData();
-
-  Object.keys(data).forEach((key) => {
-    formData.append(key, data[key]);
-  });
-
-  const updateUser = async () => {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_APP_BACKEND}/perfil`,
-        {
-          method: "PUT",
-          body: formData,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      const json = await response.json();
-
-      if (!response.ok) {
-        throw new Error(json.mensaje);
-      }
-      return json.mensaje;
-    } catch (error) {
-      throw new Error(`${error.message}`);
+export const getUserService = async (token) => {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_APP_BACKEND}/perfil`, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    const json = await response.json();
+    if (!response.ok) {
+      throw new Error(json.mensaje);
     }
-  };
+    return json;
+  } catch (error) {
+    throw new Error(`${error.message}`);
+  }
+};
 
-  return updateUser;
-}
+export const updateUserService = async (data, token) => {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_APP_BACKEND}/perfil`, {
+      method: "PUT",
+      body: data,
+      headers: {
+        Authorization: token,
+      },
+    });
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json.mensaje);
+    }
+
+    return json;
+  } catch (error) {
+    throw new Error(`${error.message}`);
+  }
+};
+
+export const updateEmailService = async (data, token) => {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_APP_BACKEND}/email`, {
+      method: "PUT",
+      body: data,
+      headers: {
+        Authorization: token,
+      },
+    });
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json.mensaje);
+    }
+
+    return json;
+  } catch (error) {
+    throw new Error(`${error.message}`);
+  }
+};
+
+export const updatePasswordService = async (data, token) => {
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_APP_BACKEND}/password`,
+      {
+        method: "PUT",
+        body: data,
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json.mensaje);
+    }
+
+    return json;
+  } catch (error) {
+    throw new Error(`${error.message}`);
+  }
+};
+
+export const deleteUserService = async (password, token) => {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_APP_BACKEND}/perfil`, {
+      method: "DELETE",
+      body: JSON.stringify({ password }),
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+    });
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json.mensaje);
+    }
+
+    return json;
+  } catch (error) {
+    throw new Error(`${error.message}`);
+  }
+};
