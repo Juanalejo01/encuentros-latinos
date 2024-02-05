@@ -104,13 +104,13 @@ body {
 /* ESTILOS PARA EL MENU */
 .button-left {
   position: relative;
+  z-index: 3;
 }
 .menu__item {
   position: relative;
   width: 4.5rem;
   height: 4.5rem;
   margin-right: 3rem;
-  z-index: 2;
 }
 
 /*IMG AVATAR*/

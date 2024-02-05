@@ -29,16 +29,12 @@ export const Sidebar = () => {
         <NavLink to={"/dashboard/evento"} end className="sidebar__item">
           Crear evento
         </NavLink>
-        <NavLink to={usuarioId ? "/eventos" : "/"} className="sidebar__item">
+        <NavLink to={usuarioId ? "/configuracion" : "/"} className="sidebar__item">
           Configuración
         </NavLink>
       </menu>
       <div className="sidebar__boton">
-        <Button
-          texto={"Cerrar sesión"}
-          onClick={handleLogoutClick}
-          className={"sidebar__btn"}
-        />
+        <Button texto={"Cerrar sesión"} onClick={handleLogoutClick} className={"sidebar__btn"} />
       </div>
     </section>
   );
