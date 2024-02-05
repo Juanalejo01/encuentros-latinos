@@ -134,7 +134,7 @@ export const PrivateEventosList = ({ evento, removeEvento, token, opcion }) => {
           }}
         >
           <FaTrashAlt className="private-eventos__eliminar-icono" />
-          {opcion === "Eventos" ? <spam>Eliminar</spam> : <spam>No asistir</spam>}
+          {opcion === "Eventos" ? <span>Eliminar</span> : <span>No asistir</span>}
         </button>
       </div>
     </article>
