@@ -23,8 +23,9 @@ export const LoginPage = () => {
       setToken(data.token);
       setAvatar(data.avatar);
       setNombre(data.nombre);
-      localStorage.setItem("avatar", data.avatar); // Set the avatar in localStorage
-      navigate("/eventos");
+      localStorage.removeItem("tematica");
+      localStorage.removeItem("ciudad");
+      navigate("/eventos?tematica=&ciudad=");
       toast.success(`Bienvenid@ ${data.nombre}`);
     } catch (error) {
       toast.error(error.message);

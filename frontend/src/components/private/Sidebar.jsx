@@ -6,7 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 import "../../css/private/sidebar.css";
 
 export const Sidebar = () => {
-  const { nombre, logoutHandler, usuarioId } = useContext(AuthContext);
+  const { nombre, logoutHandler } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogoutClick = () => {
@@ -29,7 +29,7 @@ export const Sidebar = () => {
         <NavLink to={"/dashboard/evento"} end className="sidebar__item">
           Crear evento
         </NavLink>
-        <NavLink to={usuarioId ? "/configuracion" : "/"} className="sidebar__item">
+        <NavLink to={"/configuracion"} className="sidebar__item">
           Configuración
         </NavLink>
       </menu>

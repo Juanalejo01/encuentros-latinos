@@ -11,8 +11,7 @@ export const HomePage = () => {
   const { usuarioId } = useContext(AuthContext);
 
   if (typeof usuarioId === "number") {
-    console.log(usuarioId);
-    navigate("/eventos");
+    navigate("/eventos?tematica=&ciudad=");
   }
 
   const handleClick = () => {

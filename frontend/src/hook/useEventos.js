@@ -33,8 +33,6 @@ export const useEventos = () => {
   const actualizarBusqueda = (nuevaTematica, nuevaCiudad) => {
     setTematica(nuevaTematica);
     setCiudad(nuevaCiudad);
-    localStorage.setItem("tematica", nuevaTematica);
-    localStorage.setItem("ciudad", nuevaCiudad);
   };
 
   return { actualizarBusqueda, setCiudad, setTematica, setOrdenar, eventos, loading, error };
