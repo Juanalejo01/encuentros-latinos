@@ -18,6 +18,10 @@ export const Header = () => {
   const handleClick = (e) => {
     e.preventDefault();
     navigate(`/eventos?tematica=${tematicaHeader}&ciudad=${ciudadHeader}`);
+    localStorage.setItem("tematica", tematicaHeader);
+    localStorage.setItem("ciudad", ciudadHeader);
+    setCiudadHeader("");
+    setTematicaHeader("");
   };
 
   const handleAvatarClick = () => {
@@ -25,6 +29,8 @@ export const Header = () => {
   };
 
   const handleDashboardClick = () => {
+    localStorage.removeItem("tematica");
+    localStorage.removeItem("ciudad");
     setShowMenu(false);
   };
 
@@ -36,7 +42,7 @@ export const Header = () => {
   return (
     <header className="layout__header">
       <div className="logo">
-        <Link className="logo__link" to={usuarioId ? "/eventos" : "/"}>
+        <Link className="logo__link" to={usuarioId ? "/eventos?tematica=&ciudad=" : "/"}>
           <h1 className="logo__title">ENCUENTROS LATINOS</h1>
         </Link>
       </div>
@@ -81,7 +87,7 @@ export const Header = () => {
                     <li className="submenu__item">
                       <NavLink
                         className="submenu__link"
-                        to={"/eventos"}
+                        to={"/eventos?tematica=&ciudad="}
                         onClick={handleDashboardClick}
                       >
                         Inicio

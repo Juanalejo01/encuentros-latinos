@@ -39,6 +39,8 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("Id");
     localStorage.removeItem("avatar");
     localStorage.removeItem("nombre");
+    localStorage.removeItem("tematica");
+    localStorage.removeItem("ciudad");
 
     setUsuarioId(null);
     setAvatar(null);
