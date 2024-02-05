@@ -6,11 +6,18 @@ import { FaSistrix } from "react-icons/fa";
 
 export const Header = () => {
   const { logoutHandler, usuarioId, avatar } = useContext(AuthContext);
-  const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
+  const [tematicaHeader, setTematicaHeader] = useState("");
+  const [ciudadHeader, setCiudadHeader] = useState("");
+  const navigate = useNavigate();
 
   const handleLoginClick = () => {
     navigate("/login");
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    navigate(`/eventos?tematica=${tematicaHeader}&ciudad=${ciudadHeader}`);
   };
 
   const handleAvatarClick = () => {
@@ -33,19 +40,28 @@ export const Header = () => {
           <h1 className="logo__title">ENCUENTROS LATINOS</h1>
         </Link>
       </div>
-      <div className="search__bar">
-        <input className="search__tematica search__input" type="text" placeholder="Temática..." />
-        <input className="search__ciudad search__input" type="text" placeholder="Ciudad..." />
-        <div className="search__boton">
-          <FaSistrix
-            onClick={() => {
-              alert("haz hecho click en el boton");
-            }}
-            className={"search__btn"}
-            title="Buscar"
-          />
-        </div>
-      </div>
+
+      <form className="search__bar" onSubmit={handleClick}>
+        <input
+          className="search__tematica search__input"
+          type="text"
+          name="tematica"
+          placeholder="Temática..."
+          value={tematicaHeader}
+          onChange={(e) => setTematicaHeader(e.target.value)}
+        />
+        <input
+          className="search__ciudad search__input"
+          type="text"
+          name="ciudad"
+          placeholder="Ciudad..."
+          value={ciudadHeader}
+          onChange={(e) => setCiudadHeader(e.target.value)}
+        />
+        <button type="submit" className="search__boton">
+          <FaSistrix className={"search__btn"} title="Buscar" />
+        </button>
+      </form>
 
       <div className="button-left">
         {!usuarioId ? (

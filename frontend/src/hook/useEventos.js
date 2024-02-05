@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import { getAllEventosService } from "../services/eventosServices";
 
 export const useEventos = () => {
-  const [tematica, setTematica] = useState("");
-  const [ciudad, setCiudad] = useState("");
+  const storedTematica = localStorage.getItem("tematica");
+  const storedCiudad = localStorage.getItem("ciudad");
+
+  const [tematica, setTematica] = useState(storedTematica || "");
+  const [ciudad, setCiudad] = useState(storedCiudad || "");
   const [ordenar, setOrdenar] = useState(false);
   const [eventos, setEventos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,6 +16,7 @@ export const useEventos = () => {
     const loadEventos = async () => {
       try {
         setLoading(true);
+
         const data = await getAllEventosService(tematica, ciudad, ordenar);
 
         setEventos(data);
@@ -26,5 +30,12 @@ export const useEventos = () => {
     loadEventos();
   }, [tematica, ciudad, ordenar]);
 
-  return { setTematica, setCiudad, setOrdenar, eventos, loading, error };
+  const actualizarBusqueda = (nuevaTematica, nuevaCiudad) => {
+    setTematica(nuevaTematica);
+    setCiudad(nuevaCiudad);
+    localStorage.setItem("tematica", nuevaTematica);
+    localStorage.setItem("ciudad", nuevaCiudad);
+  };
+
+  return { actualizarBusqueda, setCiudad, setTematica, setOrdenar, eventos, loading, error };
 };
