@@ -5,7 +5,6 @@ import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
 
 import "../css/principal/homePage.css";
-import "../css/general/responsive.css";
 
 export const HomePage = () => {
   const navigate = useNavigate();

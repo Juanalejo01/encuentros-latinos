@@ -1,0 +1,264 @@
+/*RESPONSIVE CSS ALL PAGES*/
+
+/*HEADER - JUAN*/
+
+@media screen and (max-width: 500px) {
+  .layout__header {
+    width: 100%;
+    max-width: 430px;
+    height: 15rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    position: relative;
+    flex-basis: 20%;
+    display: flex;
+  }
+
+  .logo__title {
+    font-size: 2rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    color: var(--color-text-logo);
+    transition: all 500ms ease-in-out;
+  }
+
+  .logo__title:hover {
+    color: var(--color-bg-btn-orange);
+  }
+
+  .search__bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .search__tematica,
+  .search__ciudad {
+    width: 40%;
+    height: 3rem;
+    max-width: 150px;
+  }
+
+  .search__boton {
+    width: 3rem;
+    height: 3rem;
+    margin-left: 0.5rem;
+  }
+
+  .search__btn {
+    width: 1.5rem;
+    min-height: 2rem;
+  }
+
+  .login__btn {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    z-index: 1;
+    border: none;
+    overflow: hidden;
+    padding: 1rem;
+    background-color: var(--color-text-logo);
+    box-shadow: 0 2px 10px -4px var(--color-border);
+    border-radius: 20px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--color-bg-dark);
+    transition: all 300ms ease-in-out;
+    margin-top: 1rem;
+  }
+
+  .login__btn:hover {
+    background-color: var(--color-bg-btn-orange);
+  }
+}
+
+/*FOOTER - JUAN*/
+
+@media screen and (max-width: 500px) {
+  .layout__footer {
+    width: 100%;
+    max-width: 430px;
+    height: 5rem;
+    border-top: 1px solid var(--color-border);
+    padding: 0.25rem 15rem;
+    font-size: 1.7rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .footer__copyright {
+    flex-basis: 50%;
+  }
+
+  .copyright__text {
+    display: inline-block;
+  }
+
+  .footer__links {
+    flex-basis: 50%;
+  }
+
+  .footer__flinks {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    gap: 3.5rem;
+  }
+
+  .flinks__title {
+    color: var(--color-text-body);
+    transition: all 300ms ease-in-out;
+  }
+
+  .flinks__title:hover {
+    color: var(--color-banner);
+  }
+
+  .flinks__item {
+    display: inline-block;
+    position: relative;
+  }
+
+  .flinks__item--separator::after {
+    content: "";
+    height: 4px;
+    width: 4px;
+    background-color: var(--color-text-body);
+    border-radius: 50%;
+    position: absolute;
+    top: 46%;
+    right: -12%;
+  }
+}
+
+/*HOME - JUAN*/
+
+@media screen and (max-width: 500px) {
+  .layout__banner {
+    width: 100%;
+    max-width: 430px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    padding: 0;
+    padding-top: 4rem;
+  }
+
+  .layout__banner::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 75rem;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-image: url("../../img/fondo-1.jpg");
+    background-size: cover;
+    z-index: -1;
+  }
+
+  .layout__banner::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 150rem;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+
+  .banner__header {
+    max-width: var(--mx-width);
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .banner__title {
+    width: 70%;
+    margin: 0 auto;
+    margin-bottom: 3rem;
+    font-size: 3rem;
+    line-height: 1.2;
+    font-weight: 500;
+    text-align: center;
+    color: var(--color-secondary);
+  }
+
+  .banner__subtitle {
+    display: inline-block;
+    color: var(--color-bg-btn);
+    font-size: 4rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .banner__description {
+    font-size: 1.7rem;
+    font-weight: normal;
+    color: var(--color-secondary);
+    margin-bottom: 3.5rem;
+  }
+
+  .banner__btn {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    z-index: 1;
+    border: none;
+    overflow: hidden;
+    padding: 2.3rem 0;
+    padding-left: 1.5rem;
+    padding-right: 3rem;
+    margin-top: 4rem;
+    background-color: var(--color-secondary);
+    border-radius: 20px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--color-primary);
+    transition: all 300ms ease-in-out;
+  }
+
+  .banner__btn:hover {
+    background-color: var(--color-bg-btn);
+    color: var(--color-bg-dark);
+  }
+
+  .banner__images {
+    position: relative;
+    text-align: center;
+    border-bottom: 1px solid var(--color-border);
+    height: 50rem;
+  }
+
+  .banner__thumb {
+    display: inline-block;
+  }
+
+  .banner__thumb--chat {
+    width: 44rem;
+    margin-right: -2rem;
+    margin-top: 25rem;
+  }
+
+  .banner__thumb--laptop {
+    position: absolute;
+    bottom: 0;
+    margin-left: -10rem;
+  }
+
+  .banner__thumb--mobile {
+    position: absolute;
+    bottom: 0;
+    right: 25rem;
+  }
+}
