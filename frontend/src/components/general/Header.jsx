@@ -42,7 +42,10 @@ export const Header = () => {
   return (
     <header className="layout__header">
       <div className="logo">
-        <Link className="logo__link" to={usuarioId ? "/eventos?tematica=&ciudad=" : "/"}>
+        <Link
+          className="logo__link"
+          to={usuarioId ? "/eventos?tematica=&ciudad=" : "/"}
+        >
           <h1 className="logo__title">ENCUENTROS LATINOS</h1>
         </Link>
       </div>
@@ -71,7 +74,11 @@ export const Header = () => {
 
       <div className="button-left">
         {!usuarioId ? (
-          <Button texto={"Login"} onClick={handleLoginClick} className={"login__btn"} />
+          <Button
+            texto={"Login"}
+            onClick={handleLoginClick}
+            className={"login__btn"}
+          />
         ) : (
           <nav className="user__menu">
             <ul className="menu__list">
@@ -103,7 +110,11 @@ export const Header = () => {
                       </NavLink>
                     </li>
                     <li className="submenu__item">
-                      <NavLink className="submenu__link" to={"/"} onClick={handleLogoutClick}>
+                      <NavLink
+                        className="submenu__link"
+                        to={"/"}
+                        onClick={handleLogoutClick}
+                      >
                         Cerrar sesión
                       </NavLink>
                     </li>
