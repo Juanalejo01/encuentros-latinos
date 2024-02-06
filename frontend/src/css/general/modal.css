@@ -12,31 +12,34 @@
 }
 
 .modal {
+  position: relative;
   background-color: #fff;
   border-radius: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  position: relative;
 }
 
 .modal-close-button {
-  background-color: transparent;
-  border: none;
-  color: #888;
-  font-size: 20px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
+  display: none;
 }
 
 /* ESTILO FORMULARIO DATOS */
 .formulario__actualizar-datos {
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  justify-content: space-around;
+  align-items: center;
   padding: 1rem 3rem;
-  gap: 3rem;
+}
+
+.formulario__eliminar-datos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem 3rem;
+  margin-top: 2rem;
+  gap: 2rem;
 }
 
 .actualizar-datos__content {
@@ -49,7 +52,14 @@
   order: -1;
 }
 
-.btn--primary {
+.eliminar__content {
+  width: 30rem;
+}
+
+/* ESTILOS DE LOS BOTONES */
+.btn--primary,
+.btn--secondary,
+.btn--danger {
   position: relative;
   display: flex;
   align-items: center;
@@ -70,7 +80,69 @@
   transition: all 300ms ease-in-out;
 }
 
-.btn--primary:hover {
+.btn--primary:hover,
+.btn--danger:hover {
   background-color: var(--color-bg-btn);
   color: var(--color-bg-dark);
+}
+
+.btn--secondary {
+  background-color: var(--color-text-logo);
+  color: var(--color-bg-dark);
+}
+
+.btn--secondary:hover {
+  background-color: var(--color-bg-btn-orange);
+  color: var(--color-bg-dark);
+}
+
+.modal__actions-eliminar {
+  display: flex;
+  gap: 2rem;
+}
+/* ESTILOS PARA LOS CONTENEDORES */
+.email__content,
+.password__content,
+.eliminar__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.email__title {
+  pointer-events: none;
+  color: var(--color-primary);
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.password__description,
+.datos__description,
+.email__description {
+  margin-bottom: 2rem;
+}
+/* ESTILOS PARA LOS INPUTS */
+
+.input__email-actualizar,
+.input__nombre-actualizar,
+.input__apellidos-actualizar,
+.textarea__bio-actualizar,
+.input__password-actualizar {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--color-banner);
+  border-radius: 10px;
+  color: var(--color-secondary);
+  padding: 0.5rem 1rem;
+}
+
+.textarea__bio-actualizar {
+  resize: none;
+}
+
+.input__email-actualizar:focus,
+.input__nombre-actualizar:focus,
+.input__apellidos-actualizar:focus,
+.textarea__bio-actualizar:focus,
+.input__password-actualizar:focus {
+  outline: 1px solid var(--color-banner);
 }

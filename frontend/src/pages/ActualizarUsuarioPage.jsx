@@ -13,8 +13,10 @@ import {
 } from "../services/gestionUserServices";
 import { AuthContext } from "../context/AuthContext";
 
+import "../css/usuario/usuario.css";
+
 export const ActualizarUsuarios = () => {
-  const { token, logoutHandler } = useContext(AuthContext);
+  const { token, logoutHandler, actualizarSidebar } = useContext(AuthContext);
   const { usuario, loading, error, actualizaUsuario } = useUsuario();
   const [avatar, setAvatar] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
@@ -28,7 +30,10 @@ export const ActualizarUsuarios = () => {
         <span className="spinner"></span>
       </div>
     );
-  if (error) return <PaginaNoFound />;
+
+  if (error) {
+    return <PaginaNoFound />;
+  }
 
   const handleOpenModal = (type) => {
     setModalOpen(true);
@@ -48,7 +53,9 @@ export const ActualizarUsuarios = () => {
       const data = new FormData(e.target);
       const datos = await updateUserService(data, token);
       datos.usuario.email = usuario.email;
-
+      localStorage.setItem("nombre", datos.usuario.nombre);
+      localStorage.setItem("avatar", datos.usuario.avatar);
+      actualizarSidebar();
       toast.success(datos.mensaje);
       actualizaUsuario(datos.usuario);
       handleCloseModal();
@@ -96,7 +103,7 @@ export const ActualizarUsuarios = () => {
     e.preventDefault();
     try {
       const data = new FormData(e.target);
-      // Corrige el error tipográfico aquí
+
       const password = data.get("password");
       const datos = await deleteUserService(password, token);
       toast.success(datos.mensaje);
@@ -110,230 +117,273 @@ export const ActualizarUsuarios = () => {
     setAvatar(e.target.files[0]);
   };
 
-  const imagenUrl = usuario
-    ? `${import.meta.env.VITE_APP_BACKEND}/${usuario?.avatar}`
-    : "";
+  const imagenUrl = usuario ? `${import.meta.env.VITE_APP_BACKEND}/${usuario?.avatar}` : "";
 
   return (
     <section className="actualizar__registro">
       <header className="actualizar__header">
-        <h2 className="actualizar__title">Editar mis Datos</h2>
+        <h2 className="actualizar__title">Mis Datos</h2>
       </header>
       <div className="actualizar__content">
-        <img
-          className="actualizar__content-avatar"
-          src={imagenUrl}
-          alt="avatar del usuario"
-        />
-        <ul className="actualizar__content-listado">
-          <li className="actualizar__content-email">{usuario.email}</li>
-          <li className="actualizar__content-nombre">
-            {usuario.nombre} {usuario.apellidos}
-          </li>
-        </ul>
-        <p className="actualizar__content-biografia">{usuario.biografia}</p>
-      </div>
-      <div className="actualizar__content-btn">
-        <div className="actualizar__datos">
-          <Button
-            texto={"Datos e información"}
-            className={"actualizar__datos__btn"}
-            onClick={() => handleOpenModal("datos")}
-          />
+        <div className="actualizar__info">
+          <div className="actualizar__info-imagen">
+            {loading ? (
+              <div className="spinner__info-avatar">
+                <span className="spinner"></span>
+              </div>
+            ) : (
+              <img className="actualizar__info-avatar" src={imagenUrl} alt="avatar del usuario" />
+            )}
+          </div>
+          <ul className="actualizar__info-listado">
+            <li className="actualizar__info-email">{usuario.email}</li>
+            <li className="actualizar__info-nombre">
+              {usuario.nombre} {usuario.apellidos}
+            </li>
+          </ul>
+          <h3 className="actualizar__info-title">Biografía:</h3>
+          <p className="actualizar__info-biografia">{usuario.biografia}</p>
         </div>
-        <div className="actualizar__email">
-          <Button
-            texto={"Actualizar E-mail"}
-            className={"actualizar__email-btn"}
-            onClick={() => handleOpenModal("email")}
-          />
-        </div>
-        <div className="actualizar__password">
-          <Button
-            texto={"Contraseña y privacidad"}
-            className={"actualizar__password-btn"}
-            onClick={() => handleOpenModal("contraseña")}
-          />
-        </div>
-        <div className="actualizar__eliminar-usuario">
-          <Button
-            texto={"Eliminar mi cuenta"}
-            className={"eliminar__usuario__btn"}
-            onClick={() => handleOpenModal("eliminar")}
-          />
+        <div className="actualizar__content-btn">
+          <div className="actualizar__datos">
+            <Button
+              texto={"Editar mis datos"}
+              className={"actualizar__datos-btn"}
+              onClick={() => handleOpenModal("datos")}
+            />
+          </div>
+          <div className="actualizar__email">
+            <Button
+              texto={"Cambiar mi E-mail"}
+              className={"actualizar__email-btn"}
+              onClick={() => handleOpenModal("email")}
+            />
+          </div>
+          <div className="actualizar__password">
+            <Button
+              texto={"Cambiar mi contraseña"}
+              className={"actualizar__password-btn"}
+              onClick={() => handleOpenModal("contraseña")}
+            />
+          </div>
+          <div className="actualizar__eliminar-usuario">
+            <Button
+              texto={"Eliminar mi cuenta"}
+              className={"eliminar__usuario-btn"}
+              onClick={() => handleOpenModal("eliminar")}
+            />
+          </div>
         </div>
       </div>
 
       <Modal isOpen={modalOpen} onClose={handleCloseModal}>
         {modalType === "datos" && (
-          <form
-            className="formulario__actualizar-datos"
-            onSubmit={handleUpdateUser}
-          >
-            <ul className="actualizar-datos__content">
-              <li>
-                <label htmlFor="nombre">Nombre:</label>
-                <input
-                  className="input__nombre"
-                  type="text"
-                  name="nombre"
-                  required
-                  defaultValue={usuario?.nombre}
-                />
-              </li>
-              <li>
-                <label htmlFor="apellidos">Apellidos:</label>
-                <input
-                  className="input__apellidos"
-                  type="text"
-                  name="apellidos"
-                  required
-                  defaultValue={usuario?.apellidos}
-                />
-              </li>
-              <li>
-                <label htmlFor="biografia">Biografía:</label>
-                <textarea
-                  className="textarea__bio"
-                  name="biografia"
-                  id="biografia"
-                  cols="30"
-                  rows="5"
-                  required
-                  defaultValue={usuario?.biografia}
-                ></textarea>
-              </li>
-              <li className="formulario__avatar actualizar-datos__avatar">
-                <label htmlFor="avatar">
-                  {avatar ? (
-                    <img
-                      className="registro__imagen-preview"
-                      src={URL.createObjectURL(avatar)}
-                      alt="Preview"
-                      title="Modifica esta imagen"
-                    />
-                  ) : usuario ? (
-                    <img
-                      className="registro__imagen-preview"
-                      src={imagenUrl}
-                      alt="Descarga"
-                      title="Modifica esta imagen"
-                    />
-                  ) : (
-                    <FaUserAlt
-                      className="avatar__label"
-                      title="Descargar avatar"
-                    />
-                  )}
-
-                  {avatar ? (
-                    <img
-                      className="registro__imagen-preview"
-                      src={URL.createObjectURL(avatar)}
-                      alt="Preview"
-                      title="Cambiar Avatar"
-                    />
-                  ) : null}
-                </label>
-                <input
-                  type="file"
-                  name="avatar"
-                  id="avatar"
-                  accept=".jpg, .png, .jpeg"
-                  ref={fileInputRef}
-                  style={{ display: "none" }}
-                  onChange={handleAvatarChange}
-                />
-              </li>
-            </ul>
-            <Button texto={"Guardar cambios"} className={"btn--primary"} />
-          </form>
-        )}
-
-        {modalType === "email" && (
-          <form onSubmit={handleUpdateEmail}>
-            <h3>{usuario?.email}</h3>
-            <label htmlFor="email">Nuevo E-mail:</label>
-            <input
-              className="input__email"
-              type="email"
-              name="email"
-              id="email"
-              required
-            />
-
-            <label htmlFor="passwordEmail">Escribe tu Contraseña:</label>
-            <input
-              className="input__email"
-              type="password"
-              name="password"
-              id="passwordEmail"
-              required
-            />
-
-            <button type="submit" className="btn--primary">
-              Guardar cambios
-            </button>
-          </form>
-        )}
-
-        {modalType === "contraseña" && (
-          <form onSubmit={handleUpdatePassword}>
-            <label htmlFor="password">Contraseña actual:</label>
-            <input
-              className="input__password"
-              type="password"
-              name="password"
-              required
-            />
-
-            <label htmlFor="nuevoPassword">Nueva Contraseña:</label>
-            <input
-              className="input__password"
-              type="password"
-              name="nuevoPassword"
-              required
-            />
-
-            <label htmlFor="confirmNuevoPassword">
-              Confirmar nueva contraseña:
-            </label>
-            <input
-              className="input__password"
-              type="password"
-              name="confirmPassword"
-              required
-            />
-
-            <button type="submit" className="btn--primary">
-              Guardar cambios
-            </button>
-          </form>
-        )}
-
-        {modalType === "eliminar" && (
-          <div className="modal__content">
-            <p>
-              Si estás seguro de eliminar tu cuenta escribe tu contraseña y
-              acepta
+          <section>
+            <p className="datos__description">
+              <strong>Nota:</strong> Presiona en <strong>{'"Guardar los cambios"'} </strong> para
+              aceptar las modificaciones.
             </p>
+            <form className="formulario__actualizar-datos" onSubmit={handleUpdateUser}>
+              <ul className="actualizar-datos__content">
+                <li>
+                  <label htmlFor="nombre">Nombre:</label>
+                  <input
+                    className="input__nombre-actualizar"
+                    type="text"
+                    name="nombre"
+                    required
+                    defaultValue={usuario?.nombre}
+                  />
+                </li>
+                <li>
+                  <label htmlFor="apellidos">Apellidos:</label>
+                  <input
+                    className="input__apellidos-actualizar"
+                    type="text"
+                    name="apellidos"
+                    required
+                    defaultValue={usuario?.apellidos}
+                  />
+                </li>
+                <li>
+                  <label htmlFor="biografia">Biografía:</label>
+                  <textarea
+                    className="textarea__bio-actualizar"
+                    name="biografia"
+                    id="biografia"
+                    cols="30"
+                    rows="5"
+                    required
+                    defaultValue={usuario?.biografia}
+                  ></textarea>
+                </li>
+                <li className="formulario__avatar actualizar-datos__avatar">
+                  <label htmlFor="avatar">
+                    {avatar ? (
+                      <img
+                        className="registro__imagen-preview"
+                        src={URL.createObjectURL(avatar)}
+                        alt="Preview"
+                        title="Modifica esta imagen"
+                      />
+                    ) : usuario ? (
+                      loading ? (
+                        <div className="spinner__usuario-avatar">
+                          <span className="spinner"></span>
+                        </div>
+                      ) : (
+                        <img
+                          className="registro__imagen-preview"
+                          src={imagenUrl}
+                          alt="Descarga"
+                          title="Modifica esta imagen"
+                        />
+                      )
+                    ) : (
+                      <FaUserAlt className="avatar__label" title="Descargar avatar" />
+                    )}
 
-            <form onSubmit={handleDeleteUser}>
-              <label htmlFor="password">Contraseña</label>
-              <input
-                className="input__password"
-                type="password"
-                name="password"
-                required
-              />
+                    {avatar ? (
+                      <img
+                        className="registro__imagen-preview"
+                        src={URL.createObjectURL(avatar)}
+                        alt="Preview"
+                        title="Cambiar Avatar"
+                      />
+                    ) : null}
+                  </label>
+                  <input
+                    type="file"
+                    name="avatar"
+                    id="avatar"
+                    accept=".jpg, .png, .jpeg"
+                    ref={fileInputRef}
+                    style={{ display: "none" }}
+                    onChange={handleAvatarChange}
+                  />
+                </li>
+              </ul>
               <div className="modal__actions">
+                <button type="submit" className="btn--primary">
+                  Guardar cambios
+                </button>
+
                 <button className="btn--secondary" onClick={handleCloseModal}>
                   Cancelar
                 </button>
-                <button className="btn--danger">Eliminar cuenta</button>
               </div>
             </form>
-          </div>
+          </section>
+        )}
+
+        {modalType === "email" && (
+          <section>
+            <p className="email__description">
+              <strong>Nota:</strong> Cuando modifiques tu correo se cerrará la sesión
+              automáticamente.
+            </p>
+            <form className="formulario__actualizar-datos" onSubmit={handleUpdateEmail}>
+              <div className="email__content">
+                <h3 className="email__title">{usuario?.email}</h3>
+                <label htmlFor="email">Nuevo E-mail:</label>
+                <input
+                  className="input__email-actualizar"
+                  type="email"
+                  name="email"
+                  id="email"
+                  required
+                />
+
+                <label htmlFor="passwordEmail">Escribe tu Contraseña:</label>
+                <input
+                  className="input__email-actualizar"
+                  type="password"
+                  name="password"
+                  id="passwordEmail"
+                  required
+                />
+              </div>
+              <div className="modal__actions">
+                <button type="submit" className="btn--primary">
+                  Guardar cambios
+                </button>
+                <button className="btn--secondary" onClick={handleCloseModal}>
+                  Cancelar
+                </button>
+              </div>
+            </form>
+          </section>
+        )}
+
+        {modalType === "contraseña" && (
+          <section>
+            <p className="password__description">
+              <strong>Nota:</strong> Cuando modifiques tu contraseña se cerrará la sesión
+              automáticamente.
+            </p>
+            <form className="formulario__actualizar-datos" onSubmit={handleUpdatePassword}>
+              <div className="password__content">
+                <label htmlFor="password">Contraseña actual:</label>
+                <input
+                  className="input__password-actualizar"
+                  type="password"
+                  name="password"
+                  required
+                />
+
+                <label htmlFor="nuevoPassword">Nueva Contraseña:</label>
+                <input
+                  className="input__password-actualizar"
+                  type="password"
+                  name="nuevoPassword"
+                  required
+                />
+
+                <label htmlFor="confirmNuevoPassword">Confirmar nueva contraseña:</label>
+                <input
+                  className="input__password-actualizar"
+                  type="password"
+                  name="confirmPassword"
+                  required
+                />
+              </div>
+              <div className="modal__actions">
+                <button type="submit" className="btn--primary">
+                  Guardar cambios
+                </button>
+                <button className="btn--secondary" onClick={handleCloseModal}>
+                  Cancelar
+                </button>
+              </div>
+            </form>
+          </section>
+        )}
+
+        {modalType === "eliminar" && (
+          <section className="modal__content">
+            <p className="eliminar__description">
+              <strong>Nota:</strong> Si estás seguro de eliminar tu cuenta escribe tu contraseña y
+              presiona en <strong>{'"Aceptar"'}</strong>
+            </p>
+
+            <form className="formulario__eliminar-datos" onSubmit={handleDeleteUser}>
+              <div className="eliminar__content">
+                <label htmlFor="password">Contraseña</label>
+                <input
+                  className="input__password-actualizar"
+                  type="password"
+                  name="password"
+                  required
+                />
+              </div>
+              <div className="modal__actions-eliminar">
+                <button className="btn--secondary" onClick={handleCloseModal}>
+                  Cancelar
+                </button>
+                <button className="btn--danger">Aceptar</button>
+              </div>
+            </form>
+          </section>
         )}
       </Modal>
     </section>

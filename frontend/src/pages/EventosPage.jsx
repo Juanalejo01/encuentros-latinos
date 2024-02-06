@@ -41,24 +41,29 @@ export const EventosPage = () => {
   return (
     <main className="layout__eventos">
       <header className="eventos__header">
-        <h2 className="eventos__title">Listado de eventos</h2>
-        <div className="ordenar__inscritos">
-          <h3 className="ordenar__title">
-            Ordenado Por <FaUserFriends />
-          </h3>
-          <button
-            onClick={handleClickSi}
-            className={`ordenar__btn ${clickeado ? "active__ordenar" : ""}`}
-          >
-            <span className={`${clickeado ? "cambiar__escala" : ""}`}>Sí</span>
-          </button>
-          <button
-            onClick={handleClickNo}
-            className={`ordenar__btn ${!clickeado ? "active__ordenar" : ""}`}
-          >
-            <span className={!clickeado ? "cambiar__escala" : ""}>No</span>
-          </button>
-        </div>
+        <h2 className="eventos__title">
+          Listado de eventos <span className="eventos__title-total">(Total: {eventos.length})</span>
+        </h2>
+
+        {eventos.length > 1 ? (
+          <div className="ordenar__inscritos">
+            <h3 className="ordenar__title">
+              Ordenado Por <FaUserFriends />
+            </h3>
+            <button
+              onClick={handleClickSi}
+              className={`ordenar__btn ${clickeado ? "active__ordenar" : ""}`}
+            >
+              <span className={`${clickeado ? "cambiar__escala" : ""}`}>Sí</span>
+            </button>
+            <button
+              onClick={handleClickNo}
+              className={`ordenar__btn ${!clickeado ? "active__ordenar" : ""}`}
+            >
+              <span className={!clickeado ? "cambiar__escala" : ""}>No</span>
+            </button>
+          </div>
+        ) : null}
       </header>
 
       <EventosList eventos={eventos} />
