@@ -19,15 +19,6 @@ export const EventosPage = () => {
     actualizarBusqueda(tematica, ciudad);
   }, [searchParams, actualizarBusqueda]);
 
-  if (loading)
-    return (
-      <div className="spinner__container">
-        <span className="spinner"></span>
-      </div>
-    );
-
-  if (error) return <PaginaNoFound />;
-
   const handleClickSi = () => {
     setOrdenar(true);
     setClickeado(true);
@@ -66,10 +57,18 @@ export const EventosPage = () => {
         ) : null}
       </header>
 
-      {eventos.length ? (
-        <EventosList loading={loading} eventos={eventos} />
+      {loading ? (
+        <div className="spinner__container">
+          <span className="spinner"></span>
+        </div>
+      ) : error ? (
+        <PaginaNoFound />
+      ) : eventos.length ? (
+        <EventosList eventos={eventos} />
       ) : (
-        <h2 className="eventos__mensaje">No hay eventos en este momento para mostrar...</h2>
+        <h2 className="eventos__mensaje">
+          ¡Vaya! No hay eventos disponibles en este momento o que coincidan con tu búsqueda...
+        </h2>
       )}
 
       <BannerGeneral />
