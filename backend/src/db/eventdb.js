@@ -12,7 +12,7 @@ const compruebaFechaHoraDelEvento = async (fecha, connection, id) => {
     const horasRestantes = diferenciaHoras.horas_restantes;
 
     if (horasRestantes < 12) {
-      throw generateError("No se puede crear el evento con menos de 12 horas", 422);
+      throw generateError("No se puede crear el evento con menos de 12 horas de antelación", 422);
     }
   } else {
     // Modificación de evento

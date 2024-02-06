@@ -66,7 +66,11 @@ export const EventosPage = () => {
         ) : null}
       </header>
 
-      <EventosList eventos={eventos} />
+      {eventos.length ? (
+        <EventosList loading={loading} eventos={eventos} />
+      ) : (
+        <h2 className="eventos__mensaje">No hay eventos en este momento para mostrar...</h2>
+      )}
 
       <BannerGeneral />
     </main>
