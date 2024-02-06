@@ -10,7 +10,7 @@ export const EventosList = ({ eventos }) => {
   const isSingleEvents = eventos.length === 1;
   const isTwoEvents = eventos.length === 2;
 
-  return eventos.length ? (
+  return (
     <Swiper
       className={`eventos__list `}
       modules={[Navigation, Pagination]}
@@ -27,7 +27,5 @@ export const EventosList = ({ eventos }) => {
         </SwiperSlide>
       ))}
     </Swiper>
-  ) : (
-    <h2 className="eventos__mensaje">No hay eventos en este momento para mostrar...</h2>
   );
 };

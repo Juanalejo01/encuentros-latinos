@@ -3,12 +3,20 @@ import { FaRegClock, FaMapMarkerAlt, FaUserFriends, FaShapes } from "react-icons
 import { horaFormateada } from "../../services/fechaHoraFormateada";
 
 export const Evento = ({ evento }) => {
-  const imagenUrl = `${import.meta.env.VITE_APP_BACKEND}/${evento.foto}`;
+  const imagenUrl = `${import.meta.env.VITE_APP_BACKEND}/${evento?.foto}`;
+
   return (
     <article className="eventos__evento">
       <Link className="eventos__link" to={`/evento/${evento.id}`}>
         <div className="evento__container-img">
-          <img className="evento__imagen" src={imagenUrl} alt={evento.titulo} />
+          {evento.foto ? (
+            <img className="evento__imagen" src={imagenUrl} alt={evento.titulo} />
+          ) : (
+            <div className="spinner__img">
+              {console.log("cargar imagen")}
+              <span className="spinner"></span>
+            </div>
+          )}
         </div>
         <div className="evento__content">
           <h3 className="evento__title">{evento.titulo}</h3>
