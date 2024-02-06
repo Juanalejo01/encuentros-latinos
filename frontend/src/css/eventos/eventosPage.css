@@ -42,6 +42,10 @@
   margin-bottom: 2rem;
 }
 
+.eventos__title-total {
+  font-size: 4.5rem;
+}
+
 /* ESTILO DE LAS TARJETAS Y SWIPPER */
 .swiper-slide {
   display: flex;

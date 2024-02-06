@@ -34,6 +34,11 @@ export const AuthProvider = ({ children }) => {
     }
   }, [token, usuarioId, avatar, nombre]);
 
+  const actualizarSidebar = () => {
+    setNombre(localStorage.getItem("nombre"));
+    setAvatar(localStorage.getItem("avatar"));
+  };
+
   const logoutHandler = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("Id");
@@ -59,6 +64,7 @@ export const AuthProvider = ({ children }) => {
         setAvatar,
         nombre,
         setNombre,
+        actualizarSidebar,
       }}
     >
       {children}
