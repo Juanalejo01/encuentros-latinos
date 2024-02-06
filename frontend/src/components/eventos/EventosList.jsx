@@ -15,6 +15,7 @@ export const EventosList = ({ eventos }) => {
       className={`eventos__list `}
       modules={[Navigation, Pagination]}
       slidesPerView={3}
+      lazyPreloadPrevNext={2}
       spaceBetween={10}
       wrapperClass={isTwoEvents ? "two-cards" : ""}
       centeredSlides={isSingleEvents}

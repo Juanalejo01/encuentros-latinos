@@ -99,7 +99,7 @@ export const PrivateEventosList = ({ evento, removeEvento, token, opcion }) => {
               <div className="mensaje__eliminar">
                 {opcion === "Suscripcion" ? (
                   <h4 className="eliminar__title">
-                    ¿Estás seguro de que no quieres asistir a este evento?
+                    ¿Estás seguro de que no puedes asistir a este evento?
                   </h4>
                 ) : (
                   <h4 className="eliminar__title">
