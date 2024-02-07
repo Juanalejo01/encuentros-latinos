@@ -5,8 +5,27 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useEffect, useState } from "react";
 
 export const EventosList = ({ eventos }) => {
+  const [slidesPerView, setSlidesPerView] = useState(3);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 1200 && window.innerWidth > 800) {
+        setSlidesPerView(2);
+      } else if (window.innerWidth <= 800) {
+        setSlidesPerView(1);
+      } else {
+        setSlidesPerView(3);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const isSingleEvents = eventos.length === 1;
   const isTwoEvents = eventos.length === 2;
 
@@ -14,7 +33,7 @@ export const EventosList = ({ eventos }) => {
     <Swiper
       className={`eventos__list `}
       modules={[Navigation, Pagination]}
-      slidesPerView={3}
+      slidesPerView={slidesPerView}
       lazyPreloadPrevNext={2}
       spaceBetween={10}
       wrapperClass={isTwoEvents ? "two-cards" : ""}
