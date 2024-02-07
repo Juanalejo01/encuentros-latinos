@@ -85,7 +85,7 @@ export const PrivateEventosList = ({ evento, removeEvento, token, opcion }) => {
             title="Editar"
           >
             <FaPencilAlt className="private-eventos__editar-icono" />
-            Editar
+            <span className="text__eliminar">Editar</span>
           </Link>
         )}
 
@@ -134,7 +134,11 @@ export const PrivateEventosList = ({ evento, removeEvento, token, opcion }) => {
           }}
         >
           <FaTrashAlt className="private-eventos__eliminar-icono" />
-          {opcion === "Eventos" ? <span>Eliminar</span> : <span>No asistir</span>}
+          {opcion === "Eventos" ? (
+            <span className="text__eliminar">Eliminar</span>
+          ) : (
+            <span className="text__eliminar">No asistir</span>
+          )}
         </button>
       </div>
     </article>
