@@ -1,6 +1,6 @@
 import { PrivateEventosList } from "../components/private/PrivateEventosList";
 import { usePrivateEventos } from "../hook/usePrivateEventos";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 import ReactPaginate from "react-paginate";
@@ -11,7 +11,21 @@ export const MisEventosPage = () => {
   const { eventos, loading, error, token, removeEvento } = usePrivateEventos();
   const [paginaActual, setPaginaActual] = useState(0);
 
-  const eventosPorPagina = 6;
+  const [eventosPorPagina, setEventosPorPagina] = useState(6);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 1475) {
+        setEventosPorPagina(3);
+      } else {
+        setEventosPorPagina(6);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handlePageChange = ({ selected }) => {
     setPaginaActual(selected);
