@@ -262,3 +262,452 @@
     right: 25rem;
   }
 }
+
+/* EVENTOS PAGE - JOSE */
+@media (max-width: 1800px) {
+  .eventos__evento {
+    width: 77%;
+  }
+}
+
+@media (max-width: 1700px) {
+  .eventos__evento {
+    width: 80%;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 1600px) {
+  .eventos__evento {
+    width: 83%;
+    margin-top: 3rem;
+  }
+}
+
+@media (max-width: 1500px) {
+  .evento__title {
+    font-size: 2rem;
+  }
+
+  .eventos__evento {
+    margin-top: 5rem;
+  }
+}
+
+@media (max-width: 1400px) {
+  .eventos__evento {
+    margin-top: 7rem;
+  }
+}
+
+@media (max-width: 1300px) {
+  .eventos__evento {
+    margin-top: 9rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .layout {
+    min-width: 800px;
+  }
+
+  .evento__title {
+    font-size: 2.5rem;
+  }
+
+  .eventos__evento {
+    width: 77%;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  .eventos__evento {
+    width: 83%;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .evento__title {
+    font-size: 2rem;
+  }
+
+  .eventos__evento {
+    margin-top: 4rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .eventos__evento {
+    margin-top: 7rem;
+  }
+
+  .evento__tag-fecha {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .layout {
+    min-width: 400px;
+  }
+
+  .eventos__title {
+    font-size: 4rem;
+  }
+
+  .eventos__title-total {
+    font-size: 3rem;
+  }
+
+  .evento__title {
+    font-size: 2.5rem;
+  }
+
+  .evento__tag-fecha {
+    font-size: 2rem;
+  }
+
+  .eventos__evento {
+    width: 70%;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .eventos__evento {
+    width: 73%;
+  }
+}
+
+@media (max-width: 600px) {
+  .eventos__title {
+    font-size: 3.5rem;
+  }
+
+  .eventos__title-total {
+    font-size: 2.5rem;
+  }
+
+  .evento__title {
+    font-size: 2.2rem;
+  }
+
+  .eventos__evento {
+    width: 79%;
+    margin-top: 6rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .eventos__title {
+    font-size: 3rem;
+  }
+
+  .evento__title {
+    font-size: 2rem;
+  }
+
+  .evento__tag-fecha {
+    font-size: 1.7rem;
+  }
+
+  .eventos__evento {
+    margin-top: 10rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .eventos__title {
+    font-size: 2.5rem;
+  }
+  .eventos__title-total {
+    font-size: 2rem;
+  }
+  .eventos__evento {
+    margin-top: 12rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .layout {
+    min-width: 300px;
+  }
+}
+
+@media (max-width: 400px) {
+  .evento__title {
+    font-size: 1.7rem;
+  }
+
+  .evento__tag-fecha {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .eventos__title {
+    font-size: 2.2rem;
+  }
+  .eventos__title-total {
+    font-size: 1.7rem;
+  }
+
+  .evento__title {
+    font-size: 1.5rem;
+  }
+
+  .evento__tag-fecha,
+  .evento__tag-tematica,
+  .evento__tag-ciudad {
+    font-size: 1.2rem;
+  }
+
+  .evento__tag-inscritos {
+    font-size: 1.7rem;
+  }
+}
+
+/* ESTILOS DETALLES - JOSE */
+@media (max-width: 1800px) {
+  .detalles__container-img {
+    width: 58rem;
+  }
+}
+
+@media (max-width: 1700px) {
+  .detalles__container-img {
+    width: 56rem;
+  }
+
+  .content__dmiddle {
+    flex-basis: 34%;
+  }
+}
+
+@media (max-width: 1600px) {
+  .detalles__description {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 1500px) {
+  .detalles__subtitle {
+    font-size: 2.5rem;
+  }
+  .detalles__description {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 1450px) {
+  .detalles__content {
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    justify-content: center;
+    gap: 6rem;
+  }
+
+  .content__dmiddle {
+    flex-basis: 50%;
+  }
+
+  .detalles__subtitle {
+    font-size: 3rem;
+  }
+  .detalles__description {
+    font-size: 2rem;
+  }
+
+  .content__dright {
+    flex-basis: 50%;
+    height: 50rem;
+  }
+
+  .inscritos__lista,
+  .spinner__lista {
+    height: 35rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .detalles__content {
+    gap: 3rem;
+  }
+
+  .content__dmiddle {
+    flex-basis: 60%;
+  }
+
+  .content__dright {
+    flex-basis: 60%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .content__dmiddle {
+    flex-basis: 70%;
+  }
+
+  .content__dright {
+    flex-basis: 70%;
+  }
+}
+
+@media (max-width: 900px) {
+  .detalles__title {
+    font-size: 4.5rem;
+  }
+
+  .content__dmiddle {
+    flex-basis: 75%;
+  }
+
+  .content__dright {
+    flex-basis: 75%;
+  }
+}
+
+@media (max-width: 800px) {
+  .content__dmiddle {
+    flex-basis: 80%;
+  }
+
+  .content__dright {
+    flex-basis: 80%;
+  }
+}
+
+@media (max-width: 700px) {
+  .detalles__container-img {
+    width: 52rem;
+  }
+
+  .detalles__title {
+    font-size: 4rem;
+  }
+  .content__dmiddle {
+    flex-basis: 84%;
+  }
+
+  .content__dright {
+    flex-basis: 84%;
+  }
+}
+
+@media (max-width: 600px) {
+  .detalles__container-img {
+    width: 45rem;
+  }
+
+  .author__nombre,
+  .detalles__description {
+    font-size: 1.7rem;
+  }
+
+  .detalles__title {
+    font-size: 3.25rem;
+  }
+  .content__dmiddle {
+    flex-basis: 87%;
+  }
+
+  .detalles__subtitle {
+    font-size: 2.5rem;
+  }
+
+  .content__dright {
+    flex-basis: 87%;
+  }
+}
+
+@media (max-width: 550px) {
+  .detalles__container-img {
+    width: 40rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .detalles__container-img {
+    width: 35rem;
+  }
+
+  .detalles__title {
+    font-size: 2.75rem;
+  }
+
+  .detalles__subtitle {
+    font-size: 2.5rem;
+  }
+
+  .author__nombre,
+  .detalles__description,
+  .detalles__tag-fecha,
+  .detalles__tag-tematica,
+  .detalles__tag-pais,
+  .detalles__tag-ciudad,
+  .detalles__tag-localizacion,
+  .button-text,
+  .button-icon,
+  .inscritos__total,
+  .item__nombre {
+    font-size: 1.4rem;
+  }
+
+  .inscritos__item {
+    padding: 1rem 1.5rem;
+  }
+
+  .detalles__btn {
+    padding-left: 1.2rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .detalles__container-img {
+    width: 30rem;
+  }
+
+  .detalles__title {
+    font-size: 2.2rem;
+  }
+
+  .author__nombre,
+  .detalles__tag-fecha,
+  .detalles__tag-tematica,
+  .detalles__tag-pais,
+  .detalles__tag-ciudad,
+  .detalles__tag-localizacion,
+  .inscritos__total,
+  .item__nombre {
+    font-size: 1.2rem;
+  }
+
+  .content__dmiddle {
+    flex-basis: 100%;
+  }
+
+  .content__dright {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 325px) {
+  .detalles__container-img {
+    width: 26rem;
+  }
+
+  .author__nombre,
+  .detalles__tag-fecha,
+  .detalles__tag-tematica,
+  .detalles__tag-pais,
+  .detalles__tag-ciudad,
+  .detalles__tag-localizacion,
+  .inscritos__total,
+  .item__nombre {
+    font-size: 0.9rem;
+  }
+}
