@@ -48,7 +48,7 @@
 .registro__formulario {
   position: relative;
   width: 70rem;
-  height: 54rem;
+  height: 55rem;
   padding: 2rem 3rem;
   background-color: rgba(0, 0, 0, 0.5);
   color: var(--color-bg-btn);

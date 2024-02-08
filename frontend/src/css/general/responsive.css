@@ -759,37 +759,357 @@
 
 /*REGISTER PAGE - JUAN*/
 
-@media (max-width: 300px) {
-  .login__formulario {
+@media (max-width: 900px) {
+  .registro__formulario {
     position: relative;
-    width: 28rem;
-    height: 50rem;
-    padding: 2rem 3rem;
-  }
-
-  .login__lista {
+    width: 70rem;
+    height: 90rem;
+    font-size: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 4rem;
-  }
-
-  .login__item {
-    font-size: 1.5rem;
-    display: flex;
-    flex-direction: column;
+    align-items: center;
     gap: 1rem;
   }
 
+  .input__nombre,
+  .input__apellidos,
+  .input__email,
+  .input__password {
+    width: 30rem;
+    height: 4rem;
+  }
+
+  .formulario__columna--1 {
+    margin-top: 5rem;
+  }
+
+  .formulario__columna--3 {
+    margin-bottom: 1rem;
+  }
+
+  .formulario__columna--1,
+  .formulario__nombre-apellidos,
+  .formulario__columna--2,
+  .formulario__columna--3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-left: 0;
+    height: 25rem;
+  }
+
+  .formulario__avatar {
+    width: 7rem;
+    height: 10rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .registro__formulario {
+    position: relative;
+    width: 65rem;
+    height: 90rem;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .input__nombre,
+  .input__apellidos,
+  .input__email,
+  .input__password {
+    width: 30rem;
+    height: 4rem;
+  }
+
+  .formulario__columna--1 {
+    margin-top: 5rem;
+  }
+
+  .formulario__columna--3 {
+    margin-bottom: 1rem;
+  }
+
+  .formulario__columna--1,
+  .formulario__nombre-apellidos,
+  .formulario__columna--2,
+  .formulario__columna--3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-left: 0;
+    height: 25rem;
+  }
+
+  .formulario__avatar {
+    width: 7rem;
+    height: 10rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .registro__formulario {
+    position: relative;
+    width: 58rem;
+    height: 90rem;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .input__nombre,
+  .input__apellidos,
+  .input__email,
+  .input__password {
+    width: 30rem;
+    height: 4rem;
+  }
+
+  .formulario__columna--1 {
+    margin-top: 5rem;
+  }
+
+  .formulario__columna--3 {
+    margin-bottom: 1rem;
+  }
+
+  .formulario__columna--1,
+  .formulario__nombre-apellidos,
+  .formulario__columna--2,
+  .formulario__columna--3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-left: 0;
+    height: 25rem;
+  }
+
+  .formulario__avatar {
+    width: 7rem;
+    height: 10rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .registro__formulario {
+    position: relative;
+    width: 51rem;
+    height: 90rem;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .input__nombre,
+  .input__apellidos,
+  .input__email,
+  .input__password {
+    width: 30rem;
+    height: 4rem;
+  }
+
+  .textarea__bio {
+    width: 30rem;
+    height: 10rem;
+  }
+
+  .formulario__columna--1 {
+    margin-top: 5rem;
+  }
+
+  .formulario__columna--3 {
+    margin-bottom: 1rem;
+  }
+
+  .formulario__columna--1,
+  .formulario__nombre-apellidos,
+  .formulario__columna--2,
+  .formulario__columna--3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-left: 0;
+    height: 25rem;
+  }
+
+  .formulario__avatar {
+    width: 9rem;
+    height: 10rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .registro__formulario {
+    position: relative;
+    width: 40rem;
+    height: 90rem;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .input__nombre,
+  .input__apellidos,
+  .input__email,
+  .input__password {
+    width: 30rem;
+    height: 4rem;
+  }
+
+  .textarea__bio {
+    width: 30rem;
+    height: 10rem;
+  }
+
+  .formulario__columna--1 {
+    margin-top: 5rem;
+  }
+
+  .formulario__columna--3 {
+    margin-bottom: 1rem;
+  }
+
+  .formulario__columna--1,
+  .formulario__nombre-apellidos,
+  .formulario__columna--2,
+  .formulario__columna--3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-left: 0;
+    height: 25rem;
+  }
+
+  .formulario__avatar {
+    width: 9rem;
+    height: 10rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .registro__title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 0rem;
+  }
+
+  .registro__formulario {
+    position: relative;
+    width: 30rem;
+    height: 90rem;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .input__nombre,
+  .input__apellidos,
   .input__email,
   .input__password {
     width: 25rem;
-    height: 5rem;
+    height: 4rem;
   }
 
-  .login__formulario-btn {
-    width: 13rem;
-    height: 5rem;
+  .textarea__bio {
+    width: 25rem;
+    height: 10rem;
+  }
+
+  .formulario__columna--1 {
+    margin-top: 5rem;
+  }
+
+  .formulario__columna--3 {
+    margin-bottom: 1rem;
+  }
+
+  .formulario__columna--1,
+  .formulario__nombre-apellidos,
+  .formulario__columna--2,
+  .formulario__columna--3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-left: 0;
+    height: 25rem;
+  }
+
+  .formulario__avatar {
+    width: 9rem;
+    height: 9rem;
+  }
+}
+
+@media (max-width: 300px) {
+  .registro__title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+
+  .registro__formulario {
+    position: relative;
+    width: 25rem;
+    height: 90rem;
     font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .input__nombre,
+  .input__apellidos,
+  .input__email,
+  .input__password {
+    width: 20rem;
+    height: 4rem;
+  }
+
+  .textarea__bio {
+    width: 20rem;
+    height: 10rem;
+  }
+
+  .formulario__columna--1 {
+    margin-top: 5rem;
+  }
+
+  .formulario__columna--3 {
+    margin-bottom: 1rem;
+  }
+
+  .formulario__columna--1,
+  .formulario__nombre-apellidos,
+  .formulario__columna--2,
+  .formulario__columna--3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-left: 0;
+    height: 25rem;
+  }
+
+  .formulario__avatar {
+    width: 9rem;
+    height: 10rem;
   }
 }
 
