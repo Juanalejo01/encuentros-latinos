@@ -159,7 +159,7 @@
 .private-suscripciones__icono {
   flex-basis: 20%;
   overflow: hidden;
-  background-color: var(--color-sidebar);
+  background-color: var(--color-primary);
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
   display: flex;
@@ -173,7 +173,8 @@
 }
 
 .private-suscripciones__icono:hover {
-  background-color: var(--color-primary);
+  background-color: var(--color-banner);
+  cursor: not-allowed;
 }
 
 .private-eventos__editar,
@@ -186,12 +187,8 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  color: var(--color-banner);
-  transition: all 500ms ease-in-out;
-}
-
-.private-suscripciones__noasistir:hover {
   color: var(--color-secondary);
+  transition: all 500ms ease-in-out;
 }
 
 .private-eventos__editar {
@@ -200,8 +197,7 @@
 
 .private-eventos__editar:hover,
 .private-eventos__eliminar:hover {
-  background-color: var(--color-primary);
-  color: var(--color-secondary);
+  background-color: var(--color-banner);
 }
 
 .private-eventos__eliminar,
@@ -212,17 +208,26 @@
 }
 
 .private-eventos__editar-icono,
-.private-eventos__eliminar-icono {
-  filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5));
+.private-eventos__eliminar-icono,
+.private-eventos__icono-faban {
+  filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
   font-size: 2.5rem;
+}
+
+.private-eventos__icono-faban {
+  font-size: 6rem;
 }
 
 /* ESTILO DEL MENSAJE CUANDO NO EXISTEN EVENTOS */
 .private-eventos__mensaje {
   text-align: center;
   font-size: 5rem;
-  color: var(--color-secondary);
+  color: var(--color-bg-btn-orange);
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
 }
 
 /* ESTILOS DEL COMPONENTE DE PAGINACIÓN */

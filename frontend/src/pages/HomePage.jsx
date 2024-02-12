@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useEventos } from "../hook/useEventos";
 
 import "../css/principal/homePage.css";
@@ -8,15 +8,9 @@ import { PaginaNoFound } from "./PaginaNoFound";
 import { EventosHome } from "../components/eventos/EvnetosHome";
 
 export const HomePage = () => {
-  const { eventos, loading, error, actualizarBusqueda } = useEventos();
+  const { eventos, loading, error } = useEventos();
   const navigate = useNavigate();
   const { usuarioId } = useContext(AuthContext);
-  const [mostrarEventos, setMostrarEventos] = useState(false);
-
-  useEffect(() => {
-    actualizarBusqueda("", "");
-    setMostrarEventos(true);
-  }, [actualizarBusqueda]);
 
   useEffect(() => {
     if (typeof usuarioId === "number") {
@@ -45,23 +39,22 @@ export const HomePage = () => {
           </Link>
         </div>
       </header>
-      {mostrarEventos && (
-        <div className="mostrar__eventos">
-          {loading ? (
-            <div className="spinner__container">
-              <span className="spinner"></span>
-            </div>
-          ) : error ? (
-            <PaginaNoFound />
-          ) : eventos.length ? (
-            <EventosHome eventos={eventos} />
-          ) : (
-            <div className="spinner__container">
-              <span className="spinner"></span>
-            </div>
-          )}
-        </div>
-      )}
+
+      <div className="mostrar__eventos">
+        {loading ? (
+          <div className="spinner__container">
+            <span className="spinner"></span>
+          </div>
+        ) : error ? (
+          <PaginaNoFound />
+        ) : eventos.length ? (
+          <EventosHome eventos={eventos} />
+        ) : (
+          <div className="spinner__container">
+            <span className="spinner"></span>
+          </div>
+        )}
+      </div>
     </main>
   );
 };

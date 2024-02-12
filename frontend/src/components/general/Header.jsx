@@ -14,8 +14,6 @@ export const Header = () => {
   const handleClick = (e) => {
     e.preventDefault();
     navigate(`/eventos?tematica=${tematicaHeader}&ciudad=${ciudadHeader}`);
-    localStorage.setItem("tematica", tematicaHeader);
-    localStorage.setItem("ciudad", ciudadHeader);
     setCiudadHeader("");
     setTematicaHeader("");
   };
@@ -25,8 +23,6 @@ export const Header = () => {
   };
 
   const handleDashboardClick = () => {
-    localStorage.removeItem("tematica");
-    localStorage.removeItem("ciudad");
     setShowMenu(false);
   };
 

@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 import { useEffect, useState } from "react";
 
 export const EventosList = ({ eventos }) => {
-  const [slidesPerView, setSlidesPerView] = useState(3);
+  const [slidesPerView, setSlidesPerView] = useState(4);
 
   useEffect(() => {
     const handleResize = () => {
@@ -17,7 +17,7 @@ export const EventosList = ({ eventos }) => {
       } else if (window.innerWidth <= 800) {
         setSlidesPerView(1);
       } else {
-        setSlidesPerView(3);
+        setSlidesPerView(4);
       }
     };
 
