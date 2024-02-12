@@ -1,5 +1,5 @@
 .layout__crear-evento {
-  flex-basis: 85%;
+  width: 100%;
   position: relative;
   overflow: hidden;
   padding: 0;

@@ -1,11 +1,11 @@
 .layout__sidebar {
-  flex-basis: 10%;
+  width: 220px;
   position: relative;
   overflow: hidden;
   height: 100vh;
-  background-color: var(--color-sidebar);
+  background-color: var(--color-primary);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-
+  border-right: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -23,6 +23,7 @@
 }
 
 .sidebar__title {
+  color: var(--color-bg-btn);
   text-transform: capitalize;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -42,7 +43,7 @@
   margin: 0.5rem 0;
   text-align: center;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-  color: var(--color-primary);
+  color: var(--color-secondary);
   transition: all 300ms ease-in-out;
 }
 
@@ -53,7 +54,7 @@
 }
 
 .sidebar__item.active {
-  background-color: rgba(0, 0, 0, 0.04);
+  background-color: rgba(0, 0, 0, 0.07);
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 25px;
   font-weight: 500;
@@ -74,15 +75,16 @@
   border: none;
   overflow: hidden;
   padding: 1.5rem 0.8rem;
-  background-color: var(--color-text-logo);
+  background-color: var(--color-secondary);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   font-weight: 500;
   text-align: center;
-  color: var(--color-bg-dark);
+  color: var(--color-primary);
   transition: all 300ms ease-in-out;
 }
 
 .sidebar__btn:hover {
-  background-color: var(--color-bg-btn-orange);
+  background-color: var(--color-bg-btn);
+  color: var(--color-bg-dark);
 }

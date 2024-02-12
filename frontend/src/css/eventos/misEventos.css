@@ -1,6 +1,6 @@
 .layout__private-eventos,
 .spinner__container-private {
-  flex-basis: 85%;
+  width: 100%;
   position: relative;
   overflow: hidden;
   padding: 0;
@@ -15,11 +15,8 @@
 
 /* ESTILOS DEL HEADER */
 .private-eventos__header {
-  max-width: var(--mx-width);
-  margin: 2rem auto;
+  margin: 2rem 0;
   overflow: hidden;
-  margin: 2rem 15rem;
-
   display: flex;
   justify-content: center;
 }
@@ -176,7 +173,7 @@
 }
 
 .private-suscripciones__icono:hover {
-  background-color: var(--color-bg-btn-orange);
+  background-color: var(--color-primary);
 }
 
 .private-eventos__editar,
@@ -203,7 +200,7 @@
 
 .private-eventos__editar:hover,
 .private-eventos__eliminar:hover {
-  background-color: var(--color-bg-btn-orange);
+  background-color: var(--color-primary);
   color: var(--color-secondary);
 }
 

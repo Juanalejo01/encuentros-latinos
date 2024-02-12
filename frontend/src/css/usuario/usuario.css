@@ -1,6 +1,6 @@
 .actualizar__registro,
 .spinner__usuario {
-  flex-basis: 85%;
+  width: 100%;
   overflow: hidden;
   padding: 0;
   height: 100vh;

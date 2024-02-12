@@ -2,6 +2,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { FaSistrix } from "react-icons/fa";
+import { toast } from "sonner";
 
 export const Header = () => {
   const { logoutHandler, usuarioId, avatar } = useContext(AuthContext);
@@ -32,6 +33,8 @@ export const Header = () => {
   const handleLogoutClick = () => {
     logoutHandler();
     setShowMenu(false);
+    navigate("/");
+    toast.dismiss();
   };
 
   return (
@@ -104,9 +107,32 @@ export const Header = () => {
                       </NavLink>
                     </li>
                     <li className="submenu__item">
-                      <NavLink className="submenu__link" to={"/"} onClick={handleLogoutClick}>
+                      <p
+                        className="submenu__link"
+                        onClick={() => {
+                          toast.custom((t) => (
+                            <div className="mensaje__eliminar">
+                              <h4 className="eliminar__title">
+                                ¿Estás seguro de que quieres cerrar sesión?
+                              </h4>
+
+                              <div className="eliminar__botones">
+                                <button
+                                  className="eliminar__btn"
+                                  onClick={() => handleLogoutClick()}
+                                >
+                                  Sí
+                                </button>
+                                <button className="eliminar__btn" onClick={() => toast.dismiss(t)}>
+                                  No
+                                </button>
+                              </div>
+                            </div>
+                          ));
+                        }}
+                      >
                         Cerrar sesión
-                      </NavLink>
+                      </p>
                     </li>
                   </ul>
                 )}
