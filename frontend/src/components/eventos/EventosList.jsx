@@ -43,7 +43,7 @@ export const EventosList = ({ eventos }) => {
     >
       {eventos.map((evento) => (
         <SwiperSlide className="eventos__item" key={evento.id}>
-          <Evento evento={evento} />
+          <Evento evento={evento} slidesPerView={slidesPerView} />
         </SwiperSlide>
       ))}
     </Swiper>

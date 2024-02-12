@@ -1,5 +1,4 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { Button } from "./Button";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { FaSistrix } from "react-icons/fa";
@@ -10,10 +9,6 @@ export const Header = () => {
   const [tematicaHeader, setTematicaHeader] = useState("");
   const [ciudadHeader, setCiudadHeader] = useState("");
   const navigate = useNavigate();
-
-  const handleLoginClick = () => {
-    navigate("/login");
-  };
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -42,10 +37,7 @@ export const Header = () => {
   return (
     <header className="layout__header">
       <div className="logo">
-        <Link
-          className="logo__link"
-          to={usuarioId ? "/eventos?tematica=&ciudad=" : "/"}
-        >
+        <Link className="logo__link" to={usuarioId ? "/eventos?tematica=&ciudad=" : "/"}>
           <h1 className="logo__title">ENCUENTROS LATINOS</h1>
         </Link>
       </div>
@@ -67,18 +59,20 @@ export const Header = () => {
           value={ciudadHeader}
           onChange={(e) => setCiudadHeader(e.target.value)}
         />
-        <button type="submit" className="search__boton">
+        <button className="search__boton">
           <FaSistrix className={"search__btn"} title="Buscar" />
         </button>
       </form>
 
       <div className="button-left">
         {!usuarioId ? (
-          <Button
-            texto={"Login"}
-            onClick={handleLoginClick}
-            className={"login__btn"}
-          />
+          <Link className="button-left__login" to={"/login"}>
+            <span className="text__login">Login</span>
+            <span className="login__line -right"></span>
+            <span className="login__line -top"></span>
+            <span className="login__line -left"></span>
+            <span className="login__line -bottom"></span>
+          </Link>
         ) : (
           <nav className="user__menu">
             <ul className="menu__list">
@@ -110,11 +104,7 @@ export const Header = () => {
                       </NavLink>
                     </li>
                     <li className="submenu__item">
-                      <NavLink
-                        className="submenu__link"
-                        to={"/"}
-                        onClick={handleLogoutClick}
-                      >
+                      <NavLink className="submenu__link" to={"/"} onClick={handleLogoutClick}>
                         Cerrar sesión
                       </NavLink>
                     </li>
