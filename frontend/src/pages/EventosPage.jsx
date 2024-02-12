@@ -3,21 +3,13 @@ import { useEventos } from "../hook/useEventos";
 import { BannerGeneral } from "../components/general/BannerGeneral";
 import { PaginaNoFound } from "./PaginaNoFound";
 import { FaUserFriends } from "react-icons/fa";
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useState } from "react";
 
 import "../css/eventos/eventosPage.css";
 
 export const EventosPage = () => {
-  const { eventos, loading, error, setOrdenar, actualizarBusqueda } = useEventos();
+  const { eventos, loading, error, setOrdenar } = useEventos();
   const [clickeado, setClickeado] = useState(false);
-  const [searchParams] = useSearchParams();
-
-  useEffect(() => {
-    const tematica = searchParams.get("tematica");
-    const ciudad = searchParams.get("ciudad");
-    actualizarBusqueda(tematica, ciudad);
-  }, [searchParams, actualizarBusqueda]);
 
   const handleClickSi = () => {
     setOrdenar(true);

@@ -2,7 +2,7 @@ import { PrivateEventosList } from "../components/private/PrivateEventosList";
 import { usePrivateEventos } from "../hook/usePrivateEventos";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
+import { FaChevronRight, FaChevronLeft, FaBan } from "react-icons/fa";
 import ReactPaginate from "react-paginate";
 
 import "../css/eventos/misEventos.css";
@@ -63,7 +63,10 @@ export const MisEventosPage = () => {
             </li>
           ))
         ) : (
-          <p className="private-eventos__mensaje">No tienes ningún evento creado aún.</p>
+          <p className="private-eventos__mensaje">
+            <FaBan className="private-eventos__icono-faban" />
+            No tienes ningún evento creado.
+          </p>
         )}
         {eventos.total > 6 ? (
           <ReactPaginate

@@ -4,8 +4,7 @@
   z-index: 1;
   overflow: hidden;
   padding: 0;
-  height: 100%;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .layout__eventos::before {
@@ -28,10 +27,10 @@
 
 /* ESTILO DEL HEADER DE LA PAGINA DEL LISTADO DE EVENTOS */
 .eventos__header {
-  max-width: var(--mx-width);
-  margin: 2rem auto;
+  margin: 2rem 0;
   overflow: hidden;
   text-align: center;
+  margin-bottom: 10rem;
 }
 
 .eventos__title {
@@ -99,6 +98,7 @@
 
 .eventos__evento {
   width: 74%;
+  margin-top: 2rem;
   padding: 1rem 0;
 }
 

@@ -136,12 +136,16 @@ export const ActualizarUsuarios = () => {
             )}
           </div>
           <ul className="actualizar__info-listado">
-            <li className="actualizar__info-email">{usuario.email}</li>
+            <li className="actualizar__info-email">
+              <span className="label__datos">Correo: </span>
+              {usuario.email}
+            </li>
             <li className="actualizar__info-nombre">
+              <span className="label__datos">Nombre: </span>
               {usuario.nombre} {usuario.apellidos}
             </li>
           </ul>
-          <h3 className="actualizar__info-title">Biografía:</h3>
+          <h3 className="label__datos">Biografía:</h3>
           <p className="actualizar__info-biografia">{usuario.biografia}</p>
         </div>
         <div className="actualizar__content-btn">
@@ -186,7 +190,9 @@ export const ActualizarUsuarios = () => {
             <form className="formulario__actualizar-datos" onSubmit={handleUpdateUser}>
               <ul className="actualizar-datos__content">
                 <li>
-                  <label htmlFor="nombre">Nombre:</label>
+                  <label className="label__datos" htmlFor="nombre">
+                    Nombre:
+                  </label>
                   <input
                     className="input__nombre-actualizar"
                     type="text"
@@ -196,7 +202,9 @@ export const ActualizarUsuarios = () => {
                   />
                 </li>
                 <li>
-                  <label htmlFor="apellidos">Apellidos:</label>
+                  <label className="label__datos" htmlFor="apellidos">
+                    Apellidos:
+                  </label>
                   <input
                     className="input__apellidos-actualizar"
                     type="text"
@@ -206,7 +214,9 @@ export const ActualizarUsuarios = () => {
                   />
                 </li>
                 <li>
-                  <label htmlFor="biografia">Biografía:</label>
+                  <label className="label__datos" htmlFor="biografia">
+                    Biografía:
+                  </label>
                   <textarea
                     className="textarea__bio-actualizar"
                     name="biografia"
@@ -285,7 +295,9 @@ export const ActualizarUsuarios = () => {
             <form className="formulario__actualizar-datos" onSubmit={handleUpdateEmail}>
               <div className="email__content">
                 <h3 className="email__title">{usuario?.email}</h3>
-                <label htmlFor="email">Nuevo E-mail:</label>
+                <label className="label__datos" htmlFor="email">
+                  Nuevo E-mail:
+                </label>
                 <input
                   className="input__email-actualizar"
                   type="email"
@@ -294,7 +306,9 @@ export const ActualizarUsuarios = () => {
                   required
                 />
 
-                <label htmlFor="passwordEmail">Escribe tu Contraseña:</label>
+                <label className="label__datos" htmlFor="passwordEmail">
+                  Escribe tu Contraseña:
+                </label>
                 <input
                   className="input__email-actualizar"
                   type="password"
@@ -323,7 +337,9 @@ export const ActualizarUsuarios = () => {
             </p>
             <form className="formulario__actualizar-datos" onSubmit={handleUpdatePassword}>
               <div className="password__content">
-                <label htmlFor="password">Contraseña actual:</label>
+                <label className="label__datos" htmlFor="password">
+                  Contraseña actual:
+                </label>
                 <input
                   className="input__password-actualizar"
                   type="password"
@@ -331,7 +347,9 @@ export const ActualizarUsuarios = () => {
                   required
                 />
 
-                <label htmlFor="nuevoPassword">Nueva Contraseña:</label>
+                <label className="label__datos" htmlFor="nuevoPassword">
+                  Nueva Contraseña:
+                </label>
                 <input
                   className="input__password-actualizar"
                   type="password"
@@ -339,7 +357,9 @@ export const ActualizarUsuarios = () => {
                   required
                 />
 
-                <label htmlFor="confirmNuevoPassword">Confirmar nueva contraseña:</label>
+                <label className="label__datos" htmlFor="confirmNuevoPassword">
+                  Confirmar nueva contraseña:
+                </label>
                 <input
                   className="input__password-actualizar"
                   type="password"
@@ -368,7 +388,9 @@ export const ActualizarUsuarios = () => {
 
             <form className="formulario__eliminar-datos" onSubmit={handleDeleteUser}>
               <div className="eliminar__content">
-                <label htmlFor="password">Contraseña</label>
+                <label className="label__datos" htmlFor="password">
+                  Contraseña
+                </label>
                 <input
                   className="input__password-actualizar"
                   type="password"

@@ -67,52 +67,65 @@ export const FormularioEvento = ({ handleForm, accion, evento, loading }) => {
               className="otros-datos__input"
               type="text"
               name="titulo"
-              placeholder="Título del evento"
               defaultValue={accion === "Editar" ? evento?.titulo ?? "" : ""}
               required
             />
+            <label htmlFor="titulo" className="form__label">
+              Título
+            </label>
           </li>
           <li className="otros-datos__item">
             <input
               className="otros-datos__input"
               type="text"
               name="tematica"
-              placeholder="Temática"
               defaultValue={accion === "Editar" ? evento?.tematica ?? "" : ""}
               required
             />
+            <label htmlFor="tematica" className="form__label">
+              Temática
+            </label>
           </li>
           <li className="otros-datos__item">
             <input
               className="otros-datos__input"
               type="text"
               name="pais"
-              placeholder="País"
               defaultValue={accion === "Editar" ? evento?.pais ?? "" : ""}
               required
             />
+            <label htmlFor="pais" className="form__label">
+              País
+            </label>
           </li>
           <li className="otros-datos__item">
             <input
               className="otros-datos__input"
               type="text"
               name="ciudad"
-              placeholder="Ciudad"
               defaultValue={accion === "Editar" ? evento?.ciudad ?? "" : ""}
               required
             />
+            <label htmlFor="ciudad" className="form__label">
+              Ciudad
+            </label>
           </li>
           <li className="otros-datos__item">
             <input
               className="otros-datos__input"
               type="text"
               name="localizacion"
-              placeholder="Localización"
               defaultValue={accion === "Editar" ? evento?.localizacion ?? "" : ""}
               required
             />
+            <label htmlFor="localizacion" className="form__label">
+              Localización
+            </label>
           </li>
           <li className="otros-datos__item">
+            <label htmlFor="fechaHora" className="form__label-fecha-hora">
+              Fecha y Hora del evento
+            </label>
             <input
               className="otros-datos__input"
               type="datetime-local"
@@ -124,13 +137,17 @@ export const FormularioEvento = ({ handleForm, accion, evento, loading }) => {
         </ul>
       </div>
       <div className="formulario__detalles">
-        <textarea
-          className="formulario__textarea"
-          name="descripcion"
-          placeholder="Escribe aquí los detalles de tu evento"
-          defaultValue={accion === "Editar" ? evento?.descripcion ?? "" : ""}
-          required
-        />
+        <div className="detalles__textarea">
+          <label htmlFor="descripcion" className="form__label-textarea">
+            Detalles del evento
+          </label>
+          <textarea
+            className="formulario__textarea"
+            name="descripcion"
+            defaultValue={accion === "Editar" ? evento?.descripcion ?? "" : ""}
+            required
+          />
+        </div>
         <div className="formulario__botones">
           <Button texto={accion} className={"formulario__btn"} />
           <Button texto={"Cancelar"} onClick={handleClick} className={"formulario__btn-cancelar"} />
