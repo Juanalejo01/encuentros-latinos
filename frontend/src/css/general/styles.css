@@ -19,6 +19,12 @@
   --color-text-logo: #ffac79;
   --color-bg-btn-orange: #ff9c1d;
   --color-sidebar: rgba(255, 220, 96, 0.9);
+  --color-oscuro: #2d2d2d;
+  --thick: 3px;
+  --pad: 0.7rem;
+  --extra: calc(var(--pad) * 1.2);
+  --color: #f26522;
+  --color-caducado: rgba(244, 67, 54, 0.5);
 }
 
 /* ESTILOS GENERALES */
@@ -66,36 +72,135 @@ body {
 .logo__title {
   font-size: 2rem;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-  color: var(--color-text-logo);
+  color: var(--color-primary);
   transition: all 500ms ease-in-out;
 }
 
 .logo__title:hover {
-  color: var(--color-bg-btn-orange);
+  color: var(--color-banner);
 }
 
 /* BOTON LOGIN */
-.login__btn {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-  z-index: 1;
-  border: none;
-  overflow: hidden;
-  padding: 1rem 0;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  background-color: var(--color-text-logo);
-  box-shadow: 0 2px 10px -4px var(--color-border);
-  border-radius: 20px;
-  font-weight: 500;
-  text-align: center;
+.button-left__login {
   color: var(--color-bg-dark);
-  transition: all 300ms ease-in-out;
+  padding: var(--pad) var(--extra);
+  display: inline-block;
+  border: var(--thick) solid transparent;
+  position: relative;
+  font-size: 2.2rem;
+  cursor: pointer;
+  letter-spacing: 0.07rem;
+  text-align: center;
+  line-height: calc(var(--pad) * 2.2);
 }
 
-.login__btn:hover {
-  background-color: var(--color-bg-btn-orange);
+.text__login {
+  transform: translate3d(0, var(--pad), 0);
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.2, 0, 0, 1) 0.4s;
+}
+
+.button-left__login:after {
+  position: absolute;
+  content: "";
+  bottom: calc(-4 * var(--thick));
+  left: var(--extra);
+  right: var(--extra);
+  height: var(--thick);
+  background: var(--color-primary);
+  transition: transform 0.8s cubic-bezier(1, 0, 0.37, 1) 0.2s,
+    right 0.2s cubic-bezier(0.04, 0.48, 0, 1) 0.6s, left 0.4s cubic-bezier(0.04, 0.48, 0, 1) 0.6s;
+  transform-origin: left;
+}
+
+.login__line {
+  position: absolute;
+  background: var(--color-primary);
+}
+
+.login__line.-right,
+.login__line.-left {
+  width: var(--thick);
+  bottom: calc(-4 * var(--thick));
+  top: calc(-1 * var(--thick));
+  transform: scale3d(1, 0, 1);
+}
+
+.login__line.-top,
+.login__line.-bottom {
+  height: var(--thick);
+  left: calc(-1 * var(--thick));
+  right: calc(-1 * var(--thick));
+  transform: scale3d(0, 1, 1);
+}
+
+.login__line.-right {
+  right: calc(-1 * var(--thick));
+  transition: transform 0.1s cubic-bezier(1, 0, 0.65, 1.01) 0.23s;
+  transform-origin: top;
+}
+
+.login__line.-top {
+  top: calc(-1 * var(--thick));
+  transition: transform 0.08s linear 0.43s;
+  transform-origin: left;
+}
+
+.login__line.-left {
+  left: calc(-1 * var(--thick));
+  transition: transform 0.08s linear 0.51s;
+  transform-origin: bottom;
+}
+
+.login__line.-bottom {
+  bottom: calc(-4 * var(--thick));
+  transition: transform 0.3s cubic-bezier(1, 0, 0.65, 1.01);
+  transform-origin: right;
+}
+
+.button-left__login:hover,
+.button-left__login:active .text__login {
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.6s cubic-bezier(0.2, 0, 0, 1) 0.4s;
+}
+
+.button-left__login:hover:after,
+.button-left__login:active:after {
+  transform: scale3d(0, 1, 1);
+  right: calc(-1 * var(--thick));
+  left: calc(-1 * var(--thick));
+  transform-origin: right;
+  transition: transform 0.2s cubic-bezier(1, 0, 0.65, 1.01) 0.17s,
+    right 0.2s cubic-bezier(1, 0, 0.65, 1.01), left 0s 0.3s;
+}
+
+.button-left__login:hover .login__line,
+.button-left__login:active .login__line {
+  transform: scale3d(1, 1, 1);
+}
+
+.button-left__login:hover .login__line.-right,
+.button-left__login:active .login__line.-right {
+  transition: transform 0.1s cubic-bezier(1, 0, 0.65, 1.01) 0.2s;
+  transform-origin: bottom;
+}
+
+.button-left__login:hover .login__line.-top,
+.button-left__login:active .login__line.-top {
+  transition: transform 0.08s linear 0.4s;
+  transform-origin: right;
+}
+
+.button-left__login:hover .login__line.-left,
+.button-left__login:active .login__line.-left {
+  transition: transform 0.08s linear 0.48s;
+  transform-origin: top;
+}
+
+.button-left__login:hover .login__line.-bottom,
+.button-left__login:active .login__line.-bottom {
+  transition: transform 0.5s cubic-bezier(0, 0.53, 0.29, 1) 0.56s;
+  transform-origin: left;
 }
 
 /* ESTILOS PARA EL MENU */
@@ -179,10 +284,9 @@ body {
   width: 4rem;
   height: 4rem;
   overflow: hidden;
-  background-color: var(--color-text-logo);
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-  color: var(--color-banner);
-  border: none;
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  border: 1px solid var(--color-banner);
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
   transition: all 500ms ease-in-out;
@@ -190,17 +294,16 @@ body {
 }
 
 .search__boton:hover {
-  background-color: var(--color-bg-btn-orange);
+  background-color: var(--color-banner);
 }
 
 .search__btn {
-  width: 100%;
-  height: 100%;
+  font-size: 3.5rem;
   filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5));
 }
 
 .search__tematica {
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-description);
   box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
@@ -208,17 +311,17 @@ body {
 }
 
 .search__tematica:hover {
-  border: 1px solid var(--color-description);
+  border: 1px solid var(--color-primary);
 }
 
 .search__ciudad {
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-description);
   box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);
   transition: all 500ms ease-in-out;
 }
 
 .search__ciudad:hover {
-  border: 1px solid var(--color-description);
+  border: 1px solid var(--color-primary);
 }
 
 .search__input {
@@ -231,7 +334,7 @@ body {
 }
 
 .search__input:focus {
-  outline: 1px solid var(--color-banner);
+  outline: none;
 }
 
 /* FOOTER */
