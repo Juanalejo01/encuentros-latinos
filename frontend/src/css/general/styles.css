@@ -425,7 +425,7 @@ body {
 
 /* ESTILOS PARA EL MENSAJE DE ELIMINAR DEL TOAST */
 .mensaje__eliminar {
-  background-color: var(--color-primary);
+  background-color: var(--color-text-btn);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   width: max-content;
