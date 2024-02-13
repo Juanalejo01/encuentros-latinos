@@ -250,7 +250,7 @@
 .ordenar__btn {
   position: relative;
   cursor: pointer;
-  background-color: var(--color-description);
+  background-color: var(--color-primary);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   color: var(--color-secondary);
   border: none;
@@ -278,9 +278,9 @@
 
 .cambiar__escala {
   animation-name: cambiar-escala;
-  animation-duration: 2s; /* Duración de la animación */
-  animation-iteration-count: infinite; /* Animación infinita */
-  animation-direction: alternate; /* Alterna entre agrandar y reducir */
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 @keyframes cambiar-escala {
