@@ -75,7 +75,11 @@ export const PrivateEventosList = ({ evento, removeEvento, token, opcion }) => {
 
       <div
         className={
-          opcion === "Eventos" ? "private-eventos__iconos" : "private-suscripciones__icono"
+          opcion === "Eventos"
+            ? "private-eventos__iconos"
+            : eventoCaducado
+            ? "eventos__iconos-caducado"
+            : "private-suscripciones__icono"
         }
       >
         {opcion === "Eventos" && (
@@ -91,7 +95,11 @@ export const PrivateEventosList = ({ evento, removeEvento, token, opcion }) => {
 
         <button
           className={
-            opcion === "Eventos" ? "private-eventos__eliminar" : "private-suscripciones__noasistir"
+            opcion === "Eventos"
+              ? "private-eventos__eliminar"
+              : eventoCaducado
+              ? "caducado__btn-disabled"
+              : "private-suscripciones__noasistir"
           }
           title="Eliminar"
           onClick={() => {
@@ -132,12 +140,13 @@ export const PrivateEventosList = ({ evento, removeEvento, token, opcion }) => {
               </div>
             ));
           }}
+          disabled={eventoCaducado && opcion === "Suscripcion"}
         >
-          <FaTrashAlt className="private-eventos__eliminar-icono" />
+          <FaTrashAlt className={"private-eventos__eliminar-icono"} />
           {opcion === "Eventos" ? (
             <span className="text__eliminar">Eliminar</span>
           ) : (
-            <span className="text__eliminar">No asistir</span>
+            <span className={eventoCaducado ? "text__caducado" : "text__eliminar"}>No asistir</span>
           )}
         </button>
       </div>

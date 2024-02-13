@@ -7,6 +7,7 @@ import { FaRegClock, FaShapes, FaLocationArrow, FaCity, FaFlag, FaTrashAlt } fro
 import { AuthContext } from "../../context/AuthContext";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { Contador } from "./Contador";
 
 export const Detalles = ({ datos, removeListado, addListado }) => {
   const imagenUrl = `${import.meta.env.VITE_APP_BACKEND}/${datos.evento.foto}`;
@@ -14,6 +15,7 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
   const inscritoUrl = `${import.meta.env.VITE_APP_BACKEND}/`;
   const { token, usuarioId } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
+  const [isCountdownEnd, setIsCountdownEnd] = useState(false);
 
   const navigate = useNavigate();
 
@@ -36,13 +38,15 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
     try {
       setLoading(true);
 
-      if (!token || token === " ") {
-        navigate("/register");
-        toast.error("Tienes que estar registrado para poder inscribirte en este evento.");
-      } else {
-        const dato = await altaUsuarioEventoService(eventoId, token);
-        toast.success(dato.mensaje);
-        addListado(dato.usuario);
+      if (!isCountdownEnd) {
+        if (!token || token === " ") {
+          navigate("/register");
+          toast.error("Tienes que estar registrado para poder inscribirte en este evento.");
+        } else {
+          const dato = await altaUsuarioEventoService(eventoId, token);
+          toast.success(dato.mensaje);
+          addListado(dato.usuario);
+        }
       }
     } catch (error) {
       toast.error(error.message);
@@ -51,16 +55,29 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
     }
   };
 
+  const handleCountdownEnd = () => {
+    setIsCountdownEnd(true);
+  };
+
   return (
     <main className="layout__detalles">
       <header className="detalles__header">
         <h2 className="detalles__title">{datos.evento.titulo}</h2>
       </header>
+
       <div className="detalles__content">
-        <div className="content__dleft">
+        <div className="content__dmiddle">
           <div className="detalles__container-img">
             <img className="detalles__imagen" src={imagenUrl} alt={datos.evento.titulo} />
           </div>
+
+          <div className="detalles__description">
+            <h3 className="detalles__subtitle">Detalles:</h3>
+            <p className="detalles__descripcion">{datos.evento.descripcion}</p>
+          </div>
+        </div>
+
+        <div className="content__dright">
           <div className="detalles__author">
             <img className="author__imagen" src={avatarUrl} alt={datos.evento.nombre} />
             <p className="author__nombre">
@@ -70,6 +87,7 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
               </strong>
             </p>
           </div>
+
           <div className="detalles__tags">
             <div className="detalles__tag-cuando">
               <span className="detalles__tag-fecha">
@@ -92,20 +110,12 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
               </span>
             </div>
           </div>
-        </div>
-
-        <div className="content__dmiddle">
-          <div className="detalles__description">
-            <h3 className="detalles__subtitle">Detalles:</h3>
-            <p className="detalles__descripcion">{datos.evento.descripcion}</p>
-          </div>
-        </div>
-
-        <div className="content__dright">
           <div className="detalles__inscritos">
-            <h4 className="inscritos__title">Lista de asistentes:</h4>
+            <h4 className="inscritos__title">Tiempo para Asistir al evento:</h4>
+            <Contador targetDate={datos.evento.fecha_hora} onCountdownEnd={handleCountdownEnd} />
             {datos.total !== 0 ? (
               <ul className="inscritos__lista">
+                <span className="inscritos__label">Asistentes:</span>
                 {loading ? (
                   <div className="spinner__lista" role="status">
                     <span className="spinner__detalles"></span>
@@ -125,7 +135,7 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
                       </p>
                     </div>
                     <div className="item__eliminar">
-                      {usuarioId && inscrito.usuario_id === usuarioId ? (
+                      {usuarioId && inscrito.usuario_id === usuarioId && !isCountdownEnd ? (
                         <FaTrashAlt
                           className="eliminar__inscrito"
                           onClick={() => {
@@ -170,7 +180,7 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
             <Button
               texto={"Asistir"}
               onClick={() => handleAddInscripcion(datos.evento.id)}
-              className={"detalles__btn"}
+              className={!isCountdownEnd ? "detalles__btn" : "detalles__btn-disabled"}
             />
             <span className="inscritos__total">Nº de asistentes: {datos.total}</span>
           </div>

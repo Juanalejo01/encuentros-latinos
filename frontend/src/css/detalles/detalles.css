@@ -27,10 +27,7 @@
 
 /* ESTILO DEL HEADER DE DETALLES */
 .detalles__header {
-  max-width: var(--mx-width);
-  margin: 0 auto;
   margin-top: 2rem;
-
   margin-bottom: 2rem;
   text-align: center;
 }
@@ -46,24 +43,17 @@
 .detalles__content {
   width: 100%;
   height: 100vh;
+  overflow-x: hidden;
   padding: 2rem 3rem;
   background-color: rgba(0, 0, 0, 0.5);
   color: var(--color-secondary);
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   gap: 3rem;
 }
 
 /* ESTILOS DE LA PARTE IZQUIERDA DEL EVENTO */
-.content__dleft {
-  flex-basis: 34%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 1.5rem;
-}
-
 .detalles__container-img {
   width: 60rem;
   display: flex;
@@ -83,8 +73,9 @@
   box-shadow: 0 2px 10px -4px var(--color-border);
   border-radius: 10px;
   gap: 1rem;
-  padding: 3rem;
+  padding: 2rem;
   pointer-events: none;
+  margin-bottom: 1rem;
 }
 
 .author__nombre strong {
@@ -97,50 +88,49 @@
 
 .author__imagen {
   position: relative;
-  width: 6%;
+  width: 8%;
   border-radius: 50%;
 }
 
 /* ESTILOS DE LA PARTE DEL MEDIO */
 .content__dmiddle {
-  flex-basis: 36%;
+  flex-basis: 50%;
+  height: 100rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  padding: 0 4rem;
+  gap: 5rem;
 }
 
 .detalles__description {
   overflow-x: hidden;
-  font-size: 2rem;
-  margin-bottom: 7rem;
+  font-size: 1.8rem;
   transition: all 300ms ease-in-out;
 }
 
 .detalles__subtitle {
-  font-size: 3rem;
+  font-size: 2.8rem;
   color: var(--color-bg-btn);
   margin-bottom: 1rem;
 }
 
 .detalles__tags {
+  font-size: 1.4rem;
   display: flex;
   flex-direction: column;
   box-shadow: 0 2px 10px -4px var(--color-border);
   border-radius: 10px;
-  padding: 1rem 0;
+  padding: 1.5rem;
   pointer-events: none;
-}
-
-.detalles__tag-tematica {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  gap: 1.5rem;
 }
 
 .detalles__tag-ubicacion {
-  margin-bottom: 2rem;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  gap: 3rem;
+  justify-content: space-around;
 }
 
 .detalles__tag-pais {
@@ -164,32 +154,31 @@
 .detalles__tag-cuando {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: baseline;
-  margin: 1rem 0;
-  gap: 5rem;
 }
 
 .detalles__tag-fecha {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1rem;
+  gap: 0.8rem;
 }
 
 .detalles__tag-tematica {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1rem;
+  gap: 0.8rem;
 }
 
 /* ESTILOS DE LA PARTE DERECHA */
 .content__dright {
+  height: 100rem;
   border-radius: 10px;
   box-shadow: 0 2px 10px -4px var(--color-border);
   background-color: rgba(0, 0, 0, 0.2);
-  flex-basis: 28%;
+  flex-basis: 35%;
   padding: 2rem;
 }
 
@@ -197,7 +186,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .inscritos__title {
@@ -210,13 +199,22 @@
 
 .inscritos__lista,
 .spinner__lista {
+  position: relative;
   overflow-x: hidden;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.2);
-  width: 100%;
-  height: 72rem;
+  width: 90%;
+  height: 58rem;
   margin-bottom: 2rem;
   transition: all 300ms ease-in-out;
+}
+
+.inscritos__label {
+  position: absolute;
+  font-size: 1.5rem;
+  color: var(--color-bg-btn);
+  top: 1rem;
+  left: 2rem;
 }
 
 .spinner__lista {
@@ -230,12 +228,15 @@
 }
 
 .inscritos__item {
-  padding: 2rem 3rem;
+  padding: 1rem 4rem;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  gap: 3rem;
+  gap: 1rem;
+}
+
+.inscritos__item:nth-of-type(1) {
+  margin-top: 1rem;
 }
 
 .inscritos__footer {
@@ -246,7 +247,7 @@
 }
 
 .item__avatar {
-  width: 13%;
+  width: 10%;
   border-radius: 50%;
 }
 
@@ -255,11 +256,16 @@
 }
 
 .item__usuario {
+  margin-top: 2rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 2.5rem;
+  gap: 3rem;
+}
+
+.item__eliminar {
+  margin-top: 2rem;
 }
 
 .inscritos__total {
@@ -272,7 +278,8 @@
 }
 
 /* ESTILO DEL BOTON */
-.detalles__btn {
+.detalles__btn,
+.detalles__btn-disabled {
   position: relative;
   display: flex;
   cursor: pointer;
@@ -288,6 +295,12 @@
   text-align: center;
   color: var(--color-primary);
   transition: all 300ms ease-in-out;
+}
+
+.detalles__btn-disabled {
+  background-color: var(--color-description);
+  color: var(--color-border);
+  cursor: not-allowed;
 }
 
 .detalles__btn:hover {
@@ -352,4 +365,36 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* Estilo base para el contenedor del contador */
+.contador__content {
+  font-size: 1.7rem;
+  color: var(--color-bg-btn);
+  text-align: center;
+  padding: 1rem;
+  width: 32rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.contador__item {
+  width: 9rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+}
+
+/* Estilo para el número del contador */
+.contador__numero {
+  font-weight: 500;
+  display: block;
+  letter-spacing: 0.2rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para la etiqueta del contador (opcional) */
+.countador__text {
+  font-size: 1.4rem;
 }
