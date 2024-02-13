@@ -11,25 +11,12 @@ const compruebaFechaHoraDelEvento = async (fecha, connection, id) => {
     );
     const horasRestantes = diferenciaHoras.horas_restantes;
 
-    if (horasRestantes < 12) {
+    if (horasRestantes < 11) {
       throw generateError("No se puede crear el evento con menos de 12 horas de antelación", 422);
     }
   } else {
     // Modificación de evento
-    const [[eventoFecha]] = await connection.query("SELECT fecha_hora FROM eventos WHERE id = ?", [
-      id,
-    ]);
-
-    const tiempoRestanteInicio = Math.floor(
-      (Date.parse(eventoFecha.fecha) - Date.now()) / (1000 * 60 * 60)
-    );
-
-    if (tiempoRestanteInicio <= 0) {
-      throw generateError(
-        "No se puede modificar el evento cuando falta una hora para iniciar",
-        422
-      );
-    }
+    const [[eventoFecha]] = await connection.query("SELECT fecha FROM eventos WHERE id = ?", [id]);
 
     const tiempoTranscurrido = Math.floor(
       (Date.now() - Date.parse(eventoFecha.fecha)) / (1000 * 60 * 60)
@@ -45,7 +32,7 @@ const compruebaFechaHoraDelEvento = async (fecha, connection, id) => {
 
     if (diferenciaEnHoras < 11) {
       throw generateError(
-        "No se puede modificar el evento con menos de 12 horas de antelación",
+        "No se puede modificar el evento con menos de 12 horas de antelación.",
         422
       );
     }

@@ -49,11 +49,7 @@ export const HomePage = () => {
           <PaginaNoFound />
         ) : eventos.length ? (
           <EventosHome eventos={eventos} />
-        ) : (
-          <div className="spinner__container">
-            <span className="spinner"></span>
-          </div>
-        )}
+        ) : null}
       </div>
     </main>
   );
