@@ -2,7 +2,7 @@
   position: relative;
   height: 100vh;
   z-index: 1;
-  overflow: hidden;
+  overflow-x: hidden;
   padding: 0;
   padding-top: 4rem;
 }
@@ -190,4 +190,32 @@
 /* ESTILOS DE LOS EVENTOS */
 .eventos__banner {
   margin: 5rem 0;
+}
+
+/* SCROLL PARA CHROME */
+.layout__banner::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+  transition: all 300ms ease-in-out;
+}
+
+.layout__banner::-webkit-scrollbar-thumb {
+  border: 9px solid transparent;
+  box-shadow: none;
+  border-radius: 40px;
+  transition: all 300ms ease-in-out;
+}
+
+.layout__banner:hover::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 0 10px var(--color-primary);
+}
+
+.layout__banner:hover::-webkit-scrollbar-thumb:hover {
+  border: 8px solid transparent;
+  box-shadow: inset 0 0 0 10px var(--color-bg-btn);
+}
+
+.layout__banner::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 40px 0;
 }
