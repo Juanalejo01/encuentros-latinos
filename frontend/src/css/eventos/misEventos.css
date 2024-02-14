@@ -75,10 +75,6 @@
   transition: all 1000ms ease-in-out;
 }
 
-.pevento__container-img:hover {
-  flex-basis: 50%;
-}
-
 .pevento__imagen {
   position: absolute;
   width: 100%;
