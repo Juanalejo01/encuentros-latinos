@@ -12,9 +12,11 @@ export const EventosList = ({ eventos }) => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 1200 && window.innerWidth > 800) {
+      if (window.innerWidth <= 1600 && window.innerWidth > 1200) {
+        setSlidesPerView(3);
+      } else if (window.innerWidth <= 1200 && window.innerWidth > 815) {
         setSlidesPerView(2);
-      } else if (window.innerWidth <= 800) {
+      } else if (window.innerWidth <= 815 && window.innerWidth > 0) {
         setSlidesPerView(1);
       } else {
         setSlidesPerView(4);

@@ -1,5 +1,5 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { FaSistrix } from "react-icons/fa";
 import { toast } from "sonner";
@@ -10,6 +10,20 @@ export const Header = () => {
   const [tematicaHeader, setTematicaHeader] = useState("");
   const [ciudadHeader, setCiudadHeader] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleClickOutsideMenu = (event) => {
+      if (showMenu && !event.target.closest(".user__menu")) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutsideMenu);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutsideMenu);
+    };
+  }, [showMenu]);
 
   const handleClick = (e) => {
     e.preventDefault();

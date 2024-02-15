@@ -1,6 +1,6 @@
 .layout__banner {
   position: relative;
-  height: 100vh;
+  height: 85rem;
   z-index: 1;
   overflow-x: hidden;
   padding: 0;
@@ -53,6 +53,7 @@
   font-size: 1.7rem;
   font-weight: normal;
   color: var(--color-secondary);
+  padding: 0 1.5rem;
   margin-bottom: 3.5rem;
 }
 

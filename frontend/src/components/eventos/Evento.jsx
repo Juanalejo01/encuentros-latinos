@@ -9,16 +9,14 @@ export const Evento = ({ evento, slidesPerView }) => {
     <article className="eventos__evento">
       <Link className="eventos__link" to={`/evento/${evento.id}`}>
         <div className="evento__container-img">
-          <div className="evento__superposicion">
-            {evento.foto ? (
-              <img className="evento__imagen" src={imagenUrl} alt={evento.titulo} />
-            ) : (
-              <div className="spinner__img">
-                {console.log("cargar imagen")}
-                <span className="spinner"></span>
-              </div>
-            )}
-          </div>
+          {evento.foto ? (
+            <img className="evento__imagen" src={imagenUrl} alt={evento.titulo} />
+          ) : (
+            <div className="spinner__img">
+              {console.log("cargar imagen")}
+              <span className="spinner"></span>
+            </div>
+          )}
         </div>
 
         <div className="evento__content">
