@@ -209,11 +209,35 @@ body {
   position: relative;
   z-index: 3;
 }
+
+.menu__list {
+  display: flex;
+  align-items: center;
+}
+
 .menu__item {
   position: relative;
   width: 4.5rem;
   height: 4.5rem;
-  margin-right: 3rem;
+}
+
+.menu__bars {
+  display: none;
+  cursor: pointer;
+  font-size: 4rem;
+  padding: 0.5rem;
+  border: 1px solid var(--color-border);
+  box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.menu__vertical {
+  display: none;
+  background-color: var(--color-description);
+  height: 50px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  width: 1px;
 }
 
 /*IMG AVATAR*/

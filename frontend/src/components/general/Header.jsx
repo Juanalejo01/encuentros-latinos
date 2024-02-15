@@ -1,7 +1,7 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { FaSistrix } from "react-icons/fa";
+import { FaBars, FaSistrix } from "react-icons/fa";
 import { toast } from "sonner";
 
 export const Header = () => {
@@ -96,6 +96,7 @@ export const Header = () => {
                   className="avatar__img"
                   onClick={handleAvatarClick}
                 />
+
                 {showMenu && (
                   <ul className="user__submenu">
                     <li className="submenu__item">
@@ -146,6 +147,10 @@ export const Header = () => {
                     </li>
                   </ul>
                 )}
+              </li>
+              <li className="menu__vertical"></li>
+              <li className="menu__item">
+                <FaBars className="menu__bars" />
               </li>
             </ul>
           </nav>
