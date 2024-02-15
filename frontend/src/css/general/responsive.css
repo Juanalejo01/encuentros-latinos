@@ -70,7 +70,7 @@
   }
   .search__bar {
     margin-top: 1rem;
-    z-index: 2;
+    z-index: 3;
     order: 1;
   }
 
@@ -306,5 +306,15 @@
 @media (max-width: 500px) {
   body {
     background-color: red;
+  }
+}
+
+/* SIDEBAR */
+
+@media (max-width: 1200px) {
+  .layout__sidebar {
+    top: 0;
+    left: 0rem;
+    z-index: 4;
   }
 }
