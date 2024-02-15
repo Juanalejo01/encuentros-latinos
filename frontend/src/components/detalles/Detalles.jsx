@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { altaUsuarioEventoService, bajaUsuarioEventoService } from "../../services/eventosServices";
 import { horaFormateada } from "../../services/fechaHoraFormateada";
-import { BannerGeneral } from "../general/BannerGeneral";
 import { Button } from "../general/Button";
 import { FaRegClock, FaShapes, FaLocationArrow, FaCity, FaFlag, FaTrashAlt } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
@@ -60,7 +59,7 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
   };
 
   return (
-    <main className="layout__detalles">
+    <section className="detalles__section">
       <header className="detalles__header">
         <h2 className="detalles__title">{datos.evento.titulo}</h2>
       </header>
@@ -186,8 +185,6 @@ export const Detalles = ({ datos, removeListado, addListado }) => {
           </div>
         </div>
       </div>
-
-      <BannerGeneral />
-    </main>
+    </section>
   );
 };

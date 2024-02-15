@@ -4,7 +4,7 @@
   z-index: 1;
   overflow: hidden;
   padding: 0;
-  height: 100vh;
+  height: 90rem;
 }
 
 .layout__eventos::before {
@@ -98,7 +98,6 @@
 
 .eventos__evento {
   width: 36rem;
-  margin-top: 2rem;
   padding: 1rem 0;
 }
 

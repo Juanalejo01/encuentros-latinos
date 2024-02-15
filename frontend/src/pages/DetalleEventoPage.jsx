@@ -4,19 +4,26 @@ import { Detalles } from "../components/detalles/Detalles";
 import { PaginaNoFound } from "./PaginaNoFound";
 
 import "../css/detalles/detalles.css";
+import { BannerGeneral } from "../components/general/BannerGeneral";
 
 export const DetalleEventoPage = () => {
   const { id } = useParams();
 
   const { datos, loading, error, removeListado, addListado } = useEvento(id);
 
-  if (loading)
-    return (
-      <div className="spinner__evento">
-        <span className="spinner"></span>
-      </div>
-    );
   if (error) return <PaginaNoFound />;
 
-  return <Detalles datos={datos} removeListado={removeListado} addListado={addListado} />;
+  return (
+    <main className="layout__detalles">
+      {loading ? (
+        <div className="spinner__evento">
+          <span className="spinner"></span>
+        </div>
+      ) : (
+        <Detalles datos={datos} removeListado={removeListado} addListado={addListado} />
+      )}
+
+      <BannerGeneral />
+    </main>
+  );
 };

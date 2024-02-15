@@ -19,9 +19,11 @@ export const EventosHome = ({ eventos }) => {
     };
 
     const calculateScreenSizeSlides = () => {
-      if (window.innerWidth <= 1200 && window.innerWidth > 800) {
+      if (window.innerWidth <= 1600 && window.innerWidth > 1200) {
+        return 3;
+      } else if (window.innerWidth <= 1200 && window.innerWidth > 815) {
         return 2;
-      } else if (window.innerWidth <= 800) {
+      } else if (window.innerWidth <= 815 && window.innerWidth > 0) {
         return 1;
       } else {
         return 4;
