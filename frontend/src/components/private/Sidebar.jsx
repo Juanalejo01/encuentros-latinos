@@ -6,7 +6,7 @@ import { toast } from "sonner";
 
 import "../../css/private/sidebar.css";
 
-export const Sidebar = () => {
+export const Sidebar = ({ show }) => {
   const { nombre, logoutHandler } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ export const Sidebar = () => {
   };
 
   return (
-    <section className="layout__sidebar">
+    <section className={`layout__sidebar ${show ? "visible" : ""}`}>
       <header className="sidebar__header">
         <h2 className="sidebar__title">Bienvenido, {nombre}!</h2>
       </header>

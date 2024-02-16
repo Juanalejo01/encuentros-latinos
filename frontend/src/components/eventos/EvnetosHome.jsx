@@ -7,8 +7,19 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 export const EventosHome = ({ eventos }) => {
+  const initialSlidesPerView = () => {
+    if (window.innerWidth <= 1600 && window.innerWidth > 1200) {
+      return 3;
+    } else if (window.innerWidth <= 1200 && window.innerWidth > 815) {
+      return 2;
+    } else if (window.innerWidth <= 815 && window.innerWidth > 0) {
+      return 1;
+    } else {
+      return eventos.length >= 4 ? 4 : eventos.length;
+    }
+  };
   const [uniqueTemas, setUniqueTemas] = useState([]);
-  const [slidesPerView, setSlidesPerView] = useState(4);
+  const [slidesPerView, setSlidesPerView] = useState(initialSlidesPerView());
 
   useEffect(() => {
     const handleResize = () => {

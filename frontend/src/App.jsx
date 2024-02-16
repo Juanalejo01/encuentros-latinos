@@ -13,10 +13,12 @@ import { CrearEventosPage } from "./pages/CrearEventosPage";
 import { EditarEventosPage } from "./pages/EditarEventosPage";
 import { ActualizarUsuarios } from "./pages/ActualizarUsuarioPage";
 import { MisSuscripcionesPage } from "./pages/MisSuscripcionesPage";
+import { useState } from "react";
 
 function App() {
+  const [showSidebar, setShowSidebar] = useState(false);
   return (
-    <Layout>
+    <Layout showSidebar={showSidebar} setShowSidebar={setShowSidebar}>
       <Toaster position="top-center" richColors />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -24,7 +26,7 @@ function App() {
         <Route path="/evento/:id" element={<DetalleEventoPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route element={<PrivateRoutes />}>
+        <Route element={<PrivateRoutes showSidebar={showSidebar} />}>
           <Route path="/dashboard/eventos" element={<MisEventosPage />} />
           <Route path="/dashboard/suscripciones" element={<MisSuscripcionesPage />} />
           <Route path="/dashboard/evento" element={<CrearEventosPage />} />

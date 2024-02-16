@@ -8,7 +8,18 @@ import "swiper/css/pagination";
 import { useEffect, useState } from "react";
 
 export const EventosList = ({ eventos }) => {
-  const [slidesPerView, setSlidesPerView] = useState(eventos.length >= 4 ? 4 : eventos.length);
+  const initialSlidesPerView = () => {
+    if (window.innerWidth <= 1600 && window.innerWidth > 1200) {
+      return 3;
+    } else if (window.innerWidth <= 1200 && window.innerWidth > 815) {
+      return 2;
+    } else if (window.innerWidth <= 815 && window.innerWidth > 0) {
+      return 1;
+    } else {
+      return eventos.length >= 4 ? 4 : eventos.length;
+    }
+  };
+  const [slidesPerView, setSlidesPerView] = useState(initialSlidesPerView());
 
   useEffect(() => {
     const handleResize = () => {
@@ -19,14 +30,14 @@ export const EventosList = ({ eventos }) => {
       } else if (window.innerWidth <= 815 && window.innerWidth > 0) {
         setSlidesPerView(1);
       } else {
-        setSlidesPerView(4);
+        setSlidesPerView(eventos.length >= 4 ? 4 : eventos.length);
       }
     };
 
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [eventos.length]);
 
   const isSingleEvents = eventos.length === 1;
   const isTwoEvents = eventos.length === 2;

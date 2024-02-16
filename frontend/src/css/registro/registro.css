@@ -185,3 +185,31 @@
     transform: rotate(360deg);
   }
 }
+
+/* SCROLL PARA CHROME */
+.registro__content::-webkit-scrollbar {
+  width: 20px;
+  background: transparent;
+  transition: all 300ms ease-in-out;
+}
+
+.registro__content::-webkit-scrollbar-thumb {
+  border: 9px solid transparent;
+  box-shadow: none;
+  border-radius: 40px;
+  transition: all 300ms ease-in-out;
+}
+
+.registro__content:hover::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 0 10px var(--color-secondary);
+}
+
+.registro__content:hover::-webkit-scrollbar-thumb:hover {
+  border: 8px solid transparent;
+  box-shadow: inset 0 0 0 10px var(--color-primary);
+}
+
+.registro__content::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 40px 0;
+}
