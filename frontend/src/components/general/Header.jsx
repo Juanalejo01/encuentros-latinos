@@ -4,12 +4,14 @@ import { AuthContext } from "../../context/AuthContext";
 import { FaBars, FaSistrix } from "react-icons/fa";
 import { toast } from "sonner";
 
-export const Header = () => {
+export const Header = ({ showSidebar, setShowSidebar }) => {
   const { logoutHandler, usuarioId, avatar } = useContext(AuthContext);
   const [showMenu, setShowMenu] = useState(false);
   const [tematicaHeader, setTematicaHeader] = useState("");
   const [ciudadHeader, setCiudadHeader] = useState("");
   const navigate = useNavigate();
+
+  const isPrivateRoute = location.pathname.startsWith("/dashboard");
 
   useEffect(() => {
     const handleClickOutsideMenu = (event) => {
@@ -45,6 +47,10 @@ export const Header = () => {
     setShowMenu(false);
     navigate("/");
     toast.dismiss();
+  };
+
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
   };
 
   return (
@@ -148,10 +154,14 @@ export const Header = () => {
                   </ul>
                 )}
               </li>
-              <li className="menu__vertical"></li>
-              <li className="menu__item">
-                <FaBars className="menu__bars" />
-              </li>
+              {isPrivateRoute && (
+                <ul className="menu__boton-sidebar">
+                  <li className="menu__vertical"></li>
+                  <li className="menu__item">
+                    <FaBars className="menu__bars" onClick={toggleSidebar} />
+                  </li>
+                </ul>
+              )}
             </ul>
           </nav>
         )}

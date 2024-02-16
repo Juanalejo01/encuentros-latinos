@@ -65,7 +65,6 @@ body {
 
 .logo {
   position: relative;
-
   display: flex;
 }
 
@@ -219,6 +218,11 @@ body {
   position: relative;
   width: 4.5rem;
   height: 4.5rem;
+}
+
+.menu__boton-sidebar {
+  display: flex;
+  align-items: center;
 }
 
 .menu__bars {

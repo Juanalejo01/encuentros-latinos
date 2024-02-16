@@ -15,7 +15,7 @@ export const MisSuscripcionesPage = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 1475) {
+      if (window.innerWidth <= 1375) {
         setEventosPorPagina(3);
       } else {
         setEventosPorPagina(6);

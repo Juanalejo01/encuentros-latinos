@@ -1,10 +1,10 @@
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 
-export const Layout = ({ children }) => {
+export const Layout = ({ children, showSidebar, setShowSidebar }) => {
   return (
     <div className="layout">
-      <Header />
+      <Header showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
       {children}
       <Footer />
     </div>
