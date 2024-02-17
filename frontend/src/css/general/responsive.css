@@ -48,6 +48,7 @@
   }
 
   .layout__header {
+    justify-content: space-evenly;
     flex-wrap: wrap;
     padding: 0.25rem 1rem;
     gap: 1rem;
@@ -64,9 +65,9 @@
   }
 }
 
-@media (max-width: 770px) {
+@media (max-width: 810px) {
   .layout__header {
-    justify-content: space-evenly;
+    gap: 2rem;
   }
 
   .search__bar {
@@ -168,7 +169,7 @@
   }
 }
 
-@media (max-width: 770px) {
+@media (max-width: 810px) {
   .eventos__title {
     margin-top: 5rem;
   }
@@ -260,13 +261,13 @@
   }
 }
 
-@media (max-width: 800px) {
+/* @media (max-width: 800px) {
   .detalles__title {
     font-size: 2.5rem;
   }
-}
+} */
 
-@media (max-width: 770px) {
+@media (max-width: 810px) {
   .detalles__title {
     margin-top: 5rem;
   }
@@ -416,7 +417,7 @@
   }
 }
 
-@media (max-width: 770px) {
+@media (max-width: 810px) {
   .registro__title {
     margin-top: 4rem;
     font-size: 4rem;
@@ -541,7 +542,7 @@
   }
 }
 
-@media (max-width: 770px) {
+@media (max-width: 810px) {
   .login__title {
     margin-top: 4rem;
     font-size: 4rem;
@@ -585,7 +586,6 @@
     position: absolute;
     top: 0;
     right: -25rem;
-    z-index: 4;
     transition: right 300ms ease-in-out;
   }
 
@@ -594,7 +594,11 @@
   }
 
   .menu__bars {
-    display: inline-block;
+    display: block;
+  }
+
+  .menu__close {
+    display: block;
   }
 
   .menu__vertical {
@@ -603,8 +607,172 @@
 }
 
 /* RESPONSIVE MIS EVENTOS Y MIS SUSCRIPCIONES */
-@media (max-width: 1400px) {
-  body {
-    background-color: red;
+@media (max-width: 1475px) {
+  .private-eventos__title {
+    font-size: 5rem;
   }
 }
+
+@media (max-width: 1266px) {
+  .private-eventos__title {
+    font-size: 4.5rem;
+  }
+}
+
+@media (max-width: 1066px) {
+  .private-eventos__title {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 810px) {
+  .private-eventos__title {
+    font-size: 3.5rem;
+  }
+
+  .logo {
+    margin-right: 6rem;
+  }
+}
+
+@media (max-width: 666px) {
+  .logo {
+    margin-right: 0;
+  }
+
+  .private-eventos__title {
+    font-size: 3rem;
+  }
+
+  .private-eventos__item {
+    width: 50rem;
+  }
+
+  .private-eventos__link {
+    flex-basis: 85%;
+  }
+
+  .private-eventos__iconos,
+  .private-suscripciones__icono,
+  .eventos__iconos-caducado {
+    flex-basis: 15%;
+  }
+
+  .pevento__title {
+    font-size: 1.5rem;
+  }
+
+  .pevento__tag-tematica,
+  .pevento__tag-ciudad,
+  .pevento__tag-fecha,
+  .pevento__tag-inscritos {
+    font-size: 1.4rem;
+  }
+
+  .private-eventos__eliminar,
+  .private-eventos__editar,
+  .private-suscripciones__noasistir,
+  .caducado__btn-disabled {
+    font-size: 1.2rem;
+  }
+
+  .private-eventos__editar-icono,
+  .private-eventos__eliminar-icono,
+  .private-eventos__icono-faban,
+  .private-eventos__icono-caducado {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 566px) {
+  .private-eventos__title {
+    font-size: 2.8rem;
+  }
+
+  .private-eventos__item {
+    width: 40rem;
+  }
+
+  .private-eventos__link {
+    flex-basis: 90%;
+  }
+
+  .private-eventos__iconos,
+  .private-suscripciones__icono,
+  .eventos__iconos-caducado {
+    flex-basis: 12%;
+  }
+
+  .pevento__title {
+    font-size: 1.3rem;
+  }
+
+  .pevento__tag-tematica,
+  .pevento__tag-ciudad,
+  .pevento__tag-fecha,
+  .pevento__tag-inscritos {
+    font-size: 1.2rem;
+  }
+
+  .private-eventos__eliminar,
+  .private-eventos__editar,
+  .private-suscripciones__noasistir,
+  .caducado__btn-disabled {
+    font-size: 1rem;
+  }
+
+  .private-eventos__editar-icono,
+  .private-eventos__eliminar-icono,
+  .private-eventos__icono-faban,
+  .private-eventos__icono-caducado {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .private-eventos__title {
+    font-size: 2.2rem;
+  }
+
+  .private-eventos__item {
+    width: 35rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .private-eventos__title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .logo__title {
+    font-size: 1.5rem;
+  }
+
+  .menu__item {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .menu__vertical {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .menu__bars,
+  .menu__close {
+    font-size: 3.5rem;
+    padding: 0.3rem;
+  }
+
+  .private-eventos__title {
+    font-size: 1.8rem;
+  }
+
+  .private-eventos__item {
+    width: 30rem;
+  }
+}
+
+/* RESPONSIVE CREAR Y EDITAR EVENTOS */

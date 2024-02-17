@@ -1,7 +1,7 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { FaBars, FaSistrix } from "react-icons/fa";
+import { FaBars, FaSistrix, FaTimes } from "react-icons/fa";
 import { toast } from "sonner";
 
 export const Header = ({ showSidebar, setShowSidebar }) => {
@@ -51,6 +51,10 @@ export const Header = ({ showSidebar, setShowSidebar }) => {
 
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
+  };
+
+  const toggleCloseSidebar = () => {
+    setShowSidebar(false);
   };
 
   return (
@@ -158,7 +162,11 @@ export const Header = ({ showSidebar, setShowSidebar }) => {
                 <ul className="menu__boton-sidebar">
                   <li className="menu__vertical"></li>
                   <li className="menu__item">
-                    <FaBars className="menu__bars" onClick={toggleSidebar} />
+                    {showSidebar ? (
+                      <FaTimes className="menu__close" onClick={toggleCloseSidebar} />
+                    ) : (
+                      <FaBars className="menu__bars" onClick={toggleSidebar} />
+                    )}
                   </li>
                 </ul>
               )}

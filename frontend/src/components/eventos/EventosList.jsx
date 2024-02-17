@@ -19,6 +19,7 @@ export const EventosList = ({ eventos }) => {
       return eventos.length >= 4 ? 4 : eventos.length;
     }
   };
+
   const [slidesPerView, setSlidesPerView] = useState(initialSlidesPerView());
 
   useEffect(() => {

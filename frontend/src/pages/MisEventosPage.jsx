@@ -11,11 +11,19 @@ export const MisEventosPage = () => {
   const { eventos, loading, error, token, removeEvento } = usePrivateEventos();
   const [paginaActual, setPaginaActual] = useState(0);
 
-  const [eventosPorPagina, setEventosPorPagina] = useState(6);
+  const initialEventosPorPagina = () => {
+    if (window.innerWidth <= 1266) {
+      return 3;
+    } else {
+      return 6;
+    }
+  };
+
+  const [eventosPorPagina, setEventosPorPagina] = useState(initialEventosPorPagina());
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 1475) {
+      if (window.innerWidth <= 1266) {
         setEventosPorPagina(3);
       } else {
         setEventosPorPagina(6);

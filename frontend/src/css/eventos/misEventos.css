@@ -36,6 +36,7 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
+  gap: 0 5rem;
 }
 
 .private-eventos__link {
@@ -44,10 +45,6 @@
   color: var(--color-text-body);
   display: flex;
   transition: all 500ms linear;
-}
-
-.private-eventos__link:hover {
-  color: var(--color-primary);
 }
 
 .private-eventos__item {
@@ -85,8 +82,12 @@
   transition: all 1000ms ease-in-out;
 }
 
-.pevento__imagen:hover {
+.private-eventos__link:hover .pevento__imagen {
   transform: scale(1.1);
+}
+
+.private-eventos__link:hover {
+  color: var(--color-primary);
 }
 
 .pevento__content {
