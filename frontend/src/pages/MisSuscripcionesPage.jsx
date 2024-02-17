@@ -11,11 +11,19 @@ export const MisSuscripcionesPage = () => {
   const { eventos, loading, error, token, removeSuscripcion } = usePrivateSuscripciones();
   const [paginaActual, setPaginaActual] = useState(0);
 
-  const [eventosPorPagina, setEventosPorPagina] = useState(6);
+  const initialEventosPorPagina = () => {
+    if (window.innerWidth <= 1266) {
+      return 3;
+    } else {
+      return 6;
+    }
+  };
+
+  const [eventosPorPagina, setEventosPorPagina] = useState(initialEventosPorPagina());
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 1375) {
+      if (window.innerWidth <= 1266) {
         setEventosPorPagina(3);
       } else {
         setEventosPorPagina(6);

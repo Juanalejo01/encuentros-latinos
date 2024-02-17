@@ -9,8 +9,6 @@ export const PrivateRoutes = ({ showSidebar }) => {
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  console.log(showSidebar);
-
   if (!token || token === " ") {
     return navigate("/");
   }
