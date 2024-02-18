@@ -429,10 +429,6 @@ body {
 
 /* ESTILOS GENERALES DEL BOTON */
 
-.button-text {
-  margin-right: 2.5rem;
-}
-
 /* ESTILOS DE SPINNER */
 .spinner {
   position: absolute;
@@ -459,7 +455,6 @@ body {
   background-color: var(--color-text-btn);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   padding: 2rem;
-  width: max-content;
   margin-top: 10rem;
   border-radius: 15px;
 }

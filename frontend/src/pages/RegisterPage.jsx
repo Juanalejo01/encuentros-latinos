@@ -9,7 +9,7 @@ import "../css/registro/registro.css";
 
 export const RegisterPage = () => {
   const [imagen, setImagen] = useState("");
-  const { sending, setClicked, setUsuario } = useRegistro();
+  const { setClicked, setUsuario } = useRegistro();
   const fileInputRef = useRef(null);
 
   const handleFileChange = (e) => {
@@ -139,7 +139,6 @@ export const RegisterPage = () => {
           </div>
           <Button texto={"Registrate"} className={"registro__btn"} />
         </form>
-        {sending ? <div className="spinner__registro"></div> : null}
       </section>
 
       <BannerGeneral />
