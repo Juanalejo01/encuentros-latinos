@@ -31,7 +31,7 @@ export const Sidebar = ({ show }) => {
         <NavLink to={"/dashboard/evento"} end className="sidebar__item">
           Crear evento
         </NavLink>
-        <NavLink to={"/configuracion"} className="sidebar__item">
+        <NavLink to={"/dashboard/configuracion"} className="sidebar__item">
           Configuración
         </NavLink>
       </menu>

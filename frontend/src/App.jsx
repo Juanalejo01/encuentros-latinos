@@ -31,7 +31,7 @@ function App() {
           <Route path="/dashboard/suscripciones" element={<MisSuscripcionesPage />} />
           <Route path="/dashboard/evento" element={<CrearEventosPage />} />
           <Route path="/dashboard/evento/:id" element={<EditarEventosPage />} />
-          <Route path="/configuracion" element={<ActualizarUsuarios />} />
+          <Route path="/dashboard/configuracion" element={<ActualizarUsuarios />} />
         </Route>
         <Route path="*" element={<PaginaNoFound />} />
       </Routes>

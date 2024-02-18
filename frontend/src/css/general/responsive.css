@@ -493,7 +493,7 @@
 
   .formulario__avatar {
     position: absolute;
-    top: 2rem;
+    top: -3rem;
     width: 15rem;
     height: 15rem;
   }
@@ -776,3 +776,319 @@
 }
 
 /* RESPONSIVE CREAR Y EDITAR EVENTOS */
+@media (max-width: 1475px) {
+  .crear-evento__title {
+    font-size: 5rem;
+  }
+}
+
+@media (max-width: 1266px) {
+  .crear-evento__title {
+    font-size: 4.8rem;
+  }
+}
+
+@media (max-width: 1066px) {
+  .crear-evento__title {
+    font-size: 4.3rem;
+  }
+
+  .formulario__evento {
+    width: 70rem;
+    padding: 3rem 2rem;
+  }
+
+  .formulario__top {
+    justify-content: space-between;
+    gap: 3rem;
+  }
+
+  .foto__label {
+    font-size: 31rem;
+    cursor: pointer;
+  }
+
+  .otros-datos__content {
+    margin-right: 0;
+  }
+
+  .formulario__textarea {
+    width: 50rem;
+    height: 25rem;
+  }
+
+  .formulario__btn,
+  .formulario__btn-cancelar {
+    padding: 1rem 0;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (max-width: 810px) {
+  .layout__crear-evento {
+    height: 120rem;
+  }
+
+  .crear-evento__title {
+    font-size: 4rem;
+  }
+
+  .formulario__evento {
+    width: 50rem;
+    height: 105rem;
+    padding: 1rem 0;
+  }
+
+  .formulario__top {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .formulario__foto,
+  .spinner__editar {
+    width: 35rem;
+    height: 25rem;
+  }
+
+  .formulario__detalles {
+    flex-direction: column;
+  }
+
+  .formulario__textarea {
+    width: 40rem;
+    height: 22rem;
+  }
+
+  .formulario__botones {
+    margin-top: 2rem;
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 566px) {
+  .crear-evento__title {
+    font-size: 3.7rem;
+  }
+
+  .formulario__evento {
+    width: 44rem;
+  }
+
+  .formulario__textarea {
+    width: 35rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .formulario__textarea {
+    width: 30rem;
+  }
+
+  .formulario__foto,
+  .spinner__editar {
+    width: 30rem;
+  }
+}
+
+/* RESPONSIVE DE CONFIGURACION */
+@media (max-width: 1475px) {
+  .actualizar__title {
+    font-size: 5rem;
+  }
+}
+
+@media (max-width: 1266px) {
+  .actualizar__title {
+    font-size: 4.8rem;
+  }
+}
+
+@media (max-width: 1066px) {
+  .actualizar__title {
+    font-size: 4.3rem;
+  }
+}
+
+@media (max-width: 810px) {
+  .actualizar__registro,
+  .spinner__usuario {
+    height: 100rem;
+  }
+  .actualizar__title {
+    font-size: 4rem;
+  }
+
+  .actualizar__content {
+    width: 60rem;
+    height: 86rem;
+    padding: 1rem;
+  }
+
+  .actualizar__info {
+    justify-content: space-around;
+  }
+
+  .actualizar__content-btn {
+    justify-content: flex-end;
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+
+  .actualizar__datos-btn,
+  .actualizar__email-btn,
+  .actualizar__password-btn,
+  .eliminar__usuario-btn {
+    padding: 1rem 0;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  h3.label__datos {
+    margin-bottom: -2rem;
+  }
+}
+
+@media (max-width: 616px) {
+  .actualizar__title {
+    font-size: 4rem;
+  }
+
+  .actualizar__content {
+    width: 55rem;
+  }
+
+  .actualizar__info-email,
+  .actualizar__info-nombre {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 566px) {
+  .actualizar__title {
+    font-size: 3.7rem;
+  }
+
+  .actualizar__content {
+    width: 50rem;
+    height: 80rem;
+    gap: 1rem;
+  }
+
+  .actualizar__info-imagen,
+  .spinner__infor-avatar {
+    width: 35rem;
+    height: 35rem;
+  }
+
+  .actualizar__info {
+    justify-content: space-evenly;
+  }
+
+  .actualizar__content-btn {
+    width: 15rem;
+  }
+
+  .actualizar__info-email,
+  .actualizar__info-nombre,
+  .actualizar__info-biografia {
+    font-size: 1.5rem;
+  }
+
+  .actualizar__datos-btn,
+  .actualizar__email-btn,
+  .actualizar__password-btn,
+  .eliminar__usuario-btn {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .actualizar__content {
+    width: 45rem;
+    height: 75rem;
+    gap: 0;
+  }
+
+  .actualizar__info-email,
+  .actualizar__info-nombre {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+@media (max-width: 320px) {
+  .actualizar__content {
+    width: 40rem;
+  }
+
+  .actualizar__info-imagen,
+  .spinner__infor-avatar {
+    width: 30rem;
+    height: 30rem;
+  }
+
+  .actualizar__datos-btn,
+  .actualizar__email-btn,
+  .actualizar__password-btn,
+  .eliminar__usuario-btn {
+    font-size: 1.5rem;
+  }
+}
+
+/* RESPONSIVE MODAL */
+@media (max-width: 570px) {
+  .modal {
+    height: 52rem;
+  }
+
+  .formulario__actualizar-datos {
+    gap: 2rem;
+  }
+
+  .password__description,
+  .datos__description,
+  .email__description,
+  .eliminar__description {
+    padding: 0 2rem;
+  }
+
+  .avatar__label,
+  .registro__imagen-preview {
+    top: 5rem;
+    left: 0;
+  }
+
+  .actualizar-datos__content {
+    margin-top: 13rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .modal {
+    width: 42rem;
+  }
+
+  .input__email-actualizar,
+  .input__nombre-actualizar,
+  .input__apellidos-actualizar,
+  .textarea__bio-actualizar,
+  .input__password-actualizar {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .modal {
+    width: 39rem;
+  }
+
+  .input__email-actualizar,
+  .input__nombre-actualizar,
+  .input__apellidos-actualizar,
+  .textarea__bio-actualizar,
+  .input__password-actualizar {
+    font-size: 1rem;
+  }
+}
