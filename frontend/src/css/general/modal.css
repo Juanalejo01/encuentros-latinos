@@ -71,29 +71,29 @@
   padding-left: 1.5rem;
   padding-right: 2rem;
   margin-bottom: 3rem;
-  background-color: var(--color-secondary);
+  background-color: var(--color-text-logo);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   border: none;
   border-radius: 20px;
   font-weight: 500;
   text-align: center;
-  color: var(--color-primary);
+  color: var(--color-bg-dark);
   transition: all 300ms ease-in-out;
 }
 
 .btn--primary:hover,
 .btn--danger:hover {
-  background-color: var(--color-bg-btn);
+  background-color: var(--color-bg-btn-orange);
   color: var(--color-bg-dark);
 }
 
 .btn--secondary {
-  background-color: var(--color-text-logo);
-  color: var(--color-bg-dark);
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
 }
 
 .btn--secondary:hover {
-  background-color: var(--color-bg-btn-orange);
+  background-color: var(--color-bg-btn);
   color: var(--color-bg-dark);
 }
 

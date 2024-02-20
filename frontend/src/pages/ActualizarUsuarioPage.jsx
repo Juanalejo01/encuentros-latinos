@@ -165,7 +165,7 @@ export const ActualizarUsuarios = () => {
           </div>
           <div className="actualizar__password">
             <Button
-              texto={"Cambiar mi contraseña"}
+              texto={"Cambiar Password"}
               className={"actualizar__password-btn"}
               onClick={() => handleOpenModal("contraseña")}
             />
@@ -307,7 +307,7 @@ export const ActualizarUsuarios = () => {
                 />
 
                 <label className="label__datos" htmlFor="passwordEmail">
-                  Escribe tu Contraseña:
+                  Escribe tu Password:
                 </label>
                 <input
                   className="input__email-actualizar"
@@ -338,7 +338,7 @@ export const ActualizarUsuarios = () => {
             <form className="formulario__actualizar-datos" onSubmit={handleUpdatePassword}>
               <div className="password__content">
                 <label className="label__datos" htmlFor="password">
-                  Contraseña actual:
+                  Password actual:
                 </label>
                 <input
                   className="input__password-actualizar"
@@ -348,7 +348,7 @@ export const ActualizarUsuarios = () => {
                 />
 
                 <label className="label__datos" htmlFor="nuevoPassword">
-                  Nueva Contraseña:
+                  Nueva Password:
                 </label>
                 <input
                   className="input__password-actualizar"
@@ -358,7 +358,7 @@ export const ActualizarUsuarios = () => {
                 />
 
                 <label className="label__datos" htmlFor="confirmNuevoPassword">
-                  Confirmar nueva contraseña:
+                  Confirmar nueva Password:
                 </label>
                 <input
                   className="input__password-actualizar"
@@ -389,7 +389,7 @@ export const ActualizarUsuarios = () => {
             <form className="formulario__eliminar-datos" onSubmit={handleDeleteUser}>
               <div className="eliminar__content">
                 <label className="label__datos" htmlFor="password">
-                  Contraseña
+                  Password:
                 </label>
                 <input
                   className="input__password-actualizar"

@@ -80,7 +80,7 @@ export const RegisterPage = () => {
 
           <div className="formulario__columna--2">
             <div className="formulario__password">
-              <label htmlFor="password">Contraseña:</label>
+              <label htmlFor="password">Password:</label>
               <input
                 className="input__password"
                 type="password"
@@ -91,7 +91,7 @@ export const RegisterPage = () => {
               />
             </div>
             <div className="formulario__password-confirma">
-              <label htmlFor="confirmPassword">Confirmar Contraseña:</label>
+              <label htmlFor="confirmPassword">Confirmar Password:</label>
               <input
                 className="input__password"
                 type="password"
