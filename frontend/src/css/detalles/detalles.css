@@ -15,12 +15,23 @@
   top: 0;
   left: 0;
   right: 0;
-  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../../img/fondo-2.jpg");
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+.layout__detalles::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 60rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-image: url("../../img/fondo-2.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center center;
-  z-index: -1;
+  background-position: center -11.7rem;
+  z-index: -2;
 }
 
 .spinner__evento {

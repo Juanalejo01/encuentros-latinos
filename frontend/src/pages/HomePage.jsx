@@ -4,7 +4,6 @@ import { useContext, useEffect } from "react";
 import { useEventos } from "../hook/useEventos";
 
 import "../css/principal/homePage.css";
-import { PaginaNoFound } from "./PaginaNoFound";
 import { EventosHome } from "../components/eventos/EvnetosHome";
 
 export const HomePage = () => {
@@ -45,9 +44,7 @@ export const HomePage = () => {
           <div className="spinner__container">
             <span className="spinner"></span>
           </div>
-        ) : error ? (
-          <PaginaNoFound />
-        ) : eventos.length ? (
+        ) : error ? null : eventos.length ? (
           <EventosHome eventos={eventos} />
         ) : null}
       </div>
