@@ -1,16 +1,16 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FormularioEvento } from "../components/private/FormularioEvento";
 import { usePrivateEvento } from "../hook/usePrivateEvento";
 import { useUpdateEvento } from "../hook/useUpdateEvento";
-import { PaginaNoFound } from "./PaginaNoFound";
 
 export const EditarEventosPage = () => {
   const { id } = useParams();
   const { evento, loading, error } = usePrivateEvento(id);
   const { setClicked, setEventoModificado } = useUpdateEvento(id);
+  const navigate = useNavigate();
 
   if (error) {
-    return <PaginaNoFound />;
+    return navigate("/paginanofound");
   }
 
   const handleForm = (e) => {

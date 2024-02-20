@@ -1,7 +1,6 @@
 import { EventosList } from "../components/eventos/EventosList";
 import { useEventos } from "../hook/useEventos";
 import { BannerGeneral } from "../components/general/BannerGeneral";
-import { PaginaNoFound } from "./PaginaNoFound";
 import { FaUserFriends } from "react-icons/fa";
 import { useState } from "react";
 
@@ -53,9 +52,7 @@ export const EventosPage = () => {
         <div className="spinner__container">
           <span className="spinner"></span>
         </div>
-      ) : error ? (
-        <PaginaNoFound />
-      ) : eventos.length ? (
+      ) : error ? null : eventos.length ? (
         <EventosList eventos={eventos} />
       ) : (
         <h2 className="eventos__mensaje">
