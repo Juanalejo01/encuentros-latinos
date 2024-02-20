@@ -294,7 +294,7 @@ export const ActualizarUsuarios = () => {
             </p>
             <form className="formulario__actualizar-datos" onSubmit={handleUpdateEmail}>
               <div className="email__content">
-                <h3 className="email__title">{usuario?.email}</h3>
+                <h3 className="email__title">{usuario.email}</h3>
                 <label className="label__datos" htmlFor="email">
                   Nuevo E-mail:
                 </label>

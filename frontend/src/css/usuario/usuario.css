@@ -166,3 +166,8 @@ h3.label__datos {
   background-color: var(--color-bg-btn-orange);
   color: var(--color-bg-dark);
 }
+
+.email__title {
+  color: var(--color-secondary);
+  margin-bottom: 1rem;
+}
