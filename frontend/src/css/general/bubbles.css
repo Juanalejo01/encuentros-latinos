@@ -8,6 +8,7 @@
 .shapes__item--shape1 {
   top: 0;
   left: 34%;
+  opacity: 0.5;
 }
 
 .shapes__item--shape2 {
@@ -20,30 +21,35 @@
 .shapes__item--shape3 {
   top: 32%;
   left: 20%;
+  opacity: 0.5;
   animation: moveShape4 25s infinite;
 }
 
 .shapes__item--shape4 {
   top: 44%;
   left: 28%;
+  opacity: 0.5;
   animation: moveShape3 25s infinite;
 }
 
 .shapes__item--shape5 {
   top: 50%;
   right: 17%;
+  opacity: 0.5;
   animation: moveShape4 30s infinite;
 }
 
 .shapes__item--shape6 {
   top: 26%;
   right: 21%;
+  opacity: 0.5;
   animation: moveShape5 30s infinite;
 }
 
 .shapes__item--shape7 {
   top: 30%;
   right: 15%;
+  opacity: 0.5;
   animation: moveShape3 30s infinite;
 }
 

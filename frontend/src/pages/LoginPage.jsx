@@ -53,7 +53,7 @@ export const LoginPage = () => {
             </li>
 
             <li className="login__item">
-              <label htmlFor="password">Contraseña:</label>
+              <label htmlFor="password">Password:</label>
               <input
                 className="input__password"
                 type="password"
