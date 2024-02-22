@@ -50,8 +50,8 @@ export const EventosList = ({ eventos }) => {
       slidesPerView={slidesPerView}
       lazyPreloadPrevNext={2}
       spaceBetween={10}
-      wrapperClass={isTwoEvents ? "two-cards" : ""}
-      centeredSlides={isSingleEvents}
+      wrapperClass={isTwoEvents && slidesPerView === 3 ? "two-cards" : ""}
+      centeredSlides={isSingleEvents && slidesPerView === 3}
       navigation
       pagination={{ clickable: true }}
     >

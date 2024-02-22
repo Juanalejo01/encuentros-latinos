@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 import "../../css/private/private.css";
 
-export const PrivateRoutes = ({ showSidebar }) => {
+export const PrivateRoutes = ({ showSidebar, setShowSidebar }) => {
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ export const PrivateRoutes = ({ showSidebar }) => {
 
   return (
     <main className="layout__private">
-      <Sidebar show={showSidebar} />
+      <Sidebar show={showSidebar} setShow={setShowSidebar} />
       <Outlet />
     </main>
   );

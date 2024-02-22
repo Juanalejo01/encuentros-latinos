@@ -4,11 +4,11 @@ import { AuthContext } from "../../context/AuthContext";
 import { FaBars, FaSistrix, FaTimes } from "react-icons/fa";
 import { toast } from "sonner";
 
-export const Header = ({ showSidebar, setShowSidebar }) => {
+export const Header = ({ showSidebar, setShowSidebar, setTematicaHeader, setCiudadHeader }) => {
   const { logoutHandler, usuarioId, avatar } = useContext(AuthContext);
   const [showMenu, setShowMenu] = useState(false);
-  const [tematicaHeader, setTematicaHeader] = useState("");
-  const [ciudadHeader, setCiudadHeader] = useState("");
+  const [tematica, setTematica] = useState("");
+  const [ciudad, setCiudad] = useState("");
   const navigate = useNavigate();
 
   const isPrivateRoute = location.pathname.startsWith("/dashboard");
@@ -29,9 +29,9 @@ export const Header = ({ showSidebar, setShowSidebar }) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    navigate(`/eventos?tematica=${tematicaHeader}&ciudad=${ciudadHeader}`);
-    setCiudadHeader("");
-    setTematicaHeader("");
+    navigate(`/eventos?tematica=${tematica}&ciudad=${ciudad}`);
+    setTematicaHeader(tematica);
+    setCiudadHeader(ciudad);
   };
 
   const handleAvatarClick = () => {
@@ -57,31 +57,64 @@ export const Header = ({ showSidebar, setShowSidebar }) => {
     setShowSidebar(false);
   };
 
+  const clearInput = (inputType) => {
+    if (inputType === "tematica") {
+      setTematica("");
+    } else if (inputType === "ciudad") {
+      setCiudad("");
+    }
+  };
+
+  const handleCero = () => {
+    setTematicaHeader("");
+    setCiudadHeader("");
+  };
+
   return (
     <header className="layout__header">
       <div className="logo">
-        <Link className="logo__link" to={usuarioId ? "/eventos?tematica=&ciudad=" : "/"}>
+        <Link
+          className="logo__link"
+          to={usuarioId ? "/eventos?tematica=&ciudad=" : "/"}
+          onClick={handleCero}
+        >
           <h1 className="logo__title">ENCUENTROS LATINOS</h1>
         </Link>
       </div>
 
       <form className="search__bar" onSubmit={handleClick}>
-        <input
-          className="search__tematica search__input"
-          type="text"
-          name="tematica"
-          placeholder="Temática..."
-          value={tematicaHeader}
-          onChange={(e) => setTematicaHeader(e.target.value)}
-        />
-        <input
-          className="search__ciudad search__input"
-          type="text"
-          name="ciudad"
-          placeholder="Ciudad..."
-          value={ciudadHeader}
-          onChange={(e) => setCiudadHeader(e.target.value)}
-        />
+        <div className="search__input-1">
+          <input
+            className="search__tematica search__input"
+            type="text"
+            name="tematica"
+            placeholder="Temática..."
+            value={tematica}
+            onChange={(e) => setTematica(e.target.value)}
+          />
+          {tematica && (
+            <span className="clear-input" onClick={() => clearInput("tematica")}>
+              X
+            </span>
+          )}
+        </div>
+        <div className="search__input-2">
+          <input
+            className="search__ciudad search__input"
+            type="text"
+            name="ciudad"
+            placeholder="Ciudad..."
+            value={ciudad}
+            onChange={(e) => setCiudad(e.target.value)}
+          />
+
+          {ciudad && (
+            <span className="clear-input" onClick={() => clearInput("ciudad")}>
+              X
+            </span>
+          )}
+        </div>
+
         <button className="search__boton">
           <FaSistrix className={"search__btn"} title="Buscar" />
         </button>
