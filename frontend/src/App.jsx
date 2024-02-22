@@ -17,16 +17,29 @@ import { useState } from "react";
 
 function App() {
   const [showSidebar, setShowSidebar] = useState(false);
+  const [tematicaHeader, setTematicaHeader] = useState("");
+  const [ciudadHeader, setCiudadHeader] = useState("");
+
   return (
-    <Layout showSidebar={showSidebar} setShowSidebar={setShowSidebar}>
+    <Layout
+      showSidebar={showSidebar}
+      setShowSidebar={setShowSidebar}
+      setTematicaHeader={setTematicaHeader}
+      setCiudadHeader={setCiudadHeader}
+    >
       <Toaster position="top-center" richColors />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/eventos" element={<EventosPage />} />
+        <Route
+          path="/eventos"
+          element={<EventosPage tematicaHeader={tematicaHeader} ciudadHeader={ciudadHeader} />}
+        />
         <Route path="/evento/:id" element={<DetalleEventoPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route element={<PrivateRoutes showSidebar={showSidebar} />}>
+        <Route
+          element={<PrivateRoutes showSidebar={showSidebar} setShowSidebar={setShowSidebar} />}
+        >
           <Route path="/dashboard/eventos" element={<MisEventosPage />} />
           <Route path="/dashboard/suscripciones" element={<MisSuscripcionesPage />} />
           <Route path="/dashboard/evento" element={<CrearEventosPage />} />

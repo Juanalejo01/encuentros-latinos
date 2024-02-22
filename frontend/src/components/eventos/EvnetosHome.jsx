@@ -64,8 +64,6 @@ export const EventosHome = ({ eventos }) => {
       lazyPreloadPrevNext={2}
       spaceBetween={10}
       slidesPerGroup={2}
-      wrapperClass={eventos.length === 2 ? "two-cards" : ""}
-      centeredSlides={eventos.length === 1}
       pagination={{ clickable: false }}
       allowTouchMove={false}
     >

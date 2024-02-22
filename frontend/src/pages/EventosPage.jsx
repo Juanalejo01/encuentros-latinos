@@ -1,49 +1,41 @@
 import { EventosList } from "../components/eventos/EventosList";
 import { useEventos } from "../hook/useEventos";
 import { BannerGeneral } from "../components/general/BannerGeneral";
-import { FaUserFriends } from "react-icons/fa";
 import { useState } from "react";
 
 import "../css/eventos/eventosPage.css";
 
-export const EventosPage = () => {
+export const EventosPage = ({ tematicaHeader, ciudadHeader }) => {
   const { eventos, loading, error, setOrdenar } = useEventos();
-  const [clickeado, setClickeado] = useState(false);
+  const [orden, setOrden] = useState("recientes");
 
-  const handleClickSi = () => {
-    setOrdenar(true);
-    setClickeado(true);
-  };
+  const handleChangeOrden = (e) => {
+    setOrden(e.target.value);
 
-  const handleClickNo = () => {
-    setOrdenar(false);
-    setClickeado(false);
+    // Actualizar ordenamiento
+    if (e.target.value === "asistentes") {
+      setOrdenar(true);
+    } else {
+      setOrdenar(false);
+    }
   };
 
   return (
     <main className="layout__eventos">
       <header className="eventos__header">
         <h2 className="eventos__title">
-          Listado de eventos <span className="eventos__title-total">(Total: {eventos.length})</span>
+          {!tematicaHeader && !ciudadHeader ? "Todos los eventos" : "Eventos"}
+          {tematicaHeader ? ` de ${tematicaHeader}` : null}
+          {ciudadHeader ? ` cerca de ${ciudadHeader}` : null}
         </h2>
 
         {eventos.length > 1 ? (
           <div className="ordenar__inscritos">
-            <h3 className="ordenar__title">
-              Ordenado Por <FaUserFriends />
-            </h3>
-            <button
-              onClick={handleClickSi}
-              className={`ordenar__btn ${clickeado ? "active__ordenar" : ""}`}
-            >
-              <span className={`${clickeado ? "cambiar__escala" : ""}`}>Sí</span>
-            </button>
-            <button
-              onClick={handleClickNo}
-              className={`ordenar__btn ${!clickeado ? "active__ordenar" : ""}`}
-            >
-              <span className={!clickeado ? "cambiar__escala" : ""}>No</span>
-            </button>
+            <h3 className="ordenar__title">Ordenado por</h3>
+            <select value={orden} onChange={handleChangeOrden} className="ordenar__select">
+              <option value="recientes">Fecha</option>
+              <option value="asistentes">Relevancia</option>
+            </select>
           </div>
         ) : null}
       </header>
@@ -64,3 +56,13 @@ export const EventosPage = () => {
     </main>
   );
 };
+
+/* 
+
+     {!loading ? (
+       
+             <p className="eventos__title-total">(Total: {eventos.length})</p>
+         
+        ) : null}
+
+*/
