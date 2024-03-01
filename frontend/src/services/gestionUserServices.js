@@ -1,12 +1,9 @@
 export const registerUserService = async ({ data }) => {
   try {
-    const response = await fetch(
-      `${import.meta.env.VITE_APP_BACKEND}/registro`,
-      {
-        method: "POST",
-        body: data,
-      }
-    );
+    const response = await fetch(`${import.meta.env.VITE_APP_BACKEND}/registro`, {
+      method: "POST",
+      body: data,
+    });
 
     const json = await response.json();
 
@@ -99,16 +96,13 @@ export const updateEmailService = async (data, token) => {
 
 export const updatePasswordService = async (data, token) => {
   try {
-    const response = await fetch(
-      `${import.meta.env.VITE_APP_BACKEND}/password`,
-      {
-        method: "PUT",
-        body: data,
-        headers: {
-          Authorization: token,
-        },
-      }
-    );
+    const response = await fetch(`${import.meta.env.VITE_APP_BACKEND}/password`, {
+      method: "PUT",
+      body: data,
+      headers: {
+        Authorization: token,
+      },
+    });
 
     const json = await response.json();
 
