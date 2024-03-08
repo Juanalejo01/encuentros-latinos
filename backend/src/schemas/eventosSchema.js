@@ -9,7 +9,7 @@ const customMessages = {
 
 export const eventoSchema = Joi.object({
   titulo: Joi.string().trim().max(150).required().messages(customMessages),
-  descripcion: Joi.string().trim().max(5000).required().messages(customMessages),
+  descripcion: Joi.string().trim().max(3000).required().messages(customMessages),
   tematica: Joi.string().trim().max(100).required().messages(customMessages),
   pais: Joi.string().trim().max(90).required().messages(customMessages),
   ciudad: Joi.string().trim().max(90).required().messages(customMessages),
